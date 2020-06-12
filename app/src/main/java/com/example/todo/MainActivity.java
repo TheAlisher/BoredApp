@@ -2,7 +2,10 @@ package com.example.todo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.todo.intro.IntroActivity;
 
 public class MainActivity extends AppCompatActivity {
 

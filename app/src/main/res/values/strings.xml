@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TODO</string>
+
+    <!--Intro Activity-->
+    <string name="buttonText_intro_next">Next</string>
+    <string name="buttonText_intro_skip">Skip</string>
+    <!--/Intro Activity-->
+
+
 </resources>
