@@ -55,12 +55,31 @@ public class IntroActivity extends AppCompatActivity {
             currentItem = position;
             if (currentItem == 0) {
                 pageRecovery();
+                buttonNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextClick(v);
+                    }
+                });
             }
             if (currentItem == 1) {
                 pageRecovery();
+                buttonNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextClick(v);
+                    }
+                });
             }
             if (currentItem == 2) {
                 lastPageChanges();
+                buttonNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        skipClick(v);
+                    }
+                });
+
             }
         }
 
@@ -73,12 +92,6 @@ public class IntroActivity extends AppCompatActivity {
     private void lastPageChanges() {
         buttonSkip.setVisibility(View.GONE);
         buttonNext.setText("Start");
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                skipClick(v);
-            }
-        });
     }
 
     private void pageRecovery() {
