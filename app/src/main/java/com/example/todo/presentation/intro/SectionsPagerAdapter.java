@@ -1,4 +1,4 @@
-package com.example.todo.intro;
+package com.example.todo.presentation.intro;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public static final String PAGER_POSITION = "pager_position";
 
     public SectionsPagerAdapter(@NonNull FragmentManager fm) {
-        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @NonNull

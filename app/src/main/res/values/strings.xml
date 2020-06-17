@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">TODO</string>
 
-    <!--Intro Activity-->
+    Intro Activity
     <string name="buttonText_intro_next">Next</string>
     <string name="buttonText_intro_skip">Skip</string>
-    <!--/Intro Activity-->
+    /Intro Activity
+
+    Main Activity
+    <string name="text_main_category">Category</string>
+    <string name="text_main_explore">Explore the nightlife of your city</string>
+    <string name="text_main_free">free</string>
+    <string name="text_main_price">Price💰</string>
+    <string name="text_main_accessibility">Accessibility</string>
+    <string name="text_main_participants">Participants</string>
+    <style name="button_main_next">Next</style>
+    <string name="text_main_price_slider">Price</string>
 
 
 </resources>

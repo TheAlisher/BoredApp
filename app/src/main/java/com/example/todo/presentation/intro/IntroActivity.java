@@ -1,19 +1,23 @@
-package com.example.todo.intro;
+package com.example.todo.presentation.intro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.todo.MainActivity;
+import com.example.todo.presentation.main.MainActivity;
 import com.example.todo.R;
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
+    private WormDotsIndicator wormDotsIndicatorIntro;
     private Button buttonSkip;
     private Button buttonNext;
 
@@ -25,6 +29,9 @@ public class IntroActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager_intro);
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
 
+        wormDotsIndicatorIntro = findViewById(R.id.dotsIndicator_intro);
+        wormDotsIndicatorIntro.setViewPager(viewPager);
+
         buttonSkip = findViewById(R.id.button_intro_skip);
         buttonNext = findViewById(R.id.button_intro_next);
 
@@ -32,8 +39,13 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public void skipClick(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+        saveIsShown();
         finish();
+    }
+
+    private void saveIsShown() {
+        SharedPreferences preferences = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        preferences.edit().putBoolean(MainActivity.SP_KEY, false).apply();
     }
 
     public void nextClick(View view) {
@@ -79,7 +91,6 @@ public class IntroActivity extends AppCompatActivity {
                         skipClick(v);
                     }
                 });
-
             }
         }
 
