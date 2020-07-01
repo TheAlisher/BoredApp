@@ -81,13 +81,15 @@
         app:layout_constraintLeft_toLeftOf="@+id/view_main_rectangle"
         app:layout_constraintTop_toBottomOf="@+id/text_main_free" />
 
-    <View
+    <ProgressBar
         android:id="@+id/view_main_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="80dp"
         android:layout_height="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bar_accessibility"
+        android:progress="100"
+        android:progressDrawable="@drawable/progress_bar__gradient"
         app:layout_constraintBottom_toBottomOf="@id/view_main_rectangle"
         app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
         app:layout_constraintTop_toBottomOf="@+id/text_main_explore" />
@@ -269,8 +271,8 @@
         android:id="@+id/view_main_person_4_4"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/icon_add"
         app:layout_constraintBottom_toBottomOf="@id/view_main_person_circle_4"
         app:layout_constraintLeft_toRightOf="@+id/view_main_person_4_3"
@@ -319,18 +321,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_main_next" />
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/slider_price"
-        android:layout_width="190dp"
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rangeSlider_price"
+        android:layout_width="200dp"
         android:layout_height="20dp"
-        android:value="11.11"
         android:valueFrom="0.0"
-        android:valueTo="100.0"
+        android:valueTo="1.0"
+        app:labelBehavior="gone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_main_price_slider"
         app:thumbColor="@color/ContainsMainlyBlue"
         app:trackColorActive="@color/Blue500"
-        app:trackColorInactive="@color/White" />
+        app:trackColorInactive="@color/White"
+        app:values="@array/initial_slider_values" />
 
     <TextView
         android:id="@+id/text_main_accessibility_slider"
@@ -340,21 +343,22 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="115dp"
         android:text="@string/text_main_accessibility"
-        app:layout_constraintRight_toRightOf="@id/slider_price"
+        app:layout_constraintRight_toRightOf="@id/rangeSlider_price"
         app:layout_constraintTop_toBottomOf="@id/text_main_price_slider" />
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/slider_accessibility"
-        android:layout_width="190dp"
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rangeSlider_accessibility"
+        android:layout_width="200dp"
         android:layout_height="20dp"
-        android:value="11.11"
         android:valueFrom="0.0"
-        android:valueTo="100.0"
+        android:valueTo="1.0"
+        app:labelBehavior="gone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_main_accessibility_slider"
         app:thumbColor="@color/ContainsMainlyBlue"
         app:trackColorActive="@color/Blue500"
-        app:trackColorInactive="@color/White" />
+        app:trackColorInactive="@color/White"
+        app:values="@array/initial_slider_values" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

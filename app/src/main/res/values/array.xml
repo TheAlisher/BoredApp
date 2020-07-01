@@ -4,4 +4,8 @@
         <item>Type</item>
     </string-array>
 
+    <array name="initial_slider_values">
+        <item>0.35</item>
+        <item>0.85</item>
+    </array>
 </resources>

@@ -3,14 +3,11 @@ package com.example.todo.presentation.intro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.todo.presentation.main.MainActivity;
+import com.example.todo.App;
 import com.example.todo.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
@@ -39,13 +36,8 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public void skipClick(View view) {
-        saveIsShown();
+        App.appPreferences.setIsFirstLaunch();
         finish();
-    }
-
-    private void saveIsShown() {
-        SharedPreferences preferences = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean(MainActivity.SP_KEY, false).apply();
     }
 
     public void nextClick(View view) {
@@ -53,8 +45,6 @@ public class IntroActivity extends AppCompatActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
         }
     }
-
-    private int currentItem;
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -64,8 +54,8 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            currentItem = position;
-            if (currentItem == 0) {
+
+            if (position == 0) {
                 pageRecovery();
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,7 +64,7 @@ public class IntroActivity extends AppCompatActivity {
                     }
                 });
             }
-            if (currentItem == 1) {
+            if (position == 1) {
                 pageRecovery();
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -83,7 +73,7 @@ public class IntroActivity extends AppCompatActivity {
                     }
                 });
             }
-            if (currentItem == 2) {
+            if (position == 2) {
                 lastPageChanges();
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
