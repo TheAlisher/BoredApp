@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.todo.App;
 import com.example.todo.R;
@@ -82,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mainNextClick(View view) {
+        if (spinnerSelectedValues.equals("Type")) {
+            Toast.makeText(this, "Выберите категорию", Toast.LENGTH_SHORT).show();
+            return;
+        }
         App.boredAPIClient.getAction(
                 spinnerSelectedValues,
                 rangeSliderSelectedMinPrice,
@@ -97,27 +102,19 @@ public class MainActivity extends AppCompatActivity {
                         switch (boredAction.getParticipants()) {
                             case 1:
                                 recoveryParticipantsViews();
-                                viewPersonCircle2.setVisibility(View.INVISIBLE);
-                                viewPersonCircle3.setVisibility(View.INVISIBLE);
-                                viewPersonCircle4.setVisibility(View.INVISIBLE);
+                                invisibleParticipantsCase1();
                                 break;
                             case 2:
                                 recoveryParticipantsViews();
-                                viewPersonCircle1.setVisibility(View.INVISIBLE);
-                                viewPersonCircle3.setVisibility(View.INVISIBLE);
-                                viewPersonCircle4.setVisibility(View.INVISIBLE);
+                                invisibleParticipantsCase2();
                                 break;
                             case 3:
                                 recoveryParticipantsViews();
-                                viewPersonCircle1.setVisibility(View.INVISIBLE);
-                                viewPersonCircle2.setVisibility(View.INVISIBLE);
-                                viewPersonCircle4.setVisibility(View.INVISIBLE);
+                                invisibleParticipantsCase3();
                                 break;
                             case 4:
                                 recoveryParticipantsViews();
-                                viewPersonCircle1.setVisibility(View.INVISIBLE);
-                                viewPersonCircle2.setVisibility(View.INVISIBLE);
-                                viewPersonCircle3.setVisibility(View.INVISIBLE);
+                                invisibleParticipantsCase4();
                                 break;
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -138,6 +135,30 @@ public class MainActivity extends AppCompatActivity {
         viewPersonCircle2.setVisibility(View.VISIBLE);
         viewPersonCircle3.setVisibility(View.VISIBLE);
         viewPersonCircle4.setVisibility(View.VISIBLE);
+    }
+
+    private void invisibleParticipantsCase1() {
+        viewPersonCircle2.setVisibility(View.INVISIBLE);
+        viewPersonCircle3.setVisibility(View.INVISIBLE);
+        viewPersonCircle4.setVisibility(View.INVISIBLE);
+    }
+
+    private void invisibleParticipantsCase2() {
+        viewPersonCircle1.setVisibility(View.INVISIBLE);
+        viewPersonCircle3.setVisibility(View.INVISIBLE);
+        viewPersonCircle4.setVisibility(View.INVISIBLE);
+    }
+
+    private void invisibleParticipantsCase3() {
+        viewPersonCircle1.setVisibility(View.INVISIBLE);
+        viewPersonCircle2.setVisibility(View.INVISIBLE);
+        viewPersonCircle4.setVisibility(View.INVISIBLE);
+    }
+
+    private void invisibleParticipantsCase4() {
+        viewPersonCircle1.setVisibility(View.INVISIBLE);
+        viewPersonCircle2.setVisibility(View.INVISIBLE);
+        viewPersonCircle3.setVisibility(View.INVISIBLE);
     }
 
     private void createCategoryDropdown() {
