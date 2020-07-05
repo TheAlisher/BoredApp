@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="@+id/view_main_rectangle" />
 
     <TextView
+        android:id="@+id/text_main_category"
         style="@style/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:text="@string/text_main_explore"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@id/view_main_rectangle"
         app:layout_constraintLeft_toLeftOf="@id/view_main_rectangle"
         app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
@@ -64,46 +66,46 @@
         style="@style/free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/text_main_free"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view_main_rectangle"
-        app:layout_constraintLeft_toLeftOf="@+id/view_main_rectangle"
-        app:layout_constraintTop_toBottomOf="@+id/text_main_explore" />
+        app:layout_constraintLeft_toLeftOf="@+id/view_main_rectangle" />
 
     <TextView
         android:id="@+id/text_main_price"
         style="@style/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="33dp"
         android:text="@string/text_main_price"
         app:layout_constraintLeft_toLeftOf="@+id/view_main_rectangle"
         app:layout_constraintTop_toBottomOf="@+id/text_main_free" />
 
     <ProgressBar
-        android:id="@+id/view_main_bar"
+        android:id="@+id/progressBar_main_accessibility"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="80dp"
         android:layout_height="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:progress="100"
+        android:layout_marginBottom="40dp"
+        android:max="1"
         android:progressDrawable="@drawable/progress_bar__gradient"
         app:layout_constraintBottom_toBottomOf="@id/view_main_rectangle"
-        app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toBottomOf="@+id/text_main_explore" />
+        app:layout_constraintRight_toRightOf="@id/view_main_rectangle" />
 
     <TextView
         android:id="@+id/text_accessibility"
         style="@style/accessibility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="@string/text_main_accessibility"
         app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toBottomOf="@id/view_main_bar" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar_main_accessibility" />
 
 
     <TextView
@@ -121,49 +123,45 @@
         android:id="@+id/view_main_person_circle_1"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="90dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/icon_circle"
         app:layout_constraintBottom_toBottomOf="@+id/view_main_rectangle"
-        app:layout_constraintLeft_toLeftOf="@id/view_main_rectangle"
-        app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toTopOf="@id/text_main_explore" />
+        app:layout_constraintLeft_toRightOf="@id/view_main_rectangle"
+        app:layout_constraintRight_toLeftOf="@id/view_main_rectangle" />
 
     <View
         android:id="@+id/view_main_person_circle_2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/icon_circle"
         app:layout_constraintBottom_toBottomOf="@+id/view_main_rectangle"
         app:layout_constraintLeft_toLeftOf="@id/view_main_rectangle"
-        app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toTopOf="@id/text_main_explore" />
+        app:layout_constraintRight_toRightOf="@id/view_main_rectangle" />
 
     <View
         android:id="@+id/view_main_person_circle_3"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/icon_circle"
         app:layout_constraintBottom_toBottomOf="@+id/view_main_rectangle"
         app:layout_constraintLeft_toLeftOf="@id/view_main_rectangle"
-        app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toTopOf="@id/text_main_explore" />
+        app:layout_constraintRight_toRightOf="@id/view_main_rectangle" />
 
     <View
         android:id="@+id/view_main_person_circle_4"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="90dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/icon_circle"
         app:layout_constraintBottom_toBottomOf="@+id/view_main_rectangle"
         app:layout_constraintLeft_toLeftOf="@id/view_main_rectangle"
-        app:layout_constraintRight_toRightOf="@id/view_main_rectangle"
-        app:layout_constraintTop_toTopOf="@id/text_main_explore" />
+        app:layout_constraintRight_toRightOf="@id/view_main_rectangle" />
 
     <View
         android:layout_width="10dp"
@@ -292,7 +290,7 @@
         app:layout_constraintTop_toBottomOf="@id/view_main_rectangle" />
 
     <TextView
-        android:id="@+id/text_main_category"
+        android:id="@+id/spinnerText_main_category"
         style="@style/category_price_accessibility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -308,7 +306,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_spinner_category"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_main_category" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerText_main_category" />
 
     <TextView
         android:id="@+id/text_main_price_slider"
@@ -327,7 +325,6 @@
         android:layout_height="20dp"
         android:valueFrom="0.0"
         android:valueTo="1.0"
-        app:labelBehavior="gone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_main_price_slider"
         app:thumbColor="@color/ContainsMainlyBlue"
