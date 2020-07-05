@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializationViews() {
         textCategory = findViewById(R.id.text_main_category);
         textExplore = findViewById(R.id.text_main_explore);
-        textPrice = findViewById(R.id.text_main_price);
+        textPrice = findViewById(R.id.text_main_free);
         viewPersonCircle1 = findViewById(R.id.view_main_person_circle_1);
         viewPersonCircle2 = findViewById(R.id.view_main_person_circle_2);
         viewPersonCircle3 = findViewById(R.id.view_main_person_circle_3);
