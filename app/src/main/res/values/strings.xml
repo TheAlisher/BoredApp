@@ -18,5 +18,12 @@
 
     <string name="text_main_price_slider">Price</string>
 
+    BottomNavigationItem
+    <string name="text_bottomNavigationMenu_home">Main</string>
+    <string name="text_bottomNavigationMenu_favorite">Favorite</string>
+    <string name="text_bottomNavigationMenu_settings">Settings</string>
+
+    FragmentSettings
+    <string name="text_settings_day_night">Day/Night MODE</string>
 
 </resources>
