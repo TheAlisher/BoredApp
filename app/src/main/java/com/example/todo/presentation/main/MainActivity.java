@@ -11,22 +11,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.todo.App;
 import com.example.todo.R;
 import com.example.todo.data.BoredAPIClient;
 import com.example.todo.model.BoredAction;
 import com.example.todo.presentation.intro.IntroActivity;
 import com.google.android.material.slider.RangeSlider;
-import com.google.android.material.slider.Slider;
 
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.List;
+
+import static com.example.todo.R.drawable.icon_favorite_blue;
+import static com.example.todo.R.drawable.icon_selected_favorite_red;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TextView textCategory;
+    private ImageView imageFavorite;
+    private LottieAnimationView lottieAnimationLike;
     private TextView textExplore;
     private TextView textPrice;
     private View viewPersonCircle1;
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initializationViews();
-        createCategoryDropdown();
+        createSpinnerCategory();
         spinnerGetSelectedValues();
         //rangeSliderPriceSetLabelFormatter();
         rangeSliderPriceGetSelectedValues();
@@ -74,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializationViews() {
         textCategory = findViewById(R.id.text_main_category);
+        imageFavorite = findViewById(R.id.image_main_favorite);
+        lottieAnimationLike = findViewById(R.id.lottieAnimation_main_like);
         textExplore = findViewById(R.id.text_main_explore);
         textPrice = findViewById(R.id.text_main_free);
         viewPersonCircle1 = findViewById(R.id.view_main_person_circle_1);
@@ -86,10 +94,14 @@ public class MainActivity extends AppCompatActivity {
         rangeSliderAccessibility = findViewById(R.id.rangeSlider_accessibility);
     }
 
-    public void mainNextClick(View view) {
-        if (spinnerSelectedValues.equals("Type")) {
-            Toast.makeText(this, "Выберите категорию", Toast.LENGTH_SHORT).show();
-            return;
+    public void mainAPINextClick(View view) {
+        if (spinnerSelectedValues != null) {
+            if (spinnerSelectedValues.equals("RANDOM")) {
+                spinnerSelectedValues = null;
+            } else if (spinnerSelectedValues.equals("Category")) {
+                Toast.makeText(this, "Выберите категорию", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         App.boredAPIClient.getAction(
                 spinnerSelectedValues,
@@ -134,6 +146,21 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
+    private boolean flag = true;
+
+    public void mainLikeClick(View view) {
+        if (flag) {
+            lottieAnimationLike.setVisibility(View.VISIBLE);
+            lottieAnimationLike.playAnimation();
+            imageFavorite.setImageResource(icon_selected_favorite_red);
+        } else {
+            lottieAnimationLike.setVisibility(View.INVISIBLE);
+            imageFavorite.setImageResource(icon_favorite_blue);
+        }
+        flag = !flag;
+    }
+
     private void recoveryParticipantsViews() {
         viewPersonCircle1.setVisibility(View.VISIBLE);
         viewPersonCircle2.setVisibility(View.VISIBLE);
@@ -165,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         viewPersonCircle3.setVisibility(View.INVISIBLE);
     }
 
-    private void createCategoryDropdown() {
+    private void createSpinnerCategory() {
         String[] dropdownCategory = getResources().getStringArray(R.array.category);
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(this, R.layout.custom_spinner_item, dropdownCategory);
