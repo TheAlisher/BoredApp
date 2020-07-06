@@ -22,7 +22,10 @@ import com.example.todo.data.BoredAPIClient;
 import com.example.todo.model.BoredAction;
 import com.example.todo.presentation.intro.IntroActivity;
 import com.google.android.material.slider.RangeSlider;
+import com.google.android.material.slider.Slider;
 
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initializationViews();
         createCategoryDropdown();
         spinnerGetSelectedValues();
+        //rangeSliderPriceSetLabelFormatter();
         rangeSliderPriceGetSelectedValues();
         rangeSliderAccessibilityGetSelectedValues();
     }
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(BoredAction boredAction) {
                         textCategory.setText(boredAction.getType());
                         textExplore.setText(boredAction.getActivity());
-                        textPrice.setText(boredAction.getPrice().toString());
+                        textPrice.setText(boredAction.getPrice().toString() + "$");
                         switch (boredAction.getParticipants()) {
                             case 1:
                                 recoveryParticipantsViews();
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            progressBarAccessibility.setProgress(Math.round(boredAction.getAccessibility()), true);
+                            progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100), true);
                         }
                         Log.d("anim", boredAction.toString());
                     }
@@ -180,6 +184,15 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
+        });
+    }
+
+    private void rangeSliderPriceSetLabelFormatter() {
+        rangeSliderPrice.setLabelFormatter(value -> {
+            NumberFormat format = NumberFormat.getCurrencyInstance();
+            format.setMaximumFractionDigits(0);
+            format.setCurrency(Currency.getInstance("USD"));
+            return format.format(value);
         });
     }
 

@@ -13,7 +13,9 @@
     <string name="text_main_price">Price💰</string>
     <string name="text_main_accessibility">Accessibility</string>
     <string name="text_main_participants">Participants</string>
+
     <style name="button_main_next">Next</style>
+
     <string name="text_main_price_slider">Price</string>
 
 
