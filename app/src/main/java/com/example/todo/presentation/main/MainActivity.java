@@ -1,6 +1,7 @@
 package com.example.todo.presentation.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -29,11 +30,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         createNavigationBottom();
+        isNightModeOn();
     }
 
     private void createNavigationBottom() {
         BottomNavigationView navView = findViewById(R.id.navigationView);
         NavController navController = Navigation.findNavController(this, R.id.navigation_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    private void isNightModeOn() {
+        if (App.appPreferences.isDarkModeON()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

@@ -219,13 +219,13 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private boolean flag = true;
+    private boolean isLiked = true;
 
     public void mainLikeClick() {
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (flag) {
+                if (isLiked) {
                     lottieAnimationLike.setVisibility(View.VISIBLE);
                     lottieAnimationLike.playAnimation();
                     imageFavorite.setImageResource(icon_selected_favorite_red);
@@ -233,7 +233,7 @@ public class HomeFragment extends Fragment {
                     lottieAnimationLike.setVisibility(View.INVISIBLE);
                     imageFavorite.setImageResource(icon_favorite_blue);
                 }
-                flag = !flag;
+                isLiked = !isLiked;
             }
         });
     }

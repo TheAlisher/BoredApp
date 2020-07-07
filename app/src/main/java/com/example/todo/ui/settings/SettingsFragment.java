@@ -34,7 +34,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
-        isNightModeOn();
+
         buttonDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,14 +45,6 @@ public class SettingsFragment extends Fragment {
 
     private void initializationViews(View view) {
         buttonDayNightMode = view.findViewById(R.id.button_settings_day_night_mode);
-    }
-
-    private void isNightModeOn() {
-        if (App.appPreferences.isDarkModeON()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
 
     private void imageDayNightModeClick() {
