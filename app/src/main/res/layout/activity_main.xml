@@ -19,8 +19,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/White"
+        android:layout_height="50dp"
+        android:background="@color/Midnight"
         app:itemIconTint="@drawable/bottom_navigation_item_selected"
         app:itemTextColor="@drawable/bottom_navigation_item_selected"
         app:layout_constraintBottom_toBottomOf="parent"

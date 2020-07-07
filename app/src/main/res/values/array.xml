@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category">
-        <item>Category</item>
         <item>RANDOM</item>
         <item>education</item>
         <item>recreational</item>
