@@ -1,6 +1,5 @@
 package com.example.todo.ui.home;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -22,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.todo.App;
@@ -109,7 +107,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void createSpinnerCategory() {
-        String[] dropdownCategory = getResources().getStringArray(R.array.category);
+        String[] dropdownCategory = getResources().getStringArray(R.array.spinner_category);
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(requireContext(), R.layout.custom_spinner_item, dropdownCategory);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -152,7 +150,6 @@ public class HomeFragment extends Fragment {
                         });
             }
         });
-
     }
 
     private void createParticipants(BoredAction boredAction) {
@@ -208,7 +205,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void createLink(BoredAction boredAction) {
-        if (boredAction.getLink().equals("")) {
+        if (boredAction.getLink() != null) {
             textLink.setTypeface(Typeface.DEFAULT_BOLD);
             textLink.setText(boredAction.getLink());
             textLink.setOnClickListener(new View.OnClickListener() {

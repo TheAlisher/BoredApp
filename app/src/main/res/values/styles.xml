@@ -8,39 +8,45 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="category">
+    Home Fragment
+    <style name="text_category">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/White</item>
     </style>
 
-    <style name="explore">
+    <style name="text_explore">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/Midnight</item>
     </style>
 
-    <style name="free">
+    <style name="text_free">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
     </style>
 
-    <style name="price">
+    <style name="text_price">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
     </style>
-    
-    <style name="link">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/White</item>
-    </style>
 
-    <style name="accessibility">
+    <style name="text_accessibility">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/DifferentVeryDarkDesaturatedBlue</item>
     </style>
 
-    <style name="participants">
+    <style name="text_participants">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
+    </style>
+
+    <style name="button_open_link">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="text_link">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/White</item>
     </style>
 
     <style name="button_next">
@@ -48,7 +54,7 @@
         <item name="android:textColor">@color/White</item>
     </style>
 
-    <style name="category_price_accessibility">
+    <style name="text_price_accessibility">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/White</item>
     </style>

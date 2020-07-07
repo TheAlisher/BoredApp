@@ -16,4 +16,5 @@
         android:icon="@drawable/ic_bottom_navigation_settings"
         android:title="@string/text_bottomNavigationMenu_settings" />
 
+
 </menu>

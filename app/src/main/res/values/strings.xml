@@ -11,13 +11,12 @@
     <string name="text_main_explore">Explore the nightlife of your city</string>
     <string name="text_main_free">free</string>
     <string name="text_main_price">Price💰</string>
-    <string name="text_main_link">Link:</string>
     <string name="text_main_accessibility">Accessibility</string>
     <string name="text_main_participants">Participants</string>
-
+    <string name="text_main_link">Link</string>
     <style name="button_main_next">Next</style>
-
     <string name="text_main_price_slider">Price</string>
+    <string name="button_open_link">Open Link:</string>
 
     BottomNavigationItem
     <string name="text_bottomNavigationMenu_home">Main</string>
