@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFFFFF</color>
 
     Light / Dark
-    <color name="textColorDefault">#FFFFFF</color>
-    <color name="buttonColorDayNight">#000000</color>
+    <color name="textColorDefault">#000000</color>
+    <color name="buttonColorDayNight">#FFFFFF</color>
     |Home Fragment
-    <color name="home_rectangle_box">#FFFFFF</color>
-    <color name="home_text_explore">@color/Midnight</color>
-    <color name="home_text_free_price_participants">@color/VeryDarkDesaturatedBlue</color>
-    <color name="home_text_accessibility">@color/DifferentVeryDarkDesaturatedBlue</color>
-    <color name="home_spinner">#FFFFFF</color>
+    <color name="home_rectangle_box">#000000</color>
+    <color name="home_text_explore">@color/White</color>
+    <color name="home_text_free_price_participants">@color/White</color>
+    <color name="home_text_accessibility">@color/White</color>
+    <color name="home_spinner">#000000</color>
 
     Intro Activity
     <color name="MidnightBlue">#191970</color>

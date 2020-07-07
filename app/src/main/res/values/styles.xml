@@ -16,27 +16,27 @@
 
     <style name="text_explore">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/Midnight</item>
+        <item name="android:textColor">@color/home_text_explore</item>
     </style>
 
     <style name="text_free">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
+        <item name="android:textColor">@color/home_text_free_price_participants</item>
     </style>
 
     <style name="text_price">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
+        <item name="android:textColor">@color/home_text_free_price_participants</item>
     </style>
 
     <style name="text_accessibility">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/DifferentVeryDarkDesaturatedBlue</item>
+        <item name="android:textColor">@color/home_text_accessibility</item>
     </style>
 
     <style name="text_participants">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/VeryDarkDesaturatedBlue</item>
+        <item name="android:textColor">@color/home_text_free_price_participants</item>
     </style>
 
     <style name="button_open_link">

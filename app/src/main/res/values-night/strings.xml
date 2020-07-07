@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TODO</string>
-    
-    <string name="text">Light Mode</string>
+
+    <string name="text">Night Mode</string>
 
     Intro Activity
     <string name="buttonText_intro_next">Next</string>

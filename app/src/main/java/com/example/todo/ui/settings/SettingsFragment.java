@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.todo.App;
 import com.example.todo.R;
 
 public class SettingsFragment extends Fragment {
@@ -33,19 +34,34 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
-        imageDayNightModeClick();
+        isNightModeOn();
+        buttonDayNightMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageDayNightModeClick();
+            }
+        });
     }
 
     private void initializationViews(View view) {
         buttonDayNightMode = view.findViewById(R.id.button_settings_day_night_mode);
     }
 
+    private void isNightModeOn() {
+        if (App.appPreferences.isDarkModeON()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
     private void imageDayNightModeClick() {
-        buttonDayNightMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
-        });
+        if (App.appPreferences.isDarkModeON()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            App.appPreferences.setModeDark(false);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            App.appPreferences.setModeDark(true);
+        }
     }
 }
