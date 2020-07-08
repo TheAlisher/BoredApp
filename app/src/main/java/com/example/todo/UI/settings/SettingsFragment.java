@@ -1,4 +1,4 @@
-package com.example.todo.ui.settings;
+package com.example.todo.UI.settings;
 
 import android.os.Bundle;
 
