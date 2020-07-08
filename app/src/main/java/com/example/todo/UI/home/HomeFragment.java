@@ -275,20 +275,20 @@ public class HomeFragment extends Fragment {
     }
 
     private void createLink(BoredAction boredAction) {
-        if (boredAction.getLink() != null) {
-            textLink.setTypeface(Typeface.DEFAULT_BOLD);
-            textLink.setText(boredAction.getLink());
-            if (textLink.getText() != null) {
-                textLink.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String URL = boredAction.getLink();
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
-                        startActivity(intent);
-                    }
-                });
+        textLink.setTypeface(Typeface.DEFAULT_BOLD);
+        textLink.setText(boredAction.getLink());
+        textLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String URL = boredAction.getLink();
+                if (URL.isEmpty()) {
+                    Toast.makeText(getContext(), "Ссылки нет", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                    startActivity(intent);
+                }
             }
-        }
+        });
     }
 
     private void spinnerGetSelectedValues() {
