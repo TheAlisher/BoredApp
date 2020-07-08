@@ -129,37 +129,41 @@ public class HomeFragment extends Fragment {
     }
 
     public void mainAPINextClick() {
-        recoveryLikeIcon();
-        if (spinnerSelectedValues != null) {
-            if (spinnerSelectedValues.equals("RANDOM")) {
-                spinnerSelectedValues = null;
+            recoveryLikeIcon();
+            if (spinnerSelectedValues != null) {
+                if (spinnerSelectedValues.equals("RANDOM")) {
+                    spinnerSelectedValues = null;
+                }
             }
-        }
-        App.boredAPIClient.getAction(
-                spinnerSelectedValues,
-                rangeSliderSelectedMinPrice,
-                rangeSliderSelectedMaxPrice,
-                rangeSliderSelectedMinAccessibility,
-                rangeSliderSelectedMaxAccessibility,
-                new BoredAPIClient.BoredActionCallback() {
-                    @Override
-                    public void onSuccess(BoredAction boredAction) {
-                        textCategory.setText(boredAction.getType());
-                        textExplore.setText(boredAction.getActivity());
-                        textPrice.setText(boredAction.getPrice().toString() + "$");
-                        createParticipants(boredAction);
-                        createLink(boredAction);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100), true);
+            App.boredAPIClient.getAction(
+                    spinnerSelectedValues,
+                    rangeSliderSelectedMinPrice,
+                    rangeSliderSelectedMaxPrice,
+                    rangeSliderSelectedMinAccessibility,
+                    rangeSliderSelectedMaxAccessibility,
+                    new BoredAPIClient.BoredActionCallback() {
+                        @Override
+                        public void onSuccess(BoredAction boredAction) {
+                            try {
+                                textCategory.setText(boredAction.getType());
+                                textExplore.setText(boredAction.getActivity());
+                                textPrice.setText(boredAction.getPrice().toString() + "$");
+                                createParticipants(boredAction);
+                                createLink(boredAction);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100), true);
+                                }
+                            } catch (NullPointerException NPE) {
+                                Toast.makeText(getContext(), "Не найдено, измените парамаетры", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.d("anim", boredAction.toString());
                         }
-                        Log.d("anim", boredAction.toString());
-                    }
 
-                    @Override
-                    public void onFailure(Exception E) {
-                        Log.d("anim", E.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Exception E) {
+                            Log.d("anim", E.getMessage());
+                        }
+                    });
     }
 
     private void createParticipants(BoredAction boredAction) {
