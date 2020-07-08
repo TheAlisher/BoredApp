@@ -268,24 +268,26 @@ public class HomeFragment extends Fragment {
         viewPersonCircle3.setVisibility(View.INVISIBLE);
     }
 
+    private void setProgressBarAccessibility(int progress) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            progressBarAccessibility.setProgress(progress, true);
+        }
+    }
+
     private void createLink(BoredAction boredAction) {
         if (boredAction.getLink() != null) {
             textLink.setTypeface(Typeface.DEFAULT_BOLD);
             textLink.setText(boredAction.getLink());
-            textLink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String URL = boredAction.getLink();
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
-                    startActivity(intent);
-                }
-            });
-        }
-    }
-
-    private void setProgressBarAccessibility(int progress) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            progressBarAccessibility.setProgress(progress, true);
+            if (textLink.getText() != null) {
+                textLink.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String URL = boredAction.getLink();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                        startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
