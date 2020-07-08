@@ -128,42 +128,92 @@ public class HomeFragment extends Fragment {
         spinnerCategory.setAdapter(adapter);
     }
 
-    public void mainAPINextClick() {
-            recoveryLikeIcon();
-            if (spinnerSelectedValues != null) {
-                if (spinnerSelectedValues.equals("RANDOM")) {
-                    spinnerSelectedValues = null;
-                }
-            }
-            App.boredAPIClient.getAction(
-                    spinnerSelectedValues,
-                    rangeSliderSelectedMinPrice,
-                    rangeSliderSelectedMaxPrice,
-                    rangeSliderSelectedMinAccessibility,
-                    rangeSliderSelectedMaxAccessibility,
-                    new BoredAPIClient.BoredActionCallback() {
-                        @Override
-                        public void onSuccess(BoredAction boredAction) {
-                            try {
-                                textCategory.setText(boredAction.getType());
-                                textExplore.setText(boredAction.getActivity());
-                                textPrice.setText(boredAction.getPrice().toString() + "$");
-                                createParticipants(boredAction);
-                                createLink(boredAction);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                    progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100), true);
-                                }
-                            } catch (NullPointerException NPE) {
-                                Toast.makeText(getContext(), "Не найдено, измените парамаетры", Toast.LENGTH_SHORT).show();
-                            }
-                            Log.d("anim", boredAction.toString());
-                        }
+    private boolean isLiked = true;
 
-                        @Override
-                        public void onFailure(Exception E) {
-                            Log.d("anim", E.getMessage());
+    public void mainLikeClick() {
+        String category = textCategory.getText().toString().trim();
+        String explore = textExplore.getText().toString().trim();
+        String price = textPrice.getText().toString().trim();
+        Integer accessibility = progressBarAccessibility.getProgress();
+        String link = textLink.getText().toString().trim();
+        Integer participants = 0;
+        if (viewPersonCircle1.getVisibility() == View.VISIBLE) {
+            participants = 1;
+        }
+        if (viewPersonCircle2.getVisibility() == View.VISIBLE) {
+            participants = 2;
+        }
+        if (viewPersonCircle3.getVisibility() == View.VISIBLE) {
+            participants = 3;
+        }
+        if (viewPersonCircle4.getVisibility() == View.VISIBLE) {
+            participants = 4;
+        }
+        if (isLiked) {
+            if (category.equals("Category") || price.equals("free")) {
+                Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                setLikeAnimationAndIcon();
+                bored = new Bored(category, explore, price, participants, accessibility, link);
+                App.getInstance().getDatabase().boredDao().insert(bored);
+            }
+        } else {
+            recoveryLikeIcon();
+            App.getInstance().getDatabase().boredDao().delete(bored);
+        }
+    }
+
+    private void setLikeAnimationAndIcon() {
+        lottieAnimationLike.setVisibility(View.VISIBLE);
+        lottieAnimationLike.playAnimation();
+        imageFavorite.setImageResource(icon_selected_favorite_red);
+        isLiked = !isLiked;
+    }
+
+    private void recoveryLikeIcon() {
+        lottieAnimationLike.setVisibility(View.INVISIBLE);
+        imageFavorite.setImageResource(icon_favorite_blue);
+        isLiked = true;
+    }
+
+    public void mainAPINextClick() {
+        recoveryLikeIcon();
+        if (spinnerSelectedValues != null) {
+            if (spinnerSelectedValues.equals("RANDOM")) {
+                spinnerSelectedValues = null;
+            }
+        }
+        App.boredAPIClient.getAction(
+                spinnerSelectedValues,
+                rangeSliderSelectedMinPrice,
+                rangeSliderSelectedMaxPrice,
+                rangeSliderSelectedMinAccessibility,
+                rangeSliderSelectedMaxAccessibility,
+                new BoredAPIClient.BoredActionCallback() {
+                    @Override
+                    public void onSuccess(BoredAction boredAction) {
+                        try {
+                            textCategory.setText(boredAction.getType());
+                            textExplore.setText(boredAction.getActivity());
+                            textPrice.setText(boredAction.getPrice().toString() + "$");
+                            createParticipants(boredAction);
+                            createLink(boredAction);
+                            setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
+                        } catch (NullPointerException NPE) {
+                            textPrice.setText("free");
+                            recoveryParticipantsViews();
+                            setProgressBarAccessibility(0);
+                            Toast.makeText(getContext(), "Не найдено, измените параметры", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                        Log.d("anim", boredAction.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Exception E) {
+                        Log.d("anim", E.getMessage());
+                    }
+                });
     }
 
     private void createParticipants(BoredAction boredAction) {
@@ -233,53 +283,10 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private boolean isLiked = true;
-
-    public void mainLikeClick() {
-        String category = textCategory.getText().toString().trim();
-        String explore = textExplore.getText().toString().trim();
-        String price = textPrice.getText().toString().trim();
-        Integer accessibility = progressBarAccessibility.getProgress();
-        String link = textLink.getText().toString().trim();
-        Integer participants = 0;
-        if (viewPersonCircle1.getVisibility() == View.VISIBLE) {
-            participants = 1;
+    private void setProgressBarAccessibility(int progress) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            progressBarAccessibility.setProgress(progress, true);
         }
-        if (viewPersonCircle2.getVisibility() == View.VISIBLE) {
-            participants = 2;
-        }
-        if (viewPersonCircle3.getVisibility() == View.VISIBLE) {
-            participants = 3;
-        }
-        if (viewPersonCircle4.getVisibility() == View.VISIBLE) {
-            participants = 4;
-        }
-        if (isLiked) {
-            if (category.equals("Category")) {
-                Toast.makeText(getContext(), "Нажмите NEXT", Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                setLikeAnimationAndIcon();
-                bored = new Bored(category, explore, price, participants, accessibility, link);
-                App.getInstance().getDatabase().boredDao().insert(bored);
-            }
-        } else {
-            recoveryLikeIcon();
-            App.getInstance().getDatabase().boredDao().delete(bored);
-        }
-    }
-
-    private void setLikeAnimationAndIcon() {
-        lottieAnimationLike.setVisibility(View.VISIBLE);
-        lottieAnimationLike.playAnimation();
-        imageFavorite.setImageResource(icon_selected_favorite_red);
-        isLiked = !isLiked;
-    }
-
-    private void recoveryLikeIcon() {
-        lottieAnimationLike.setVisibility(View.INVISIBLE);
-        imageFavorite.setImageResource(icon_favorite_blue);
-        isLiked = true;
     }
 
     private void spinnerGetSelectedValues() {
