@@ -12,7 +12,8 @@
     <color name="home_text_explore">@color/Midnight</color>
     <color name="home_text_free_price_participants">@color/VeryDarkDesaturatedBlue</color>
     <color name="home_text_accessibility">@color/DifferentVeryDarkDesaturatedBlue</color>
-    <color name="home_spinner">#FFFFFF</color>
+    <color name="spinner_home">#FFFFFF</color>
+    <color name="rangeSlider_trackColorInactive_home">#FFFFFF</color>
 
     Intro Activity
     <color name="MidnightBlue">#191970</color>

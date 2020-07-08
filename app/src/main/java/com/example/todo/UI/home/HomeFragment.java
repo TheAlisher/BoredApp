@@ -35,7 +35,6 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
 import static com.example.todo.R.drawable.icon_favorite_blue;
 import static com.example.todo.R.drawable.icon_selected_favorite_red;
 

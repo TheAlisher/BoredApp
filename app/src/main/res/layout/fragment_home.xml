@@ -364,7 +364,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_main_price_slider"
             app:thumbColor="@color/ContainsMainlyBlue"
             app:trackColorActive="@color/Blue500"
-            app:trackColorInactive="@color/White"
+            app:trackColorInactive="@color/rangeSlider_trackColorInactive_home"
             app:values="@array/range_slider_values" />
 
         <TextView
@@ -388,7 +388,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_main_accessibility_slider"
             app:thumbColor="@color/ContainsMainlyBlue"
             app:trackColorActive="@color/Blue500"
-            app:trackColorInactive="@color/White"
+            app:trackColorInactive="@color/rangeSlider_trackColorInactive_home"
             app:values="@array/range_slider_values" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

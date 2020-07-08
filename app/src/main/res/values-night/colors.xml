@@ -12,7 +12,8 @@
     <color name="home_text_explore">@color/White</color>
     <color name="home_text_free_price_participants">@color/White</color>
     <color name="home_text_accessibility">@color/White</color>
-    <color name="home_spinner">#000000</color>
+    <color name="spinner_home">#000000</color>
+    <color name="rangeSlider_trackColorInactive_home">#000000</color>
 
     Intro Activity
     <color name="MidnightBlue">#191970</color>
