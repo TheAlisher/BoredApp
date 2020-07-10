@@ -25,7 +25,18 @@
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
 
-    FragmentSettings
+    Home Fragment
+    <string name="contentDescription_home_user_1">icon_user_1</string>
+    <string name="contentDescription_home_user_2">icon_user_2</string>
+    <string name="contentDescription_home_user_3">icon_user_3</string>
+    <string name="contentDescription_home_user_4">icon_user_4</string>
+    <string name="contentDescription_home_user_plus">icon_user_plus</string>
+
+    Favorites Fragment
+    <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>
+
+    Settings Fragment
     <string name="text_settings_day_night">Day/Night MODE</string>
+
 
 </resources>

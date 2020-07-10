@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.todo.App;
 import com.example.todo.R;
-import com.example.todo.UI.models.Bored;
 import com.example.todo.data.BoredAPIClient;
 import com.example.todo.model.BoredAction;
 import com.google.android.material.slider.RangeSlider;
@@ -46,10 +45,11 @@ public class HomeFragment extends Fragment {
     private TextView textExplore;
     private TextView textPrice;
     private TextView textLink;
-    private View viewPersonCircle1;
-    private View viewPersonCircle2;
-    private View viewPersonCircle3;
-    private View viewPersonCircle4;
+    private ImageView imageUserIcon1;
+    private ImageView imageUserIcon2;
+    private ImageView imageUserIcon3;
+    private ImageView imageUserIcon4;
+    private ImageView imageUserIconPlus;
     private Button buttonNext;
     private ProgressBar progressBarAccessibility;
     private Spinner spinnerCategory;
@@ -66,7 +66,8 @@ public class HomeFragment extends Fragment {
     private Float rangeSliderSelectedMinAccessibility;
     private Float rangeSliderSelectedMaxAccessibility;
 
-    private Bored bored;
+    private BoredAction boredActions;
+    private String key;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,10 +110,11 @@ public class HomeFragment extends Fragment {
         textExplore = view.findViewById(R.id.text_listBored_explore);
         textPrice = view.findViewById(R.id.text_listBored_free);
         textLink = view.findViewById(R.id.text_listBored_link);
-        viewPersonCircle1 = view.findViewById(R.id.view_listBored_person_circle_1);
-        viewPersonCircle2 = view.findViewById(R.id.view_listBored_person_circle_2);
-        viewPersonCircle3 = view.findViewById(R.id.view_listBored_person_circle_3);
-        viewPersonCircle4 = view.findViewById(R.id.view_listBored_person_circle_4);
+        imageUserIcon1 = view.findViewById(R.id.image_user_icon_1);
+        imageUserIcon2 = view.findViewById(R.id.image_user_icon_2);
+        imageUserIcon3 = view.findViewById(R.id.image_user_icon_3);
+        imageUserIcon4 = view.findViewById(R.id.image_user_icon_4);
+        imageUserIconPlus = view.findViewById(R.id.image_user_icon_plus);
         buttonNext = view.findViewById(R.id.button_main_next);
         progressBarAccessibility = view.findViewById(R.id.progressBar_listBored_accessibility);
         spinnerCategory = view.findViewById(R.id.spinner_main_category);
@@ -132,36 +134,21 @@ public class HomeFragment extends Fragment {
 
     public void mainLikeClick() {
         String category = textCategory.getText().toString().trim();
-        String explore = textExplore.getText().toString().trim();
         String price = textPrice.getText().toString().trim();
-        Integer accessibility = progressBarAccessibility.getProgress();
-        String link = textLink.getText().toString().trim();
-        Integer participants = 0;
-        if (viewPersonCircle1.getVisibility() == View.VISIBLE) {
-            participants = 1;
-        }
-        if (viewPersonCircle2.getVisibility() == View.VISIBLE) {
-            participants = 2;
-        }
-        if (viewPersonCircle3.getVisibility() == View.VISIBLE) {
-            participants = 3;
-        }
-        if (viewPersonCircle4.getVisibility() == View.VISIBLE) {
-            participants = 4;
-        }
         if (isLiked) {
             if (category.equals("Category") || price.equals("free")) {
                 Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
                 return;
             } else {
                 setLikeAnimationAndIcon();
-                bored = new Bored(category, explore, price, participants, accessibility, link);
-                App.getInstance().getDatabase().boredDao().insert(bored);
+                saveBoredAction();
             }
         } else {
             recoveryLikeIcon();
-            App.getInstance().getDatabase().boredDao().delete(bored);
+            deleteBoredAction();
         }
+        BoredAction boredAction = App.boredStorage.getBoredAction(null);
+        Log.d("anim", "Stored " + boredAction);
     }
 
     private void setLikeAnimationAndIcon() {
@@ -177,13 +164,33 @@ public class HomeFragment extends Fragment {
         isLiked = true;
     }
 
+    private void saveBoredAction() {
+        App.boredStorage.saveBoredAction(boredActions);
+        Log.d("anim", "Receive " + boredActions.toString());
+        for (BoredAction action : App.boredStorage.getAllActions()) {
+            Log.d("anim", action.toString());
+        }
+    }
+
+    private void deleteBoredAction() {
+        App.boredStorage.deleteBoredAction(boredActions);
+    }
+
     public void mainAPINextClick() {
         recoveryLikeIcon();
+        setRandomBoredActionType();
+        BoredAPIGetAction();
+    }
+
+    private void setRandomBoredActionType() {
         if (spinnerSelectedValues != null) {
             if (spinnerSelectedValues.equals("RANDOM")) {
                 spinnerSelectedValues = null;
             }
         }
+    }
+
+    private void BoredAPIGetAction() {
         App.boredAPIClient.getAction(
                 spinnerSelectedValues,
                 rangeSliderSelectedMinPrice,
@@ -194,9 +201,11 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
                         try {
+                            key = boredAction.getKey();
+                            boredActions = boredAction;
                             textCategory.setText(boredAction.getType());
                             textExplore.setText(boredAction.getActivity());
-                            textPrice.setText(boredAction.getPrice().toString() + "$");
+                            textPrice.setText(boredAction.getPrice().toString() + '$');
                             createParticipants(boredAction);
                             createLink(boredAction);
                             setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
@@ -207,6 +216,12 @@ public class HomeFragment extends Fragment {
                             Toast.makeText(getContext(), "Не найдено, измените параметры", Toast.LENGTH_SHORT).show();
                         }
                         Log.d("anim", boredAction.toString());
+
+                        BoredAction boredKey = App.boredStorage.getBoredAction(key);
+                        if (boredKey != null) {
+                            setLikeAnimationAndIcon();
+                            Log.d("anim", "Stored " + boredAction);
+                        }
                     }
 
                     @Override
@@ -238,34 +253,36 @@ public class HomeFragment extends Fragment {
     }
 
     private void recoveryParticipantsViews() {
-        viewPersonCircle1.setVisibility(View.VISIBLE);
-        viewPersonCircle2.setVisibility(View.VISIBLE);
-        viewPersonCircle3.setVisibility(View.VISIBLE);
-        viewPersonCircle4.setVisibility(View.VISIBLE);
+        imageUserIcon1.setVisibility(View.VISIBLE);
+        imageUserIcon2.setVisibility(View.VISIBLE);
+        imageUserIcon3.setVisibility(View.VISIBLE);
+        imageUserIcon4.setVisibility(View.VISIBLE);
+        imageUserIconPlus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase1() {
-        viewPersonCircle2.setVisibility(View.INVISIBLE);
-        viewPersonCircle3.setVisibility(View.INVISIBLE);
-        viewPersonCircle4.setVisibility(View.INVISIBLE);
+        imageUserIcon2.setVisibility(View.INVISIBLE);
+        imageUserIcon3.setVisibility(View.INVISIBLE);
+        imageUserIcon4.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase2() {
-        viewPersonCircle1.setVisibility(View.INVISIBLE);
-        viewPersonCircle3.setVisibility(View.INVISIBLE);
-        viewPersonCircle4.setVisibility(View.INVISIBLE);
+        imageUserIcon1.setVisibility(View.INVISIBLE);
+        imageUserIcon3.setVisibility(View.INVISIBLE);
+        imageUserIcon4.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase3() {
-        viewPersonCircle1.setVisibility(View.INVISIBLE);
-        viewPersonCircle2.setVisibility(View.INVISIBLE);
-        viewPersonCircle4.setVisibility(View.INVISIBLE);
+        imageUserIcon1.setVisibility(View.INVISIBLE);
+        imageUserIcon2.setVisibility(View.INVISIBLE);
+        imageUserIcon4.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase4() {
-        viewPersonCircle1.setVisibility(View.INVISIBLE);
-        viewPersonCircle2.setVisibility(View.INVISIBLE);
-        viewPersonCircle3.setVisibility(View.INVISIBLE);
+        imageUserIcon1.setVisibility(View.INVISIBLE);
+        imageUserIcon2.setVisibility(View.INVISIBLE);
+        imageUserIcon3.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.VISIBLE);
     }
 
     private void setProgressBarAccessibility(int progress) {

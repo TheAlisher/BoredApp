@@ -4,9 +4,10 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import com.example.todo.Room.AppDatabase;
 import com.example.todo.data.AppPreferences;
 import com.example.todo.data.BoredAPIClient;
+import com.example.todo.data.db.BoredDatabase;
+import com.example.todo.data.localy.BoredStorage;
 
 public class App extends Application {
 
@@ -15,8 +16,8 @@ public class App extends Application {
     //API
     public static BoredAPIClient boredAPIClient;
     //Room Database
-    private AppDatabase database;
-    public static App instance;
+    private static BoredDatabase boredDatabase;
+    public static BoredStorage boredStorage;
 
     @Override
     public void onCreate() {
@@ -24,17 +25,13 @@ public class App extends Application {
 
         appPreferences = new AppPreferences(this);
         boredAPIClient = new BoredAPIClient();
-        instance = this;
-        database = Room.databaseBuilder(this, AppDatabase.class, "database")
+        boredDatabase = Room.databaseBuilder(
+                this,
+                BoredDatabase.class,
+                "bored.db"
+        ).fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
-    }
-
-    public static App getInstance() {
-        return instance;
-    }
-
-    public AppDatabase getDatabase() {
-        return database;
+        boredStorage = new BoredStorage(boredDatabase.boredDao());
     }
 }

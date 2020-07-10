@@ -39,23 +39,15 @@ public class BoredAPIClient {
 
         Log.d("anim", call.request().url().toString());
 
-        call.enqueue(new Callback<BoredAction>() {
+        call.enqueue(new CoreCallback<BoredAction>() {
             @Override
-            public void onResponse(Call<BoredAction> call, Response<BoredAction> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        callback.onSuccess(response.body());
-                    } else {
-                        callback.onFailure(new Exception("Body is empty"));
-                    }
-                } else {
-                    callback.onFailure(new Exception("Response code " + response.code()));
-                }
+            void onSuccess(BoredAction result) {
+                callback.onSuccess(result);
             }
 
             @Override
-            public void onFailure(Call<BoredAction> call, Throwable t) {
-                callback.onFailure(new Exception(t));
+            void onFailure(Exception exception) {
+                callback.onFailure(exception);
             }
         });
     }

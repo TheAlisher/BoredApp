@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rectangle_box"
+            android:background="@drawable/rectangle_white"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -124,163 +124,66 @@
             app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
             app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
 
-        <View
-            android:id="@+id/view_listBored_person_circle_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="90dp"
+        <ImageView
+            android:id="@+id/image_user_icon_1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="105dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/icon_circle"
+            android:contentDescription="@string/contentDescription_home_user_1"
+            android:src="@drawable/icon_default_user_icon_1"
             app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
             app:layout_constraintLeft_toRightOf="@id/view_listBored_rectangle"
             app:layout_constraintRight_toLeftOf="@id/view_listBored_rectangle" />
 
-        <View
-            android:id="@+id/view_listBored_person_circle_2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="30dp"
+        <ImageView
+            android:id="@+id/image_user_icon_2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="35dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/icon_circle"
+            android:contentDescription="@string/contentDescription_home_user_2"
+            android:src="@drawable/icon_default_user_icon_2"
             app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
             app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
             app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
 
-        <View
-            android:id="@+id/view_listBored_person_circle_3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="30dp"
+        <ImageView
+            android:id="@+id/image_user_icon_3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="35dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/icon_circle"
+            android:contentDescription="@string/contentDescription_home_user_3"
+            android:src="@drawable/icon_default_user_icon_3"
             app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
             app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
             app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
 
-        <View
-            android:id="@+id/view_listBored_person_circle_4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="90dp"
+        <ImageView
+            android:id="@+id/image_user_icon_4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="105dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/icon_circle"
+            android:contentDescription="@string/contentDescription_home_user_4"
+            android:src="@drawable/icon_default_user_icon_4"
             app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
             app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
             app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
 
-        <View
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_1"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_person_circle_1"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_person_circle_1"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_1" />
-
-        <View
-            android:id="@+id/view_listBored_person_2_1"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_2"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_person_circle_2"
-            app:layout_constraintRight_toLeftOf="@+id/view_listBored_person_2_2"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_2" />
-
-        <View
-            android:id="@+id/view_listBored_person_2_2"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_2"
-            app:layout_constraintLeft_toRightOf="@+id/view_listBored_person_2_1"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_person_circle_2"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_2" />
-
-        <View
-            android:id="@+id/view_listBored_person_3_1"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_3"
-            app:layout_constraintLeft_toLeftOf="@+id/view_listBored_person_circle_3"
-            app:layout_constraintRight_toLeftOf="@+id/view_listBored_person_3_2"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_3" />
-
-        <View
-            android:id="@+id/view_listBored_person_3_2"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_3"
-            app:layout_constraintLeft_toRightOf="@+id/view_listBored_person_3_1"
-            app:layout_constraintRight_toRightOf="@+id/view_listBored_person_circle_3"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_3" />
-
-        <View
-            android:id="@+id/view_listBored_person_3_3"
+        <ImageView
+            android:id="@+id/image_user_icon_plus"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_3"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_person_circle_3"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_person_circle_3"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_3" />
-
-        <View
-            android:id="@+id/view_listBored_person_4_1"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintRight_toLeftOf="@+id/view_listBored_person_4_2"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_4" />
-
-        <View
-            android:id="@+id/view_listBored_person_4_2"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintLeft_toRightOf="@id/view_listBored_person_4_1"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_4" />
-
-        <View
-            android:id="@+id/view_listBored_person_4_3"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/icon_person"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintRight_toLeftOf="@+id/view_listBored_person_4_4"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_4" />
-
-        <View
-            android:id="@+id/view_listBored_person_4_4"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/icon_add"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintLeft_toRightOf="@+id/view_listBored_person_4_3"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_person_circle_4"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_person_circle_4" />
+            android:contentDescription="@string/contentDescription_home_user_plus"
+            android:src="@drawable/icon_add"
+            app:layout_constraintBottom_toBottomOf="@id/image_user_icon_4"
+            app:layout_constraintRight_toRightOf="@id/image_user_icon_4"
+            app:layout_constraintTop_toTopOf="@+id/image_user_icon_4" />
 
         <View
             android:id="@+id/view_listBored_rectangle_link"
@@ -319,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_gradient_button"
+            android:background="@drawable/background_rounded_gradient"
             android:text="@string/buttonText_intro_next"
             android:textAllCaps="false"
             app:layout_constraintTop_toBottomOf="@id/view_listBored_rectangle" />

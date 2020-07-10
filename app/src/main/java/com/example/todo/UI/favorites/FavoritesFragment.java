@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,15 +15,18 @@ import android.view.ViewGroup;
 
 import com.example.todo.App;
 import com.example.todo.R;
-import com.example.todo.UI.models.Bored;
+import com.example.todo.UI.OnItemClickListener;
+import com.example.todo.model.BoredAction;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
     private BoredAdapter adapter;
-    private ArrayList<Bored> card = new ArrayList<>();
+    private ArrayList<BoredAction> card = new ArrayList<>();
+
+    private CardView cardViewYouHaveNoSavedYet;
+    LinearLayoutManager linearLayoutManagerBored;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,27 +42,37 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_favorites);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        card.addAll(App.getInstance().getDatabase().boredDao().getAll());
-        adapter = new BoredAdapter(card);
-        recyclerView.setAdapter(adapter);
-        loadData();
+        initializationViews(view);
+        createRecyclerView(view);
+        checkDatabase();
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                App.boredStorage.deleteBoredAction(card.get(position));
+            }
+        });
     }
 
-    private void loadData() {
-        App
-                .getInstance()
-                .getDatabase()
-                .boredDao()
-                .getAllLive()
-                .observe(getViewLifecycleOwner(), new Observer<List<Bored>>() {
-                    @Override
-                    public void onChanged(List<Bored> boreds) {
-                        card.clear();
-                        card.addAll(boreds);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+    private void initializationViews(View view) {
+        cardViewYouHaveNoSavedYet = view.findViewById(R.id.cardView_favorites_youHavNoSavedYet);
+    }
+
+    private void createRecyclerView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_favorites);
+        linearLayoutManagerBored = new LinearLayoutManager(getContext());
+        linearLayoutManagerBored.setReverseLayout(true);
+        linearLayoutManagerBored.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManagerBored);
+        card.addAll(App.boredStorage.getAllActions());
+        adapter = new BoredAdapter(card);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void checkDatabase() {
+        if (card.isEmpty()) {
+            cardViewYouHaveNoSavedYet.setVisibility(View.VISIBLE);
+        } else {
+            cardViewYouHaveNoSavedYet.setVisibility(View.GONE);
+        }
     }
 }
