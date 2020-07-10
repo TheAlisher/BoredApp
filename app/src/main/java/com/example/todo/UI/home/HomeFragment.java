@@ -186,6 +186,8 @@ public class HomeFragment extends Fragment {
         if (spinnerSelectedValues != null) {
             if (spinnerSelectedValues.equals("RANDOM")) {
                 spinnerSelectedValues = null;
+                rangeSliderPrice.setValues(0.0f, 1.0f);
+                rangeSliderAccessibility.setValues(0.0f, 1.0f);
             }
         }
     }
