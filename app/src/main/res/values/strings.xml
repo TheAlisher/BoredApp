@@ -37,5 +37,6 @@
 
     Settings Fragment
     <string name="text_settings_day_night">Day/Night MODE</string>
+    <string name="text_settings_liveData_swipeData_mode">LiveData/SwipeData MODE</string>
 
 </resources>

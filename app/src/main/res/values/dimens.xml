@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    marginTop
+    <dimen name="marginTop_30dp">30dp</dimen>
+    <dimen name="marginTop_100dp">100dp</dimen>
+
+    textSize
+    <dimen name="textSize_20sp">20sp</dimen>
+
+
+</resources>

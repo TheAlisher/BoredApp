@@ -6,7 +6,7 @@
 
     Light / Dark
     <color name="textColorDefault">#FFFFFF</color>
-    <color name="buttonColorDayNight">#000000</color>
+    <color name="buttonColorSettings">#000000</color>
     <color name="switchTextColorDayNight">#FFFFFF</color>
     |Home Fragment
     <color name="home_rectangle_box">#FFFFFF</color>

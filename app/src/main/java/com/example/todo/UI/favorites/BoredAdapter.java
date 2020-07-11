@@ -74,7 +74,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
                 public void onClick(View view) {
                     if (App.appPreferences.isLiveDataModeON()) {
                         onItemClickListener.OnItemClick(getAdapterPosition());
-                        imageFavoriteSelected.setImageResource(R.drawable.icon_favorite_blue);
                     }
                 }
             });
@@ -176,7 +175,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
 
         private void setProgressBarAccessibility(int progress) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                progressBarAccessibility.setProgress(progress, true);
+                progressBarAccessibility.setProgress(progress);
             }
         }
 
