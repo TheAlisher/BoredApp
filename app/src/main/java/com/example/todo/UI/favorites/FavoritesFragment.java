@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +20,45 @@ import com.example.todo.R;
 import com.example.todo.UI.OnItemClickListener;
 import com.example.todo.model.BoredAction;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
+    private RecyclerView recyclerView;
     private BoredAdapter adapter;
     private ArrayList<BoredAction> card = new ArrayList<>();
 
     private CardView cardViewYouHaveNoSavedYet;
     LinearLayoutManager linearLayoutManagerBored;
+
+    private ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback
+            (0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NotNull RecyclerView recyclerView, @NotNull RecyclerView.ViewHolder viewHolder, @NotNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+            int position = viewHolder.getAdapterPosition();
+            App.boredStorage.deleteBoredAction(card.get(position));
+            card.remove(position);
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            if (!App.appPreferences.isLiveDataModeON()) {
+                int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+                return makeMovementFlags(dragFlags, swipeFlags);
+            }
+            return super.getMovementFlags(recyclerView, viewHolder);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +83,7 @@ public class FavoritesFragment extends Fragment {
                 App.boredStorage.deleteBoredAction(card.get(position));
             }
         });
+        loadData();
     }
 
     private void initializationViews(View view) {
@@ -58,7 +91,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void createRecyclerView(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_favorites);
+        recyclerView = view.findViewById(R.id.recyclerView_favorites);
         linearLayoutManagerBored = new LinearLayoutManager(getContext());
         linearLayoutManagerBored.setReverseLayout(true);
         linearLayoutManagerBored.setStackFromEnd(true);
@@ -74,5 +107,27 @@ public class FavoritesFragment extends Fragment {
         } else {
             cardViewYouHaveNoSavedYet.setVisibility(View.GONE);
         }
+    }
+
+    private void loadData() {
+        if (App.appPreferences.isLiveDataModeON()) {
+            App.boredStorage
+                    .getAllActionsLive()
+                    .observe(getViewLifecycleOwner(), new Observer<List<BoredAction>>() {
+                        @Override
+                        public void onChanged(List<BoredAction> boredActions) {
+                            card.clear();
+                            card.addAll(boredActions);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+        } else {
+            createItemTouchHelperForRecyclerView();
+        }
+    }
+
+    private void createItemTouchHelperForRecyclerView() {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 }

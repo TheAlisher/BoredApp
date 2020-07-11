@@ -88,13 +88,13 @@ public class HomeFragment extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainAPINextClick();
+                homeAPINextClick();
             }
         });
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainLikeClick();
+                homeLikeClick();
             }
         });
         spinnerGetSelectedValues();
@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment {
 
     private boolean isLiked = true;
 
-    public void mainLikeClick() {
+    public void homeLikeClick() {
         String category = textCategory.getText().toString().trim();
         String price = textPrice.getText().toString().trim();
         if (isLiked) {
@@ -147,8 +147,6 @@ public class HomeFragment extends Fragment {
             recoveryLikeIcon();
             deleteBoredAction();
         }
-        BoredAction boredAction = App.boredStorage.getBoredAction(null);
-        Log.d("anim", "Stored " + boredAction);
     }
 
     private void setLikeAnimationAndIcon() {
@@ -176,7 +174,7 @@ public class HomeFragment extends Fragment {
         App.boredStorage.deleteBoredAction(boredActions);
     }
 
-    public void mainAPINextClick() {
+    public void homeAPINextClick() {
         recoveryLikeIcon();
         setRandomBoredActionType();
         BoredAPIGetAction();
@@ -186,8 +184,6 @@ public class HomeFragment extends Fragment {
         if (spinnerSelectedValues != null) {
             if (spinnerSelectedValues.equals("RANDOM")) {
                 spinnerSelectedValues = null;
-                rangeSliderPrice.setValues(0.0f, 1.0f);
-                rangeSliderAccessibility.setValues(0.0f, 1.0f);
             }
         }
     }

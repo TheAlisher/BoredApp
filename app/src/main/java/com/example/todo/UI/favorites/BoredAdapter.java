@@ -1,5 +1,8 @@
 package com.example.todo.UI.favorites;
 
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todo.App;
 import com.example.todo.R;
 import com.example.todo.UI.OnItemClickListener;
 import com.example.todo.model.BoredAction;
@@ -35,11 +40,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
 
     @Override
     public void onBindViewHolder(@NonNull BoredViewHolder holder, int position) {
-        /*if (position % 2 == 0) {
-            holder.itemView.setBackgroundResource(R.color.Midnight);
-        } else {
-            holder.itemView.setBackgroundColor(Color.WHITE);
-        }*/
         holder.onBind(card.get(position));
     }
 
@@ -72,8 +72,16 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageFavoriteSelected.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.OnItemClick(getAdapterPosition());
-                    imageFavoriteSelected.setImageResource(R.drawable.icon_favorite_blue);
+                    if (App.appPreferences.isLiveDataModeON()) {
+                        onItemClickListener.OnItemClick(getAdapterPosition());
+                        imageFavoriteSelected.setImageResource(R.drawable.icon_favorite_blue);
+                    }
+                }
+            });
+            textLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adapterLinkClick(view);
                 }
             });
         }
@@ -92,13 +100,23 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textLink = itemView.findViewById(R.id.text_listBored_link);
         }
 
+        private void adapterLinkClick(View view) {
+            String URL = textLink.getText().toString().trim();
+            if (URL.isEmpty()) {
+                Toast.makeText(view.getContext(), "Ссылки нет", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                view.getContext().startActivity(intent);
+            }
+        }
+
         public void onBind(BoredAction boredAction) {
             textCategory.setText(boredAction.getType());
             textExplore.setText(boredAction.getActivity());
             textPrice.setText(boredAction.getPrice().toString() + '$');
             createParticipants(boredAction);
             setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
-            textLink.setText(boredAction.getLink());
+            createLink(boredAction);
         }
 
         private void createParticipants(BoredAction boredAction) {
@@ -160,6 +178,11 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 progressBarAccessibility.setProgress(progress, true);
             }
+        }
+
+        private void createLink(BoredAction boredAction) {
+            textLink.setText(boredAction.getLink());
+            textLink.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 }

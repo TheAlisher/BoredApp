@@ -1,5 +1,6 @@
 package com.example.todo.data.localy;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,4 +25,7 @@ public interface BoredDao {
 
     @Query("SELECT * FROM bored_action")
     List<BoredAction> getAll();
+
+    @Query("SELECT * FROM bored_action")
+    LiveData<List<BoredAction>> getAllLive();
 }

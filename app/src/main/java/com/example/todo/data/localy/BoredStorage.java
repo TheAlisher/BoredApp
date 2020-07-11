@@ -1,5 +1,7 @@
 package com.example.todo.data.localy;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.todo.model.BoredAction;
 
 import java.util.List;
@@ -26,5 +28,9 @@ public class BoredStorage  {
 
     public List<BoredAction> getAllActions() {
         return dao.getAll();
+    }
+
+    public LiveData<List<BoredAction>> getAllActionsLive() {
+        return dao.getAllLive();
     }
 }
