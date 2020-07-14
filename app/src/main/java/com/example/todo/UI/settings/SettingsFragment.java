@@ -18,7 +18,7 @@ import com.example.todo.R;
 public class SettingsFragment extends Fragment {
 
     private Button buttonDayNightMode;
-    private Button buttonLiveDataSwipeDelete;
+    private Button buttonLiveDataSwipeDeleteManualDelete;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,14 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
-        checkLiveDataSwipeDelete();
+        checkLiveDataSwipeDeleteManualDelete();
         buttonDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imageDayNightModeClick();
             }
         });
-        buttonLiveDataSwipeDelete.setOnClickListener(new View.OnClickListener() {
+        buttonLiveDataSwipeDeleteManualDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LiveDataSwipeDeleteClick();
@@ -52,7 +52,7 @@ public class SettingsFragment extends Fragment {
 
     private void initializationViews(View view) {
         buttonDayNightMode = view.findViewById(R.id.button_settings_day_night_mode);
-        buttonLiveDataSwipeDelete = view.findViewById(R.id.button_settings_LiveData_or_SwipeDelete);
+        buttonLiveDataSwipeDeleteManualDelete = view.findViewById(R.id.button_settings_LiveData_or_SwipeDelete_or_ManualDelete);
     }
 
     private void imageDayNightModeClick() {
@@ -65,21 +65,34 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private void checkLiveDataSwipeDelete() {
-        if (App.appPreferences.isLiveDataModeON()) {
-            buttonLiveDataSwipeDelete.setText("LiveData");
-        } else {
-            buttonLiveDataSwipeDelete.setText("SwipeData");
+    private void checkLiveDataSwipeDeleteManualDelete() {
+        if (App.appPreferences.isLiveDataON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("LiveData");
+        }
+        if (App.appPreferences.isSwipeDeleteON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("SwipeData");
+        }
+        if (App.appPreferences.isManualDeleteON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("ManualData");
         }
     }
 
     private void LiveDataSwipeDeleteClick() {
-        if (App.appPreferences.isLiveDataModeON()) {
-            buttonLiveDataSwipeDelete.setText("SwipeData");
-            App.appPreferences.setLiveDataMode(false);
-        } else {
-            buttonLiveDataSwipeDelete.setText("LiveData");
-            App.appPreferences.setLiveDataMode(true);
+        if (App.appPreferences.isLiveDataON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("SwipeData");
+            App.appPreferences.setLiveData(false);
+            App.appPreferences.setSwipeDelete(true);
+            App.appPreferences.setManualDelete(false);
+        } else if (App.appPreferences.isSwipeDeleteON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("ManualData");
+            App.appPreferences.setLiveData(false);
+            App.appPreferences.setSwipeDelete(false);
+            App.appPreferences.setManualDelete(true);
+        } else if (App.appPreferences.isManualDeleteON()) {
+            buttonLiveDataSwipeDeleteManualDelete.setText("LiveData");
+            App.appPreferences.setLiveData(true);
+            App.appPreferences.setSwipeDelete(false);
+            App.appPreferences.setManualDelete(false);
         }
     }
 }

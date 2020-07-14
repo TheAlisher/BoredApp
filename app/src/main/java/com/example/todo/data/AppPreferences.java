@@ -9,8 +9,10 @@ public class AppPreferences {
     private static final String PREF_IS_FIRST_LAUNCH = "is_first_launch";
     // LIGHT / DARK | MODE
     private static final String PREF_LIGHT_DARK_MODE = "light_dark_mode";
-    // LiveData / SwipeDelete MODE
-    public static final String PREF_LIVE_DATA_SWIPE_DELETE_MODE = "liveData_swipeDelete";
+    // LiveData / SwipeDelete / ManualDeleteInCode | MODE
+    public static final String PREF_LIVE_DATA = "live_data";
+    public static final String PREF_SWIPE_DELETE = "swipe_delete";
+    public static final String PREF_MANUAL_DELETE = "manual_delete";
 
     private SharedPreferences preferences;
 
@@ -38,12 +40,28 @@ public class AppPreferences {
         preferences.edit().putBoolean(PREF_LIGHT_DARK_MODE, flag).apply();
     }
 
-    // LiveData / SwipeDelete | MODE
-    public boolean isLiveDataModeON() {
-        return preferences.getBoolean(PREF_LIVE_DATA_SWIPE_DELETE_MODE, true);
+    // LiveData / SwipeDelete / ManualDeleteInCode | MODE
+    public boolean isLiveDataON() {
+        return preferences.getBoolean(PREF_LIVE_DATA, true);
     }
 
-    public void setLiveDataMode(boolean flag) {
-        preferences.edit().putBoolean(PREF_LIVE_DATA_SWIPE_DELETE_MODE, flag).apply();
+    public void setLiveData(boolean flag) {
+        preferences.edit().putBoolean(PREF_LIVE_DATA, flag).apply();
+    }
+
+    public boolean isSwipeDeleteON() {
+        return preferences.getBoolean(PREF_SWIPE_DELETE, true);
+    }
+
+    public void setSwipeDelete(boolean flag) {
+        preferences.edit().putBoolean(PREF_SWIPE_DELETE, flag).apply();
+    }
+
+    public boolean isManualDeleteON() {
+        return preferences.getBoolean(PREF_MANUAL_DELETE, true);
+    }
+
+    public void setManualDelete(boolean flag) {
+        preferences.edit().putBoolean(PREF_MANUAL_DELETE, flag).apply();
     }
 }

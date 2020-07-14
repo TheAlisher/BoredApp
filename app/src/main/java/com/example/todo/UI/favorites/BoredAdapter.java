@@ -72,9 +72,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageFavoriteSelected.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (App.appPreferences.isLiveDataModeON()) {
-                        onItemClickListener.OnItemClick(getAdapterPosition());
-                    }
+                    onItemClickListener.OnItemClick(getAdapterPosition());
                 }
             });
             textLink.setOnClickListener(new View.OnClickListener() {

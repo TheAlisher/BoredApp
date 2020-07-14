@@ -51,7 +51,7 @@ public class FavoritesFragment extends Fragment {
 
         @Override
         public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-            if (!App.appPreferences.isLiveDataModeON()) {
+            if (App.appPreferences.isSwipeDeleteON()) {
                 int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
                 int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
                 return makeMovementFlags(dragFlags, swipeFlags);
@@ -80,7 +80,14 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                App.boredStorage.deleteBoredAction(card.get(position));
+                if (App.appPreferences.isLiveDataON()) {
+                    App.boredStorage.deleteBoredAction(card.get(position));
+                }
+                if (App.appPreferences.isManualDeleteON()) {
+                    App.boredStorage.deleteBoredAction(card.get(position));
+                    card.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
         loadData();
@@ -110,7 +117,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void loadData() {
-        if (App.appPreferences.isLiveDataModeON()) {
+        if (App.appPreferences.isLiveDataON()) {
             App.boredStorage
                     .getAllActionsLive()
                     .observe(getViewLifecycleOwner(), new Observer<List<BoredAction>>() {
@@ -121,7 +128,8 @@ public class FavoritesFragment extends Fragment {
                             adapter.notifyDataSetChanged();
                         }
                     });
-        } else {
+        }
+        if (App.appPreferences.isSwipeDeleteON()) {
             createItemTouchHelperForRecyclerView();
         }
     }
