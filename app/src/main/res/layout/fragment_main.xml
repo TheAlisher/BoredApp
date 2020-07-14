@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Midnight"
-    tools:context=".UI.home.HomeFragment">
+    tools:context=".presentation.UI.main.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -216,8 +216,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimation_home_loading"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/view_home_rectangleMain"
             app:layout_constraintLeft_toLeftOf="@+id/view_home_rectangleMain"

@@ -1,4 +1,4 @@
-package com.example.todo.UI.favorites;
+package com.example.todo.presentation.UI.favorites;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -15,9 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todo.App;
 import com.example.todo.R;
-import com.example.todo.UI.OnItemClickListener;
+import com.example.todo.presentation.UI.OnItemClickListener;
 import com.example.todo.model.BoredAction;
 
 import java.util.ArrayList;

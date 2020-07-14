@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Midnight"
-    tools:context=".UI.settings.SettingsFragment">
+    tools:context=".presentation.UI.settings.SettingsFragment">
 
     <TextView
         android:id="@+id/text_settings_day_night_mode"

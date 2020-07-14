@@ -1,4 +1,4 @@
-package com.example.todo.UI;
+package com.example.todo.presentation.UI;
 
 public interface OnItemClickListener {
 

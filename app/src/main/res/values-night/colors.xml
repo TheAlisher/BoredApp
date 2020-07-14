@@ -23,8 +23,9 @@
     <color name="MidnightBlue">#191970</color>
     <color name="MediumAquamarine">#66CDAA</color>
 
-    <color name="Midnight">#28323B</color>
     <color name="White">#FFFFFF</color>
+    <color name="Black">#000000</color>
+    <color name="Midnight">#28323B</color>
     <color name="DodgerBlue">#2F80ED</color>
     <color name="VeryDarkDesaturatedBlue">#2B3345</color>
     <color name="DifferentVeryDarkDesaturatedBlue">#2B3344</color>

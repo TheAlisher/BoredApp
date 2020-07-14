@@ -1,4 +1,4 @@
-package com.example.todo.UI.home;
+package com.example.todo.presentation.UI.main;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.todo.App;
 import com.example.todo.R;
-import com.example.todo.data.BoredAPIClient;
+import com.example.todo.data.remote.BoredAPIClient;
 import com.example.todo.model.BoredAction;
 import com.google.android.material.slider.RangeSlider;
 
@@ -39,7 +39,7 @@ import java.util.List;
 import static com.example.todo.R.drawable.icon_favorite_blue;
 import static com.example.todo.R.drawable.icon_favorite_selected_red;
 
-public class HomeFragment extends Fragment {
+public class MainFragment extends Fragment {
 
     private View viewRectangleCategory;
     private TextView textCategory;
@@ -78,15 +78,16 @@ public class HomeFragment extends Fragment {
     private BoredAction boredActions;
     private String key;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public MainFragment() { }
+
+    public static Fragment newInstance() {
+        return new MainFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -241,6 +242,9 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onFailure(Exception E) {
+                        Toast.makeText(getContext(), "Проверьте интернет соединение", Toast.LENGTH_SHORT).show();
+                        lottieAnimationLoading.setAnimation(R.raw.dino);
+                        lottieAnimationLoading.playAnimation();
                         Log.d("anim", E.getMessage());
                     }
                 });
@@ -284,6 +288,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadingPlay() {
+        lottieAnimationLoading.setAnimation(R.raw.lottie_loading);
         lottieAnimationLoading.setVisibility(View.VISIBLE);
         lottieAnimationLoading.playAnimation();
     }

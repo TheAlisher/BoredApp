@@ -1,4 +1,4 @@
-package com.example.todo.UI.favorites;
+package com.example.todo.presentation.UI.favorites;
 
 import android.os.Bundle;
 
@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.todo.App;
 import com.example.todo.R;
-import com.example.todo.UI.OnItemClickListener;
+import com.example.todo.presentation.UI.OnItemClickListener;
 import com.example.todo.model.BoredAction;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,19 +52,17 @@ public class FavoritesFragment extends Fragment {
         }
 
         @Override
-        public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-            if (App.appPreferences.isSwipeDeleteON()) {
-                int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-                return makeMovementFlags(dragFlags, swipeFlags);
-            }
-            return super.getMovementFlags(recyclerView, viewHolder);
+        public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            if (!App.appPreferences.isSwipeDeleteON()) return 0;
+            return super.getSwipeDirs(recyclerView, viewHolder);
         }
     };
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public FavoritesFragment() {
+    }
+
+    public static Fragment newInstance() {
+        return new FavoritesFragment();
     }
 
     @Override
@@ -76,7 +76,6 @@ public class FavoritesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         createRecyclerView(view);
-        checkDatabase();
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
@@ -87,6 +86,9 @@ public class FavoritesFragment extends Fragment {
                     App.boredStorage.deleteBoredAction(card.get(position));
                     card.remove(position);
                     adapter.notifyDataSetChanged();
+                }
+                if (App.appPreferences.isSwipeDeleteON()) {
+                    Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -103,21 +105,21 @@ public class FavoritesFragment extends Fragment {
         linearLayoutManagerBored.setReverseLayout(true);
         linearLayoutManagerBored.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManagerBored);
-        card.addAll(App.boredStorage.getAllActions());
         adapter = new BoredAdapter(card);
         recyclerView.setAdapter(adapter);
     }
 
-    private void checkDatabase() {
-        if (card.isEmpty()) {
+    private void loadData() {
+        if (App.boredStorage.getAllActions().isEmpty()) {
             cardViewYouHaveNoSavedYet.setVisibility(View.VISIBLE);
         } else {
             cardViewYouHaveNoSavedYet.setVisibility(View.GONE);
         }
-    }
-
-    private void loadData() {
-        if (App.appPreferences.isLiveDataON()) {
+        if (App.appPreferences.isManualDeleteON()) {
+            card.clear();
+            card.addAll(App.boredStorage.getAllActions());
+            adapter.notifyDataSetChanged();
+        } else if (App.appPreferences.isLiveDataON()) {
             App.boredStorage
                     .getAllActionsLive()
                     .observe(getViewLifecycleOwner(), new Observer<List<BoredAction>>() {
@@ -128,8 +130,10 @@ public class FavoritesFragment extends Fragment {
                             adapter.notifyDataSetChanged();
                         }
                     });
-        }
-        if (App.appPreferences.isSwipeDeleteON()) {
+        } else if (App.appPreferences.isSwipeDeleteON()) {
+            card.clear();
+            card.addAll(App.boredStorage.getAllActions());
+            adapter.notifyDataSetChanged();
             createItemTouchHelperForRecyclerView();
         }
     }
@@ -137,5 +141,17 @@ public class FavoritesFragment extends Fragment {
     private void createItemTouchHelperForRecyclerView() {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        loadData();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.todo.UI.settings;
+package com.example.todo.presentation.UI.settings;
 
 import android.os.Bundle;
 
@@ -20,9 +20,10 @@ public class SettingsFragment extends Fragment {
     private Button buttonDayNightMode;
     private Button buttonLiveDataSwipeDeleteManualDelete;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public SettingsFragment() { }
+
+    public static Fragment newInstance(){
+        return new SettingsFragment();
     }
 
     @Override

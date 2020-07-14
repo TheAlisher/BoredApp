@@ -1,7 +1,8 @@
-package com.example.todo.data;
+package com.example.todo.data.remote;
 
 import android.util.Log;
 
+import com.example.todo.core.CoreCallback;
 import com.example.todo.model.BoredAction;
 
 import retrofit2.Call;
@@ -39,12 +40,12 @@ public class BoredAPIClient {
 
         call.enqueue(new CoreCallback<BoredAction>() {
             @Override
-            void onSuccess(BoredAction result) {
+            public void onSuccess(BoredAction result) {
                 callback.onSuccess(result);
             }
 
             @Override
-            void onFailure(Exception exception) {
+            public void onFailure(Exception exception) {
                 callback.onFailure(exception);
             }
         });

@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/Midnight</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/Midnight</item>
+        <item name="android:navigationBarColor">@color/Midnight</item>
+    </style>
+
+    Text
+    <style name="BaseText">
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     Home Fragment

@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.todo.data.AppPreferences;
-import com.example.todo.data.BoredAPIClient;
+import com.example.todo.data.remote.BoredAPIClient;
 import com.example.todo.data.db.BoredDatabase;
 import com.example.todo.data.localy.BoredStorage;
 
