@@ -37,7 +37,7 @@ import java.util.Currency;
 import java.util.List;
 
 import static com.example.todo.R.drawable.icon_favorite_blue;
-import static com.example.todo.R.drawable.icon_selected_favorite_red;
+import static com.example.todo.R.drawable.icon_favorite_selected_red;
 
 public class HomeFragment extends Fragment {
 
@@ -168,7 +168,7 @@ public class HomeFragment extends Fragment {
     private void setLikeAnimationAndIcon() {
         lottieAnimationLike.setVisibility(View.VISIBLE);
         lottieAnimationLike.playAnimation();
-        imageFavorite.setImageResource(icon_selected_favorite_red);
+        imageFavorite.setImageResource(icon_favorite_selected_red);
         isLiked = !isLiked;
     }
 

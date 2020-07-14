@@ -9,12 +9,15 @@
     <color name="buttonColorSettings">#000000</color>
     <color name="switchTextColorDayNight">#FFFFFF</color>
     |Home Fragment
-    <color name="home_rectangle_box">#FFFFFF</color>
+    <color name="home_rectangle_main">#FFFFFF</color>
     <color name="home_text_explore">@color/Midnight</color>
     <color name="home_text_free_price_participants">@color/VeryDarkDesaturatedBlue</color>
     <color name="home_text_accessibility">@color/DifferentVeryDarkDesaturatedBlue</color>
-    <color name="spinner_home">#FFFFFF</color>
-    <color name="rangeSlider_trackColorInactive_home">#FFFFFF</color>
+    <color name="home_spinner">#FFFFFF</color>
+    <color name="home_rangeSlider_trackColorInactive">#FFFFFF</color>
+    |Favorite Fragment
+    <color name="card_background_gradient_start">#00C9FF</color>
+    <color name="card_background_gradient_end">#92FE9D</color>
 
     Intro Activity
     <color name="MidnightBlue">#191970</color>

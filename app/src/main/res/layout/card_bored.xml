@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_rounded_gradient"
+        android:background="@drawable/background_card_bored"
         android:padding="10dp">
 
         <View
             android:id="@+id/view_card_rectangleMain"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:background="@drawable/rectangle_white"
+            android:background="@drawable/rectangle_main"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -48,7 +48,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="12dp"
-            android:src="@drawable/icon_selected_favorite_red"
+            android:src="@drawable/icon_favorite_selected_red"
             app:layout_constraintRight_toRightOf="@+id/view_card_rectangleMain"
             app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />
 
@@ -118,7 +118,7 @@
             android:layout_marginEnd="105dp"
             android:layout_marginBottom="70dp"
             android:contentDescription="@string/contentDescription_home_participants_icon_1"
-            android:src="@drawable/icon_default_user_icon_1"
+            android:src="@drawable/icon_participants_1"
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toRightOf="@id/view_card_rectangleMain"
             app:layout_constraintRight_toLeftOf="@id/view_card_rectangleMain" />
@@ -130,7 +130,7 @@
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="70dp"
             android:contentDescription="@string/contentDescription_home_participants_icon_2"
-            android:src="@drawable/icon_default_user_icon_2"
+            android:src="@drawable/icon_participants_2"
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
             app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
@@ -142,7 +142,7 @@
             android:layout_marginStart="35dp"
             android:layout_marginBottom="70dp"
             android:contentDescription="@string/contentDescription_home_participants_icon_3"
-            android:src="@drawable/icon_default_user_icon_3"
+            android:src="@drawable/icon_participants_3"
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
             app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
@@ -154,7 +154,7 @@
             android:layout_marginStart="105dp"
             android:layout_marginBottom="70dp"
             android:contentDescription="@string/contentDescription_home_participants_icon_4"
-            android:src="@drawable/icon_default_user_icon_4"
+            android:src="@drawable/icon_participants_4"
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
             app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
@@ -165,9 +165,9 @@
             android:layout_height="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/icon_add"
+            android:background="@drawable/icon_participants_4plus"
             android:contentDescription="@string/contentDescription_home_participants_icon_4plus"
-            android:src="@drawable/icon_add"
+            android:src="@drawable/icon_participants_4plus"
             app:layout_constraintBottom_toBottomOf="@id/image_card_participants_icon_4"
             app:layout_constraintRight_toRightOf="@id/image_card_participants_icon_4"
             app:layout_constraintTop_toTopOf="@+id/image_card_participants_icon_4" />
