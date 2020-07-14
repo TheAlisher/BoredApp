@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -52,11 +49,11 @@ public class HomeFragment extends Fragment {
     private TextView textPrice;
     private ProgressBar progressBarAccessibility;
     private TextView textAccessibility;
-    private ImageView imageUserIcon1;
-    private ImageView imageUserIcon2;
-    private ImageView imageUserIcon3;
-    private ImageView imageUserIcon4;
-    private ImageView imageUserIconPlus;
+    private ImageView imageParticipantsIcon1;
+    private ImageView imageParticipantsIcon2;
+    private ImageView imageParticipantsIcon3;
+    private ImageView imageParticipantsIcon4;
+    private ImageView imageParticipantsIcon4plus;
     private TextView textParticipants;
     private View viewRectangleLink;
     private Button buttonLink;
@@ -124,11 +121,11 @@ public class HomeFragment extends Fragment {
         textPrice = view.findViewById(R.id.text_home_price);
         progressBarAccessibility = view.findViewById(R.id.progressBar_home_accessibility);
         textAccessibility = view.findViewById(R.id.text_home_accessibility);
-        imageUserIcon1 = view.findViewById(R.id.image_home_participants_icon_1);
-        imageUserIcon2 = view.findViewById(R.id.image_home_participants_icon_2);
-        imageUserIcon3 = view.findViewById(R.id.image_home_participants_icon_3);
-        imageUserIcon4 = view.findViewById(R.id.image_home_participants_icon_4);
-        imageUserIconPlus = view.findViewById(R.id.image_home_participants_icon_4plus);
+        imageParticipantsIcon1 = view.findViewById(R.id.image_home_participants_icon_1);
+        imageParticipantsIcon2 = view.findViewById(R.id.image_home_participants_icon_2);
+        imageParticipantsIcon3 = view.findViewById(R.id.image_home_participants_icon_3);
+        imageParticipantsIcon4 = view.findViewById(R.id.image_home_participants_icon_4);
+        imageParticipantsIcon4plus = view.findViewById(R.id.image_home_participants_icon_4plus);
         textParticipants = view.findViewById(R.id.text_home_participants);
         viewRectangleLink = view.findViewById(R.id.view_home_rectangleLink);
         buttonLink = view.findViewById(R.id.button_home_open_link);
@@ -258,11 +255,11 @@ public class HomeFragment extends Fragment {
         textPrice.setVisibility(View.INVISIBLE);
         progressBarAccessibility.setVisibility(View.INVISIBLE);
         textAccessibility.setVisibility(View.INVISIBLE);
-        imageUserIcon1.setVisibility(View.INVISIBLE);
-        imageUserIcon2.setVisibility(View.INVISIBLE);
-        imageUserIcon3.setVisibility(View.INVISIBLE);
-        imageUserIcon4.setVisibility(View.INVISIBLE);
-        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon1.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon2.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon3.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
         textParticipants.setVisibility(View.INVISIBLE);
         viewRectangleLink.setVisibility(View.INVISIBLE);
         buttonLink.setVisibility(View.INVISIBLE);
@@ -318,38 +315,38 @@ public class HomeFragment extends Fragment {
     }
 
     private void recoveryParticipantsViews() {
-        imageUserIcon1.setVisibility(View.VISIBLE);
-        imageUserIcon2.setVisibility(View.VISIBLE);
-        imageUserIcon3.setVisibility(View.VISIBLE);
-        imageUserIcon4.setVisibility(View.VISIBLE);
-        imageUserIconPlus.setVisibility(View.VISIBLE);
+        imageParticipantsIcon1.setVisibility(View.VISIBLE);
+        imageParticipantsIcon2.setVisibility(View.VISIBLE);
+        imageParticipantsIcon3.setVisibility(View.VISIBLE);
+        imageParticipantsIcon4.setVisibility(View.VISIBLE);
+        imageParticipantsIcon4plus.setVisibility(View.VISIBLE);
     }
 
     private void invisibleParticipantsCase1() {
-        imageUserIcon2.setVisibility(View.INVISIBLE);
-        imageUserIcon3.setVisibility(View.INVISIBLE);
-        imageUserIcon4.setVisibility(View.INVISIBLE);
-        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon2.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon3.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase2() {
-        imageUserIcon1.setVisibility(View.INVISIBLE);
-        imageUserIcon3.setVisibility(View.INVISIBLE);
-        imageUserIcon4.setVisibility(View.INVISIBLE);
-        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon1.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon3.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase3() {
-        imageUserIcon1.setVisibility(View.INVISIBLE);
-        imageUserIcon2.setVisibility(View.INVISIBLE);
-        imageUserIcon4.setVisibility(View.INVISIBLE);
-        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon1.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon2.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase4() {
-        imageUserIcon1.setVisibility(View.INVISIBLE);
-        imageUserIcon2.setVisibility(View.INVISIBLE);
-        imageUserIcon3.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon1.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon2.setVisibility(View.INVISIBLE);
+        imageParticipantsIcon3.setVisibility(View.INVISIBLE);
     }
 
     private void setProgressBarAccessibility(int progress) {

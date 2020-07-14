@@ -59,11 +59,11 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         private TextView textExplore;
         private TextView textPrice;
         private ProgressBar progressBarAccessibility;
-        private ImageView imageCardPersonCircle1;
-        private ImageView imageCardPersonCircle2;
-        private ImageView imageCardPersonCircle3;
-        private ImageView imageCardPersonCircle4;
-        private ImageView imageCardUserIconPlus;
+        private ImageView imageCardParticipantsIcon1;
+        private ImageView imageCardParticipantsIcon2;
+        private ImageView imageCardParticipantsIcon3;
+        private ImageView imageCardParticipantsIcon4;
+        private ImageView imageCardParticipantsIcon4plus;
         private TextView textLink;
 
         public BoredViewHolder(@NonNull View itemView) {
@@ -91,11 +91,11 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textExplore = itemView.findViewById(R.id.text_card_explore);
             textPrice = itemView.findViewById(R.id.text_card_free);
             progressBarAccessibility = itemView.findViewById(R.id.progressBar_card_accessibility);
-            imageCardPersonCircle1 = itemView.findViewById(R.id.image_card_participants_icon_1);
-            imageCardPersonCircle2 = itemView.findViewById(R.id.image_card_participants_icon_2);
-            imageCardPersonCircle3 = itemView.findViewById(R.id.image_card_participants_icon_3);
-            imageCardPersonCircle4 = itemView.findViewById(R.id.image_card_participants_icon_4);
-            imageCardUserIconPlus = itemView.findViewById(R.id.image_card_participants_icon_4plus);
+            imageCardParticipantsIcon1 = itemView.findViewById(R.id.image_card_participants_icon_1);
+            imageCardParticipantsIcon2 = itemView.findViewById(R.id.image_card_participants_icon_2);
+            imageCardParticipantsIcon3 = itemView.findViewById(R.id.image_card_participants_icon_3);
+            imageCardParticipantsIcon4 = itemView.findViewById(R.id.image_card_participants_icon_4);
+            imageCardParticipantsIcon4plus = itemView.findViewById(R.id.image_card_participants_icon_4plus);
             textLink = itemView.findViewById(R.id.text_card_link);
         }
 
@@ -140,36 +140,36 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         }
 
         private void recoveryParticipantsViews() {
-            imageCardPersonCircle1.setVisibility(View.VISIBLE);
-            imageCardPersonCircle2.setVisibility(View.VISIBLE);
-            imageCardPersonCircle3.setVisibility(View.VISIBLE);
-            imageCardPersonCircle4.setVisibility(View.VISIBLE);
-            imageCardUserIconPlus.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon1.setVisibility(View.VISIBLE);
+            imageCardParticipantsIcon2.setVisibility(View.VISIBLE);
+            imageCardParticipantsIcon3.setVisibility(View.VISIBLE);
+            imageCardParticipantsIcon4.setVisibility(View.VISIBLE);
+            imageCardParticipantsIcon4plus.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase1() {
-            imageCardPersonCircle2.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle3.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase2() {
-            imageCardPersonCircle1.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle3.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase3() {
-            imageCardPersonCircle1.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle2.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase4() {
-            imageCardPersonCircle1.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle2.setVisibility(View.INVISIBLE);
-            imageCardPersonCircle3.setVisibility(View.INVISIBLE);
-            imageCardUserIconPlus.setVisibility(View.VISIBLE);
+            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
+            imageCardParticipantsIcon4plus.setVisibility(View.VISIBLE);
 
         }
 
