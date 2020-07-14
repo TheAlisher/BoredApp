@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class AppPreferences {
 
-    // IS FIRST LAUNCH
+    // ON BOARDING
     private static final String PREF_IS_FIRST_LAUNCH = "is_first_launch";
     // LIGHT / DARK | MODE
     private static final String PREF_LIGHT_DARK_MODE = "light_dark_mode";
@@ -20,7 +20,7 @@ public class AppPreferences {
                 Context.MODE_PRIVATE);
     }
 
-    // IS FIRST LAUNCH
+    // ON BOARDING
     public void setIsFirstLaunch() {
         preferences.edit().putBoolean(PREF_IS_FIRST_LAUNCH, false).apply();
     }
@@ -38,7 +38,7 @@ public class AppPreferences {
         preferences.edit().putBoolean(PREF_LIGHT_DARK_MODE, flag).apply();
     }
 
-    // LiveData / SwipeDelete MODE
+    // LiveData / SwipeDelete | MODE
     public boolean isLiveDataModeON() {
         return preferences.getBoolean(PREF_LIVE_DATA_SWIPE_DELETE_MODE, true);
     }

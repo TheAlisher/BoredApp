@@ -8,29 +8,27 @@
     <string name="buttonText_intro_skip">Skip</string>
     /Intro Activity
 
-    Main Activity
+    Home Fragment
     <string name="text_main_category">Category</string>
+    <string name="contentDescription_home_imageLike">Иконка лайка</string>
     <string name="text_main_explore">Explore the nightlife of your city</string>
     <string name="text_main_free">free</string>
     <string name="text_main_price">Price💰</string>
     <string name="text_main_accessibility">Accessibility</string>
+    <string name="contentDescription_home_participants_icon_1">Participants icon 1</string>
+    <string name="contentDescription_home_participants_icon_2">Participants icon 2</string>
+    <string name="contentDescription_home_participants_icon_3">Participants icon 3</string>
+    <string name="contentDescription_home_participants_icon_4">Participants icon 4</string>
+    <string name="contentDescription_home_participants_icon_4plus">Participants icon 4plus</string>
     <string name="text_main_participants">Participants</string>
-    <string name="text_main_link">Link</string>
+    <string name="button_open_link">Open Link:</string>
     <style name="button_main_next">Next</style>
     <string name="text_main_price_slider">Price</string>
-    <string name="button_open_link">Open Link:</string>
 
     BottomNavigationItem
     <string name="text_bottomNavigationMenu_home">Main</string>
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
-
-    Home Fragment
-    <string name="contentDescription_home_user_1">icon_user_1</string>
-    <string name="contentDescription_home_user_2">icon_user_2</string>
-    <string name="contentDescription_home_user_3">icon_user_3</string>
-    <string name="contentDescription_home_user_4">icon_user_4</string>
-    <string name="contentDescription_home_user_plus">icon_user_plus</string>
 
     Favorites Fragment
     <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>

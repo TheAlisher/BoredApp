@@ -1,13 +1,18 @@
 package com.example.todo.UI.home;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -39,19 +44,26 @@ import static com.example.todo.R.drawable.icon_selected_favorite_red;
 
 public class HomeFragment extends Fragment {
 
+    private View viewRectangleCategory;
     private TextView textCategory;
     private ImageView imageFavorite;
-    private LottieAnimationView lottieAnimationLike;
     private TextView textExplore;
+    private TextView textFree;
     private TextView textPrice;
-    private TextView textLink;
+    private ProgressBar progressBarAccessibility;
+    private TextView textAccessibility;
     private ImageView imageUserIcon1;
     private ImageView imageUserIcon2;
     private ImageView imageUserIcon3;
     private ImageView imageUserIcon4;
     private ImageView imageUserIconPlus;
+    private TextView textParticipants;
+    private View viewRectangleLink;
+    private Button buttonLink;
+    private TextView textLink;
+    private LottieAnimationView lottieAnimationLike;
+    private LottieAnimationView lottieAnimationLoading;
     private Button buttonNext;
-    private ProgressBar progressBarAccessibility;
     private Spinner spinnerCategory;
     private RangeSlider rangeSliderPrice;
     private RangeSlider rangeSliderAccessibility;
@@ -85,16 +97,16 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         createSpinnerCategory();
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeAPINextClick();
-            }
-        });
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 homeLikeClick();
+            }
+        });
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeAPINextClick();
             }
         });
         spinnerGetSelectedValues();
@@ -104,22 +116,29 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializationViews(View view) {
-        textCategory = view.findViewById(R.id.text_listBored_category);
-        imageFavorite = view.findViewById(R.id.image_listBored_favorite);
-        lottieAnimationLike = view.findViewById(R.id.lottieAnimation_main_like);
-        textExplore = view.findViewById(R.id.text_listBored_explore);
-        textPrice = view.findViewById(R.id.text_listBored_free);
-        textLink = view.findViewById(R.id.text_listBored_link);
-        imageUserIcon1 = view.findViewById(R.id.image_user_icon_1);
-        imageUserIcon2 = view.findViewById(R.id.image_user_icon_2);
-        imageUserIcon3 = view.findViewById(R.id.image_user_icon_3);
-        imageUserIcon4 = view.findViewById(R.id.image_user_icon_4);
-        imageUserIconPlus = view.findViewById(R.id.image_user_icon_plus);
-        buttonNext = view.findViewById(R.id.button_main_next);
-        progressBarAccessibility = view.findViewById(R.id.progressBar_listBored_accessibility);
-        spinnerCategory = view.findViewById(R.id.spinner_main_category);
-        rangeSliderPrice = view.findViewById(R.id.rangeSlider_price);
-        rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_accessibility);
+        viewRectangleCategory = view.findViewById(R.id.view_home_rectangleCategory);
+        textCategory = view.findViewById(R.id.text_home_category);
+        imageFavorite = view.findViewById(R.id.image_home_favorite);
+        textExplore = view.findViewById(R.id.text_home_explore);
+        textFree = view.findViewById(R.id.text_home_free);
+        textPrice = view.findViewById(R.id.text_home_price);
+        progressBarAccessibility = view.findViewById(R.id.progressBar_home_accessibility);
+        textAccessibility = view.findViewById(R.id.text_home_accessibility);
+        imageUserIcon1 = view.findViewById(R.id.image_home_participants_icon_1);
+        imageUserIcon2 = view.findViewById(R.id.image_home_participants_icon_2);
+        imageUserIcon3 = view.findViewById(R.id.image_home_participants_icon_3);
+        imageUserIcon4 = view.findViewById(R.id.image_home_participants_icon_4);
+        imageUserIconPlus = view.findViewById(R.id.image_home_participants_icon_4plus);
+        textParticipants = view.findViewById(R.id.text_home_participants);
+        viewRectangleLink = view.findViewById(R.id.view_home_rectangleLink);
+        buttonLink = view.findViewById(R.id.button_home_open_link);
+        textLink = view.findViewById(R.id.text_home_link);
+        lottieAnimationLike = view.findViewById(R.id.lottieAnimation_home_like);
+        lottieAnimationLoading = view.findViewById(R.id.lottieAnimation_home_loading);
+        buttonNext = view.findViewById(R.id.button_home_next);
+        spinnerCategory = view.findViewById(R.id.spinner_home_category);
+        rangeSliderPrice = view.findViewById(R.id.rangeSlider_home_price);
+        rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_home_accessibility);
     }
 
     private void createSpinnerCategory() {
@@ -134,7 +153,7 @@ public class HomeFragment extends Fragment {
 
     public void homeLikeClick() {
         String category = textCategory.getText().toString().trim();
-        String price = textPrice.getText().toString().trim();
+        String price = textFree.getText().toString().trim();
         if (isLiked) {
             if (category.equals("Category") || price.equals("free")) {
                 Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
@@ -189,6 +208,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void BoredAPIGetAction() {
+        invisibleAllAndPlayLoading();
         App.boredAPIClient.getAction(
                 spinnerSelectedValues,
                 rangeSliderSelectedMinPrice,
@@ -203,16 +223,16 @@ public class HomeFragment extends Fragment {
                             boredActions = boredAction;
                             textCategory.setText(boredAction.getType());
                             textExplore.setText(boredAction.getActivity());
-                            textPrice.setText(boredAction.getPrice().toString() + '$');
+                            textFree.setText(boredAction.getPrice().toString() + '$');
                             createParticipants(boredAction);
                             createLink(boredAction);
                             setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
+                            setRectangleCategoryColor();
                         } catch (NullPointerException NPE) {
-                            textPrice.setText("free");
-                            recoveryParticipantsViews();
-                            setProgressBarAccessibility(0);
-                            Toast.makeText(getContext(), "Не найдено, измените параметры", Toast.LENGTH_SHORT).show();
+                            catchNullPointerException();
                         }
+                        visibleAllAndPauseAnimation();
+
                         Log.d("anim", boredAction.toString());
 
                         BoredAction boredKey = App.boredStorage.getBoredAction(key);
@@ -227,6 +247,53 @@ public class HomeFragment extends Fragment {
                         Log.d("anim", E.getMessage());
                     }
                 });
+    }
+
+    private void invisibleAllAndPlayLoading() {
+        viewRectangleCategory.setVisibility(View.INVISIBLE);
+        textCategory.setVisibility(View.INVISIBLE);
+        imageFavorite.setVisibility(View.INVISIBLE);
+        textExplore.setVisibility(View.INVISIBLE);
+        textFree.setVisibility(View.INVISIBLE);
+        textPrice.setVisibility(View.INVISIBLE);
+        progressBarAccessibility.setVisibility(View.INVISIBLE);
+        textAccessibility.setVisibility(View.INVISIBLE);
+        imageUserIcon1.setVisibility(View.INVISIBLE);
+        imageUserIcon2.setVisibility(View.INVISIBLE);
+        imageUserIcon3.setVisibility(View.INVISIBLE);
+        imageUserIcon4.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        textParticipants.setVisibility(View.INVISIBLE);
+        viewRectangleLink.setVisibility(View.INVISIBLE);
+        buttonLink.setVisibility(View.INVISIBLE);
+        textLink.setVisibility(View.INVISIBLE);
+        loadingPlay();
+    }
+
+    private void visibleAllAndPauseAnimation() {
+        viewRectangleCategory.setVisibility(View.VISIBLE);
+        textCategory.setVisibility(View.VISIBLE);
+        imageFavorite.setVisibility(View.VISIBLE);
+        textExplore.setVisibility(View.VISIBLE);
+        textFree.setVisibility(View.VISIBLE);
+        textPrice.setVisibility(View.VISIBLE);
+        progressBarAccessibility.setVisibility(View.VISIBLE);
+        textAccessibility.setVisibility(View.VISIBLE);
+        textParticipants.setVisibility(View.VISIBLE);
+        viewRectangleLink.setVisibility(View.VISIBLE);
+        buttonLink.setVisibility(View.VISIBLE);
+        textLink.setVisibility(View.VISIBLE);
+        loadingPause();
+    }
+
+    private void loadingPlay() {
+        lottieAnimationLoading.setVisibility(View.VISIBLE);
+        lottieAnimationLoading.playAnimation();
+    }
+
+    private void loadingPause() {
+        lottieAnimationLoading.setVisibility(View.INVISIBLE);
+        lottieAnimationLoading.pauseAnimation();
     }
 
     private void createParticipants(BoredAction boredAction) {
@@ -255,32 +322,34 @@ public class HomeFragment extends Fragment {
         imageUserIcon2.setVisibility(View.VISIBLE);
         imageUserIcon3.setVisibility(View.VISIBLE);
         imageUserIcon4.setVisibility(View.VISIBLE);
-        imageUserIconPlus.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.VISIBLE);
     }
 
     private void invisibleParticipantsCase1() {
         imageUserIcon2.setVisibility(View.INVISIBLE);
         imageUserIcon3.setVisibility(View.INVISIBLE);
         imageUserIcon4.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase2() {
         imageUserIcon1.setVisibility(View.INVISIBLE);
         imageUserIcon3.setVisibility(View.INVISIBLE);
         imageUserIcon4.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase3() {
         imageUserIcon1.setVisibility(View.INVISIBLE);
         imageUserIcon2.setVisibility(View.INVISIBLE);
         imageUserIcon4.setVisibility(View.INVISIBLE);
+        imageUserIconPlus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase4() {
         imageUserIcon1.setVisibility(View.INVISIBLE);
         imageUserIcon2.setVisibility(View.INVISIBLE);
         imageUserIcon3.setVisibility(View.INVISIBLE);
-        imageUserIconPlus.setVisibility(View.VISIBLE);
     }
 
     private void setProgressBarAccessibility(int progress) {
@@ -296,7 +365,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String URL = boredAction.getLink();
-                if (URL.isEmpty()) {
+                if (URL.isEmpty() || textLink.getText().toString().isEmpty()) {
                     Toast.makeText(getContext(), "Ссылки нет", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
@@ -304,6 +373,55 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void setRectangleCategoryColor() {
+        String category = textCategory.getText().toString().trim();
+
+        if (category.equals("education")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#F4B300"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("recreational")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#3D1E6D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("social")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#AE113D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("diy")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#E064B7"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("charity")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#4D648D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("cooking")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#D51400"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("relaxation")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#009688"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("music")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#03396C"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("busywork")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#851E3E"), PorterDuff.Mode.SRC_IN);
+        }
+    }
+
+    private void catchNullPointerException() {
+        viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#2F80ED"), PorterDuff.Mode.SRC_IN);
+        textFree.setText("free");
+        recoveryParticipantsViews();
+        textLink.setText("");
+        setProgressBarAccessibility(0);
+        Toast.makeText(getContext(), "Не найдено, измените параметры", Toast.LENGTH_SHORT).show();
     }
 
     private void spinnerGetSelectedValues() {

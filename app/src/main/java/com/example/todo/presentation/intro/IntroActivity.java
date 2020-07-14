@@ -100,4 +100,3 @@ public class IntroActivity extends AppCompatActivity {
         buttonNext.setText("Next");
     }
 }
-

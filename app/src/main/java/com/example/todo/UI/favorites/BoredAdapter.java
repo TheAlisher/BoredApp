@@ -54,16 +54,16 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
 
     public class BoredViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageFavoriteSelected;
         private TextView textCategory;
+        private ImageView imageFavoriteSelected;
         private TextView textExplore;
         private TextView textPrice;
+        private ProgressBar progressBarAccessibility;
         private ImageView imageCardPersonCircle1;
         private ImageView imageCardPersonCircle2;
         private ImageView imageCardPersonCircle3;
-        private ImageView imageViewPersonCircle4;
+        private ImageView imageCardPersonCircle4;
         private ImageView imageCardUserIconPlus;
-        private ProgressBar progressBarAccessibility;
         private TextView textLink;
 
         public BoredViewHolder(@NonNull View itemView) {
@@ -86,17 +86,17 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         }
 
         private void initializationViews(View itemView) {
-            imageFavoriteSelected = itemView.findViewById(R.id.image_listBored_favorite_selected);
-            textCategory = itemView.findViewById(R.id.text_listBored_category);
-            textExplore = itemView.findViewById(R.id.text_listBored_explore);
-            textPrice = itemView.findViewById(R.id.text_listBored_free);
-            imageCardPersonCircle1 = itemView.findViewById(R.id.image_card_user_icon_1);
-            imageCardPersonCircle2 = itemView.findViewById(R.id.image_card_user_icon_2);
-            imageCardPersonCircle3 = itemView.findViewById(R.id.image_card_user_icon_3);
-            imageViewPersonCircle4 = itemView.findViewById(R.id.image_card_user_icon_4);
-            imageCardUserIconPlus = itemView.findViewById(R.id.image_card_user_icon_plus);
-            progressBarAccessibility = itemView.findViewById(R.id.progressBar_listBored_accessibility);
-            textLink = itemView.findViewById(R.id.text_listBored_link);
+            textCategory = itemView.findViewById(R.id.text_card_category);
+            imageFavoriteSelected = itemView.findViewById(R.id.image_card_favorite_selected);
+            textExplore = itemView.findViewById(R.id.text_card_explore);
+            textPrice = itemView.findViewById(R.id.text_card_free);
+            progressBarAccessibility = itemView.findViewById(R.id.progressBar_card_accessibility);
+            imageCardPersonCircle1 = itemView.findViewById(R.id.image_card_participants_icon_1);
+            imageCardPersonCircle2 = itemView.findViewById(R.id.image_card_participants_icon_2);
+            imageCardPersonCircle3 = itemView.findViewById(R.id.image_card_participants_icon_3);
+            imageCardPersonCircle4 = itemView.findViewById(R.id.image_card_participants_icon_4);
+            imageCardUserIconPlus = itemView.findViewById(R.id.image_card_participants_icon_4plus);
+            textLink = itemView.findViewById(R.id.text_card_link);
         }
 
         private void adapterLinkClick(View view) {
@@ -143,26 +143,26 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardPersonCircle1.setVisibility(View.VISIBLE);
             imageCardPersonCircle2.setVisibility(View.VISIBLE);
             imageCardPersonCircle3.setVisibility(View.VISIBLE);
-            imageViewPersonCircle4.setVisibility(View.VISIBLE);
+            imageCardPersonCircle4.setVisibility(View.VISIBLE);
             imageCardUserIconPlus.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase1() {
             imageCardPersonCircle2.setVisibility(View.INVISIBLE);
             imageCardPersonCircle3.setVisibility(View.INVISIBLE);
-            imageViewPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase2() {
             imageCardPersonCircle1.setVisibility(View.INVISIBLE);
             imageCardPersonCircle3.setVisibility(View.INVISIBLE);
-            imageViewPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase3() {
             imageCardPersonCircle1.setVisibility(View.INVISIBLE);
             imageCardPersonCircle2.setVisibility(View.INVISIBLE);
-            imageViewPersonCircle4.setVisibility(View.INVISIBLE);
+            imageCardPersonCircle4.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase4() {

@@ -14,59 +14,59 @@
         android:padding="10dp">
 
         <View
-            android:id="@+id/view_listBored_rectangle"
+            android:id="@+id/view_card_rectangleMain"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:background="@drawable/rectangle_white"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/view_listBored_categoryRectangle"
+            android:id="@+id/view_card_categoryRectangle"
             android:layout_width="78dp"
             android:layout_height="23dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/rectangle_blue"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_rectangle" />
+            android:background="@drawable/rectangle_category"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain"
+            app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />
 
         <TextView
-            android:id="@+id/text_listBored_category"
+            android:id="@+id/text_card_category"
             style="@style/text_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/text_main_category"
-            app:layout_constraintLeft_toLeftOf="@+id/view_listBored_categoryRectangle"
-            app:layout_constraintRight_toRightOf="@+id/view_listBored_categoryRectangle"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_categoryRectangle" />
+            app:layout_constraintLeft_toLeftOf="@+id/view_card_categoryRectangle"
+            app:layout_constraintRight_toRightOf="@+id/view_card_categoryRectangle"
+            app:layout_constraintTop_toTopOf="@+id/view_card_categoryRectangle" />
 
         <ImageView
-            android:id="@+id/image_listBored_favorite_selected"
+            android:id="@+id/image_card_favorite_selected"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="12dp"
             android:src="@drawable/icon_selected_favorite_red"
-            app:layout_constraintRight_toRightOf="@+id/view_listBored_rectangle"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_rectangle" />
+            app:layout_constraintRight_toRightOf="@+id/view_card_rectangleMain"
+            app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />
 
         <TextView
-            android:id="@+id/text_listBored_explore"
+            android:id="@+id/text_card_explore"
             style="@style/text_explore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
             android:text="@string/text_main_explore"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain"
+            app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />
 
         <TextView
-            android:id="@+id/text_listBored_free"
+            android:id="@+id/text_card_free"
             style="@style/text_free"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,21 +74,21 @@
             android:layout_marginBottom="80dp"
             android:text="@string/text_main_free"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@+id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@+id/view_card_rectangleMain" />
 
         <TextView
-            android:id="@+id/text_price"
+            android:id="@+id/text_card_price"
             style="@style/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
             android:text="@string/text_main_price"
-            app:layout_constraintLeft_toLeftOf="@+id/view_listBored_rectangle"
-            app:layout_constraintTop_toBottomOf="@+id/text_listBored_free" />
+            app:layout_constraintLeft_toLeftOf="@+id/view_card_rectangleMain"
+            app:layout_constraintTop_toBottomOf="@+id/text_card_free" />
 
         <ProgressBar
-            android:id="@+id/progressBar_listBored_accessibility"
+            android:id="@+id/progressBar_card_accessibility"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="80dp"
             android:layout_height="10dp"
@@ -97,123 +97,120 @@
             android:layout_marginBottom="75dp"
             android:max="100"
             android:progressDrawable="@drawable/progress_bar_gradient"
-            app:layout_constraintBottom_toBottomOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
 
         <TextView
-            android:id="@+id/text_accessibility"
+            android:id="@+id/text_card_accessibility"
             style="@style/text_accessibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:text="@string/text_main_accessibility"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle"
-            app:layout_constraintTop_toBottomOf="@id/progressBar_listBored_accessibility" />
-
-
-        <TextView
-            android:id="@+id/text_participants"
-            style="@style/text_participants"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:text="@string/text_main_participants"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain"
+            app:layout_constraintTop_toBottomOf="@id/progressBar_card_accessibility" />
 
         <ImageView
-            android:id="@+id/image_card_user_icon_1"
+            android:id="@+id/image_card_participants_icon_1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="105dp"
             android:layout_marginBottom="70dp"
-            android:contentDescription="@string/contentDescription_home_user_1"
+            android:contentDescription="@string/contentDescription_home_participants_icon_1"
             android:src="@drawable/icon_default_user_icon_1"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toRightOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toLeftOf="@id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toRightOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toLeftOf="@id/view_card_rectangleMain" />
 
         <ImageView
-            android:id="@+id/image_card_user_icon_2"
+            android:id="@+id/image_card_participants_icon_2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="70dp"
-            android:contentDescription="@string/contentDescription_home_user_2"
+            android:contentDescription="@string/contentDescription_home_participants_icon_2"
             android:src="@drawable/icon_default_user_icon_2"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
 
         <ImageView
-            android:id="@+id/image_card_user_icon_3"
+            android:id="@+id/image_card_participants_icon_3"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="35dp"
             android:layout_marginBottom="70dp"
-            android:contentDescription="@string/contentDescription_home_user_3"
+            android:contentDescription="@string/contentDescription_home_participants_icon_3"
             android:src="@drawable/icon_default_user_icon_3"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
 
         <ImageView
-            android:id="@+id/image_card_user_icon_4"
+            android:id="@+id/image_card_participants_icon_4"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="105dp"
             android:layout_marginBottom="70dp"
-            android:contentDescription="@string/contentDescription_home_user_4"
+            android:contentDescription="@string/contentDescription_home_participants_icon_4"
             android:src="@drawable/icon_default_user_icon_4"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle"
-            app:layout_constraintLeft_toLeftOf="@id/view_listBored_rectangle"
-            app:layout_constraintRight_toRightOf="@id/view_listBored_rectangle" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
 
         <ImageView
-            android:id="@+id/image_card_user_icon_plus"
+            android:id="@+id/image_card_participants_icon_4plus"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/icon_add"
-            android:contentDescription="@string/contentDescription_home_user_plus"
+            android:contentDescription="@string/contentDescription_home_participants_icon_4plus"
             android:src="@drawable/icon_add"
-            app:layout_constraintBottom_toBottomOf="@id/image_card_user_icon_4"
-            app:layout_constraintRight_toRightOf="@id/image_card_user_icon_4"
-            app:layout_constraintTop_toTopOf="@+id/image_card_user_icon_4" />
-
-        <View
-            android:id="@+id/view_listBored_rectangle_link"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/rectangle_blue"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle" />
-
-        <Button
-            android:id="@+id/button_listBored_open_link"
-            style="@style/button_open_link"
-            android:layout_width="70dp"
-            android:layout_height="35dp"
-            android:background="@drawable/rectangle_blue"
-            android:text="@string/button_open_link"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle_link"
-            app:layout_constraintLeft_toLeftOf="@+id/view_listBored_rectangle_link"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_rectangle_link" />
+            app:layout_constraintBottom_toBottomOf="@id/image_card_participants_icon_4"
+            app:layout_constraintRight_toRightOf="@id/image_card_participants_icon_4"
+            app:layout_constraintTop_toTopOf="@+id/image_card_participants_icon_4" />
 
         <TextView
-            android:id="@+id/text_listBored_link"
+            android:id="@+id/text_card_participants"
+            style="@style/text_participants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="@string/text_main_participants"
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
+            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
+            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
+
+        <View
+            android:id="@+id/view_card_rectangle_link"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/rectangle_link"
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain" />
+
+        <Button
+            android:id="@+id/button_card_open_link"
+            style="@style/button_open_link"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rectangle_link"
+            android:text="@string/button_open_link"
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangle_link"
+            app:layout_constraintLeft_toLeftOf="@+id/view_card_rectangle_link"
+            app:layout_constraintTop_toTopOf="@+id/view_card_rectangle_link" />
+
+        <TextView
+            android:id="@+id/text_card_link"
             style="@style/text_link"
             android:layout_width="250dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
-            android:text="@string/text_main_link"
-            app:layout_constraintBottom_toBottomOf="@+id/view_listBored_rectangle_link"
-            app:layout_constraintLeft_toRightOf="@+id/button_listBored_open_link"
-            app:layout_constraintTop_toTopOf="@+id/view_listBored_rectangle_link" />
+            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangle_link"
+            app:layout_constraintLeft_toRightOf="@+id/button_card_open_link"
+            app:layout_constraintTop_toTopOf="@+id/view_card_rectangle_link" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
