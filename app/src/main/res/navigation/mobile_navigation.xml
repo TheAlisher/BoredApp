@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_main"
-        android:name="com.example.todo.presentation.UI.main.MainFragment"
+        android:name="com.example.bored.presentation.UI.main.MainFragment"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.todo.presentation.UI.favorites.FavoritesFragment"
+        android:name="com.example.bored.presentation.UI.favorites.FavoritesFragment"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.todo.presentation.UI.settings.SettingsFragment"
+        android:name="com.example.bored.presentation.UI.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings" />
 
 
