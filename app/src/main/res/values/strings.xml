@@ -35,7 +35,8 @@
 
     Settings Fragment
     <string name="text_settings_day_night">Day/Night MODE</string>
-    <string name="text_settings_liveData_swipeData_mode">LiveData/SwipeData MODE</string>
+    <string name="contentDescription_settings_imageMode_day_night">Switch Day / Night MODE</string>
+    <string name="text_settings_type_of_deletion">Type of deletion</string>
 
 
 </resources>

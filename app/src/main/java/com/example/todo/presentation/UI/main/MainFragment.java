@@ -78,7 +78,8 @@ public class MainFragment extends Fragment {
     private BoredAction boredActions;
     private String key;
 
-    public MainFragment() { }
+    public MainFragment() {
+    }
 
     public static Fragment newInstance() {
         return new MainFragment();
@@ -469,5 +470,14 @@ public class MainFragment extends Fragment {
                 rangeSliderSelectedMaxAccessibility = rangeSliderSelectedAccessibility.get(1);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BoredAction boredKey = App.boredStorage.getBoredAction(key);
+        if (boredKey == null) {
+            recoveryLikeIcon();
+        }
     }
 }

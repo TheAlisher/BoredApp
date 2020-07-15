@@ -19,16 +19,13 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_settings_day_night_mode"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+    <ImageView
+        android:id="@+id/image_settings_day_night_mode"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon_mode_day_night"
+        android:contentDescription="@string/contentDescription_settings_imageMode_day_night"
         android:layout_marginTop="@dimen/marginTop_30dp"
-        android:background="@color/buttonColorSettings"
-        android:drawableStart="@drawable/icon_mode_day"
-        android:drawableEnd="@drawable/icon_mode_night"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_settings_day_night_mode" />
@@ -38,12 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop_100dp"
-        android:text="@string/text_settings_liveData_swipeData_mode"
+        android:text="@string/text_settings_type_of_deletion"
         android:textAlignment="center"
         android:textColor="@color/textColorDefault"
         android:textSize="@dimen/textSize_20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/button_settings_day_night_mode" />
+        app:layout_constraintTop_toBottomOf="@+id/image_settings_day_night_mode" />
 
     <Button
         android:id="@+id/button_settings_LiveData_or_SwipeDelete_or_ManualDelete"
@@ -51,7 +48,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/marginTop_30dp"
         android:background="@color/buttonColorSettings"
-        android:textColor="@color/switchTextColorDayNight"
+        android:textColor="@color/textInButton"
         android:textSize="@dimen/textSize_20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"

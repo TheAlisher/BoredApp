@@ -20,7 +20,7 @@
         android:id="@+id/navigationView_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/Midnight"
+        android:background="@color/NightBlueShadow"
         app:itemIconTint="@drawable/bottom_navigation_item_selected"
         app:itemTextColor="@drawable/bottom_navigation_item_selected"
         app:layout_constraintBottom_toBottomOf="parent"

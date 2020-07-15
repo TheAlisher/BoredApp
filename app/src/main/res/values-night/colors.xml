@@ -6,8 +6,9 @@
 
     Light / Dark
     <color name="textColorDefault">#000000</color>
-    <color name="buttonColorSettings">#FFFFFF</color>
-    <color name="switchTextColorDayNight">#000000</color>
+    <color name="buttonColorSettings">#000000</color>
+    <color name="imageColorDayNight">#000000</color>
+    <color name="textInButton">#FFFFFF</color>
     |Home Fragment
     <color name="home_rectangle_main">#000000</color>
     <color name="home_text_explore">@color/White</color>
@@ -33,6 +34,7 @@
     <color name="ContainsMainlyBlue">#693BFD</color>
     <color name="Blue500">#2D4EF5</color>
     <color name="DarkGray">#A9A9A9</color>
+    <color name="NightBlueShadow">#12343b</color>
 
 
 </resources>

@@ -79,15 +79,15 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                if (App.appPreferences.isLiveDataON()) {
-                    App.boredStorage.deleteBoredAction(card.get(position));
-                }
                 if (App.appPreferences.isManualDeleteON()) {
                     App.boredStorage.deleteBoredAction(card.get(position));
                     card.remove(position);
                     adapter.notifyDataSetChanged();
-                }
-                if (App.appPreferences.isSwipeDeleteON()) {
+
+                } else if (App.appPreferences.isLiveDataON()) {
+                    App.boredStorage.deleteBoredAction(card.get(position));
+
+                } else if (App.appPreferences.isSwipeDeleteON()) {
                     Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -110,6 +110,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void loadData() {
+        int size = card.size();
         if (App.boredStorage.getAllActions().isEmpty()) {
             cardViewYouHaveNoSavedYet.setVisibility(View.VISIBLE);
         } else {
@@ -135,6 +136,9 @@ public class FavoritesFragment extends Fragment {
             card.addAll(App.boredStorage.getAllActions());
             adapter.notifyDataSetChanged();
             createItemTouchHelperForRecyclerView();
+        }
+        if (size < card.size()) {
+            recyclerView.scrollToPosition(card.size() - 1);
         }
     }
 

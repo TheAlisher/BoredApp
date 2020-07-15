@@ -11,13 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.todo.App;
 import com.example.todo.R;
 
 public class SettingsFragment extends Fragment {
 
-    private Button buttonDayNightMode;
+    private ImageView imageDayNightMode;
     private Button buttonLiveDataSwipeDeleteManualDelete;
 
     public SettingsFragment() { }
@@ -37,7 +38,7 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         checkLiveDataSwipeDeleteManualDelete();
-        buttonDayNightMode.setOnClickListener(new View.OnClickListener() {
+        imageDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imageDayNightModeClick();
@@ -52,7 +53,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initializationViews(View view) {
-        buttonDayNightMode = view.findViewById(R.id.button_settings_day_night_mode);
+        imageDayNightMode = view.findViewById(R.id.image_settings_day_night_mode);
         buttonLiveDataSwipeDeleteManualDelete = view.findViewById(R.id.button_settings_LiveData_or_SwipeDelete_or_ManualDelete);
     }
 
