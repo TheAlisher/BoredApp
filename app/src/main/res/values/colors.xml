@@ -5,10 +5,12 @@
     <color name="colorAccent">#03DAC5</color>
 
     Light / Dark
-    <color name="textColorDefault">#FFFFFF</color>
+    <color name="textColorDefault">#2F9599</color>
     <color name="buttonColorSettings">#FFFFFF</color>
-    <color name="imageColorDayNight">#FFFFFF</color>
+    <color name="imageColorDayNight">#000000</color>
     <color name="textInButton">#000000</color>
+    |Main Activity
+    <color name="background_main">@color/Midnight</color>
     |Home Fragment
     <color name="home_rectangle_main">#FFFFFF</color>
     <color name="home_text_explore">@color/Midnight</color>
@@ -34,7 +36,8 @@
     <color name="ContainsMainlyBlue">#693BFD</color>
     <color name="Blue500">#2D4EF5</color>
     <color name="DarkGray">#A9A9A9</color>
-    <color name="NightBlueShadow">#12343b</color>
+    <color name="NightBlueShadow">#12343B</color>
+    <color name="VeryDarkMostlyBlackBlue">#1e252c</color>
 
 
 </resources>

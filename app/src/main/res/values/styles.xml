@@ -4,15 +4,22 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/Midnight</item>
+        <item name="colorPrimaryDark">@color/background_main</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/Midnight</item>
         <item name="android:navigationBarColor">@color/NightBlueShadow</item>
+        <item name="android:windowAnimationStyle">@style/LightDarkModeTransition</item>
     </style>
 
     Text
     <style name="BaseText">
         <item name="android:includeFontPadding">false</item>
+    </style>
+
+    Light / Dark Transition
+    <style name="LightDarkModeTransition">
+        <item name="android:windowEnterAnimation">@anim/fragment_fade_enter</item>
+        <item name="android:windowExitAnimation">@anim/fragment_fade_exit</item>
     </style>
 
     Home Fragment

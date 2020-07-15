@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isDarkModeON();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (App.appPreferences.isFirstLaunch()) {
             startActivity(new Intent(this, IntroActivity.class));
         }
 
-        isDarkModeON();
         initializationViews();
         createNavigationBottomWithViewPager();
     }
