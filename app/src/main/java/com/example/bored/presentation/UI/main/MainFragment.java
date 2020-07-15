@@ -1,5 +1,6 @@
 package com.example.bored.presentation.UI.main;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -273,6 +275,7 @@ public class MainFragment extends Fragment {
     }
 
     private void visibleAllAndPauseAnimation() {
+        animationCircularReveal(viewRectangleCategory);
         viewRectangleCategory.setVisibility(View.VISIBLE);
         textCategory.setVisibility(View.VISIBLE);
         imageFavorite.setVisibility(View.VISIBLE);
@@ -286,6 +289,17 @@ public class MainFragment extends Fragment {
         buttonLink.setVisibility(View.VISIBLE);
         textLink.setVisibility(View.VISIBLE);
         loadingPause();
+    }
+
+    private void animationCircularReveal(View view) {
+        int cx = view.getWidth() / 2;
+        int cy = view.getHeight() / 2;
+        float finalRadius = (float) Math.hypot(cx, cy);
+        Animator animator = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            animator.start();
+        }
     }
 
     private void loadingPlay() {
