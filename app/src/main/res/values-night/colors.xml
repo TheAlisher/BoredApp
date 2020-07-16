@@ -5,9 +5,9 @@
     <color name="colorAccent">#FFFFFF</color>
 
     Light / Dark
-    <color name="textColorDefault">#FFFFFF</color>
+    <color name="textColorDefaultSettings">#FFFFFF</color>
+    <color name="imageColorDayModeSettings">#FFFFFF</color>
     <color name="buttonColorSettings">#000000</color>
-    <color name="imageColorDayNight">#FFFFFF</color>
     <color name="textInButton">#FFFFFF</color>
     |Main Activity
     <color name="background_main">@color/VeryDarkMostlyBlackBlue</color>
@@ -38,6 +38,7 @@
     <color name="DarkGray">#A9A9A9</color>
     <color name="NightBlueShadow">#12343b</color>
     <color name="VeryDarkMostlyBlackBlue">#13181d</color>
+    <color name="Madison">#2C3E50</color>
 
 
 </resources>

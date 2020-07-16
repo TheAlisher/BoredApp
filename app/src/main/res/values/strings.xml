@@ -1,42 +1,57 @@
 <resources>
     <string name="app_name">Bored API</string>
-    
-    <string name="text">Light Mode</string>
+
+    Light Mode
 
     Intro Activity
-    <string name="buttonText_intro_next">Next</string>
-    <string name="buttonText_intro_skip">Skip</string>
-    /Intro Activity
-
-    Home Fragment
-    <string name="text_main_category">Category</string>
-    <string name="contentDescription_home_imageLike">Иконка лайка</string>
-    <string name="text_main_explore">Explore the nightlife of your city</string>
-    <string name="text_main_free">free</string>
-    <string name="text_main_price">Price💰</string>
-    <string name="text_main_accessibility">Accessibility</string>
-    <string name="contentDescription_home_participants_icon_1">Participants icon 1</string>
-    <string name="contentDescription_home_participants_icon_2">Participants icon 2</string>
-    <string name="contentDescription_home_participants_icon_3">Participants icon 3</string>
-    <string name="contentDescription_home_participants_icon_4">Participants icon 4</string>
-    <string name="contentDescription_home_participants_icon_4plus">Participants icon 4plus</string>
-    <string name="text_main_participants">Participants</string>
-    <string name="button_open_link">Open Link:</string>
-    <style name="button_main_next">Next</style>
-    <string name="text_main_price_slider">Price</string>
+    <string name="button_intro_next">Next</string>
+    <string name="button_intro_skip">Skip</string>
+    <string name="button_intro_start">Start</string>
+    <string name="text_intro_title_1page">The Bored API</string>
+    <string name="text_intro_subtitle_1page">Let\'s find you something to do</string>
+    <string name="text_intro_title_2page">What\'s the purpose behind this API?</string>
+    <string name="text_intro_subtitle_2page">
+        The Bored API helps you find things to do when you\'re bored!
+        There are fields like the number of participants, activity type,
+        and more that help you narrow down your results.</string>
+    <string name="text_intro_title_3page">Check out the</string>
+    <string name="text_intro_subtitle_3page">
+        <a href="https://www.boredapi.com/documentation">documentation</a>
+    </string>
 
     BottomNavigationItem
     <string name="text_bottomNavigationMenu_home">Main</string>
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
 
+    Home Fragment
+    <string name="text_main_category">Category</string>
+    <string name="contentDescription_home_imageLike">Иконка лайка</string>
+    <string name="contentDescription_home_imageLikeSelected">Иконка лайка выбрання</string>
+    <string name="text_main_explore">Explore the nightlife of your city</string>
+    <string name="text_main_free">free</string>
+    <string name="text_main_price">Price💰</string>
+    <string name="text_main_accessibility">Accessibility</string>
+    <string name="contentDescription_main_participants_icon_1">Participants icon 1</string>
+    <string name="contentDescription_main_participants_icon_2">Participants icon 2</string>
+    <string name="contentDescription_main_participants_icon_3">Participants icon 3</string>
+    <string name="contentDescription_main_participants_icon_4">Participants icon 4</string>
+    <string name="contentDescription_main_participants_icon_4plus">Participants icon 4plus</string>
+    <string name="text_main_participants">Participants</string>
+    <string name="button_main_open_link">Open Link:</string>
+    <string name="text_main_price_slider">Price</string>
+
     Favorites Fragment
     <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>
 
     Settings Fragment
     <string name="text_settings_day_night">Day/Night MODE</string>
-    <string name="contentDescription_settings_imageMode_day_night">Switch Day / Night MODE</string>
+    <string name="contentDescription_settings_imageMode_day_night">Switch Day/Night MODE</string>
     <string name="text_settings_type_of_deletion">Type of deletion</string>
+    <string name="text_settings_live_data">LiveData</string>
+    <string name="text_settings_swipe_data">SwipeData</string>
+    <string name="text_settings_manual_data">ManualData</string>
+    <string name="text_settings_start_intro">Start Intro</string>
 
 
 </resources>

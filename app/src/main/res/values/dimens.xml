@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    width
+    <dimen name="width_10dp">10dp</dimen>
+    <dimen name="width_30dp">30dp</dimen>
+    <dimen name="width_50dp">50dp</dimen>
+    <dimen name="width_70dp">70dp</dimen>
+    <dimen name="width_74dp">74dp</dimen>
+    <dimen name="width_78dp">78dp</dimen>
+    <dimen name="width_80dp">80dp</dimen>
+    <dimen name="width_100dp">100dp</dimen>
+    <dimen name="width_140dp">140dp</dimen>
+    <dimen name="width_150dp">150dp</dimen>
+    <dimen name="width_190dp">190dp</dimen>
+    <dimen name="width_250dp">250dp</dimen>
+    <dimen name="width_300dp">300dp</dimen>
+
+    height
+    <dimen name="height_10dp">10dp</dimen>
+    <dimen name="height_20dp">20dp</dimen>
+    <dimen name="height_23dp">23dp</dimen>
+    <dimen name="height_40dp">40dp</dimen>
+    <dimen name="height_30dp">30dp</dimen>
+    <dimen name="height_50dp">50dp</dimen>
+    <dimen name="height_74dp">74dp</dimen>
+    <dimen name="height_260dp">260dp</dimen>
+    <dimen name="height_300dp">300dp</dimen>
+
+    margin
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+
+    marginStart
+    <dimen name="marginStart_10dp">10dp</dimen>
+    <dimen name="marginStart_33dp">33dp</dimen>
+    <dimen name="marginStart_35dp">35dp</dimen>
+    <dimen name="marginStart_105dp">105dp</dimen>
+
     marginTop
+    <dimen name="marginTop_2dp">2dp</dimen>
+    <dimen name="marginTop_10dp">10dp</dimen>
+    <dimen name="marginTop_14dp">14dp</dimen>
+    <dimen name="marginTop_15dp">15dp</dimen>
+    <dimen name="marginTop_20dp">20dp</dimen>
     <dimen name="marginTop_30dp">30dp</dimen>
+    <dimen name="marginTop_31dp">31dp</dimen>
+    <dimen name="marginTop_50dp">50dp</dimen>
     <dimen name="marginTop_100dp">100dp</dimen>
+    <dimen name="marginEnd_105dp">105dp</dimen>
+
+    marginEnd
+    <dimen name="marginEnd_5dp">5dp</dimen>
+    <dimen name="marginEnd_10dp">10dp</dimen>
+    <dimen name="marginEnd_12dp">12dp</dimen>
+    <dimen name="marginEnd_20dp">20dp</dimen>
+    <dimen name="marginEnd_25dp">25dp</dimen>
+    <dimen name="marginEnd_35dp">35dp</dimen>
+    <dimen name="marginEnd_115dp">115dp</dimen>
+    <dimen name="marginEnd_155dp">155dp</dimen>
+
+    marginBottom
+    <dimen name="marginBottom_10dp">10dp</dimen>
+    <dimen name="marginBottom_40dp">40dp</dimen>
+    <dimen name="marginBottom_50dp">50dp</dimen>
+    <dimen name="marginBottom_60dp">60dp</dimen>
+    <dimen name="marginBottom_70dp">70dp</dimen>
+    <dimen name="marginBottom_75dp">75dp</dimen>
+    <dimen name="marginBottom_80dp">80dp</dimen>
+    <dimen name="marginBottom_100dp">100dp</dimen>
 
     textSize
+    <dimen name="textSize_12sp">12sp</dimen>
     <dimen name="textSize_20sp">20sp</dimen>
+    <dimen name="textSize_24sp">24sp</dimen>
+    <dimen name="textSize_30sp">30sp</dimen>
+    <dimen name="textSize_40sp">40sp</dimen>
 
 
 </resources>

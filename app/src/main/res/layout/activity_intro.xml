@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.intro.IntroActivity">
+    tools:context=".presentation.UI.onboarding.IntroActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager_intro"
@@ -14,29 +14,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/marginBottom_10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/button_intro_skip"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_40dp"
+            android:layout_marginStart="@dimen/marginStart_10dp"
+            android:layout_marginEnd="@dimen/marginEnd_10dp"
+            android:background="@color/NightBlueShadow"
             android:onClick="skipClick"
-            android:text="@string/buttonText_intro_skip"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:text="@string/button_intro_skip"
+            android:textColor="@color/White"
+            android:textSize="@dimen/textSize_20sp" />
 
         <Button
             android:id="@+id/button_intro_next"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_40dp"
+            android:background="@color/NightBlueShadow"
             android:onClick="nextClick"
-            android:text="@string/buttonText_intro_next"
-            android:textSize="20sp"
+            android:text="@string/button_intro_next"
+            android:textColor="@color/White"
+            android:textSize="@dimen/textSize_20sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </LinearLayout>
 
@@ -44,12 +48,12 @@
         android:id="@+id/dotsIndicator_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        app:dotsColor="@color/MediumAquamarine"
+        android:layout_marginBottom="@dimen/marginBottom_100dp"
+        app:dotsColor="@color/White"
         app:dotsCornerRadius="8dp"
         app:dotsSize="10dp"
         app:dotsSpacing="4dp"
-        app:dotsStrokeColor="@color/MidnightBlue"
+        app:dotsStrokeColor="@color/NightBlueShadow"
         app:dotsStrokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

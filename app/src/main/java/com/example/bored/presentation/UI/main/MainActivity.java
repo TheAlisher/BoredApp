@@ -17,7 +17,7 @@ import com.example.bored.App;
 import com.example.bored.R;
 import com.example.bored.presentation.UI.favorites.FavoritesFragment;
 import com.example.bored.presentation.UI.settings.SettingsFragment;
-import com.example.bored.presentation.intro.IntroActivity;
+import com.example.bored.presentation.UI.onboarding.IntroActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

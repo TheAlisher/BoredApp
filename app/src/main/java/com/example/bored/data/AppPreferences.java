@@ -23,8 +23,12 @@ public class AppPreferences {
     }
 
     // ON BOARDING
-    public void setIsFirstLaunch() {
+    public void setLaunched() {
         preferences.edit().putBoolean(PREF_IS_FIRST_LAUNCH, false).apply();
+    }
+
+    public void setNewLaunch() {
+        preferences.edit().putBoolean(PREF_IS_FIRST_LAUNCH, true).apply();
     }
 
     public boolean isFirstLaunch() {

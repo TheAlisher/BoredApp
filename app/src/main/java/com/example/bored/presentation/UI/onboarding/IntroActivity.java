@@ -1,4 +1,4 @@
-package com.example.bored.presentation.intro;
+package com.example.bored.presentation.UI.onboarding;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,20 +23,22 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        viewPager = findViewById(R.id.viewPager_intro);
+        initializationViews();
+
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
-
-        wormDotsIndicatorIntro = findViewById(R.id.dotsIndicator_intro);
         wormDotsIndicatorIntro.setViewPager(viewPager);
-
-        buttonSkip = findViewById(R.id.button_intro_skip);
-        buttonNext = findViewById(R.id.button_intro_next);
-
         viewPager.addOnPageChangeListener(viewListener);
     }
 
+    private void initializationViews() {
+        viewPager = findViewById(R.id.viewPager_intro);
+        wormDotsIndicatorIntro = findViewById(R.id.dotsIndicator_intro);
+        buttonSkip = findViewById(R.id.button_intro_skip);
+        buttonNext = findViewById(R.id.button_intro_next);
+    }
+
     public void skipClick(View view) {
-        App.appPreferences.setIsFirstLaunch();
+        App.appPreferences.setLaunched();
         finish();
     }
 
@@ -92,11 +94,11 @@ public class IntroActivity extends AppCompatActivity {
 
     private void lastPageChanges() {
         buttonSkip.setVisibility(View.GONE);
-        buttonNext.setText("Start");
+        buttonNext.setText(R.string.button_intro_start);
     }
 
     private void pageRecovery() {
         buttonSkip.setVisibility(View.VISIBLE);
-        buttonNext.setText("Next");
+        buttonNext.setText(R.string.button_intro_next);
     }
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.UI.settings.SettingsFragment">
@@ -13,18 +14,18 @@
         android:layout_marginTop="@dimen/marginTop_100dp"
         android:text="@string/text_settings_day_night"
         android:textAlignment="center"
-        android:textColor="@color/textColorDefault"
+        android:textColor="@color/textColorDefaultSettings"
         android:textSize="@dimen/textSize_20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_settings_day_night_mode"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/icon_mode_day_night"
-        android:contentDescription="@string/contentDescription_settings_imageMode_day_night"
+        android:layout_width="@dimen/width_50dp"
+        android:layout_height="@dimen/height_50dp"
         android:layout_marginTop="@dimen/marginTop_30dp"
+        android:contentDescription="@string/contentDescription_settings_imageMode_day_night"
+        android:src="@drawable/icon_mode_day_night"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_settings_day_night_mode" />
@@ -36,15 +37,15 @@
         android:layout_marginTop="@dimen/marginTop_100dp"
         android:text="@string/text_settings_type_of_deletion"
         android:textAlignment="center"
-        android:textColor="@color/textColorDefault"
+        android:textColor="@color/textColorDefaultSettings"
         android:textSize="@dimen/textSize_20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/image_settings_day_night_mode" />
 
     <Button
-        android:id="@+id/button_settings_LiveData_or_SwipeDelete_or_ManualDelete"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:id="@+id/button_settings_type_of_deletion_choose"
+        android:layout_width="@dimen/width_140dp"
+        android:layout_height="@dimen/height_50dp"
         android:layout_marginTop="@dimen/marginTop_30dp"
         android:background="@color/buttonColorSettings"
         android:textColor="@color/textInButton"
@@ -53,6 +54,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_settings_live_swipe_data" />
+
+    <Button
+        android:id="@+id/button_settings_start_intro"
+        android:layout_width="@dimen/width_100dp"
+        android:layout_height="@dimen/height_30dp"
+        android:layout_marginEnd="@dimen/marginEnd_20dp"
+        android:layout_marginBottom="@dimen/marginBottom_40dp"
+        android:background="@color/NightBlueShadow"
+        android:text="@string/text_settings_start_intro"
+        android:textColor="@color/White"
+        android:textSize="@dimen/textSize_12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

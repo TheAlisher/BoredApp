@@ -1,10 +1,12 @@
 package com.example.bored.presentation.UI.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,15 +17,20 @@ import android.widget.ImageView;
 
 import com.example.bored.App;
 import com.example.bored.R;
+import com.example.bored.presentation.UI.onboarding.IntroActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
 
+    private ConstraintLayout fragmentSettings;
     private ImageView imageDayNightMode;
-    private Button buttonLiveDataSwipeDeleteManualDelete;
+    private Button buttonTypeOfDeletionChoose;
+    private Button buttonStartIntro;
 
-    public SettingsFragment() { }
+    public SettingsFragment() {
+    }
 
-    public static Fragment newInstance(){
+    public static Fragment newInstance() {
         return new SettingsFragment();
     }
 
@@ -44,17 +51,37 @@ public class SettingsFragment extends Fragment {
                 imageDayNightModeClick();
             }
         });
-        buttonLiveDataSwipeDeleteManualDelete.setOnClickListener(new View.OnClickListener() {
+        buttonTypeOfDeletionChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LiveDataSwipeDeleteClick();
+                typeOfDeletionClick();
+            }
+        });
+        buttonStartIntro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntroClick();
             }
         });
     }
 
     private void initializationViews(View view) {
+        fragmentSettings = view.findViewById(R.id.fragmentSettings);
         imageDayNightMode = view.findViewById(R.id.image_settings_day_night_mode);
-        buttonLiveDataSwipeDeleteManualDelete = view.findViewById(R.id.button_settings_LiveData_or_SwipeDelete_or_ManualDelete);
+        buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion_choose);
+        buttonStartIntro = view.findViewById(R.id.button_settings_start_intro);
+    }
+
+    private void checkLiveDataSwipeDeleteManualDelete() {
+        if (App.appPreferences.isLiveDataON()) {
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
+        }
+        if (App.appPreferences.isSwipeDeleteON()) {
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_swipe_data);
+        }
+        if (App.appPreferences.isManualDeleteON()) {
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_manual_data);
+        }
     }
 
     private void imageDayNightModeClick() {
@@ -67,34 +94,36 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private void checkLiveDataSwipeDeleteManualDelete() {
+    private void typeOfDeletionClick() {
         if (App.appPreferences.isLiveDataON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("LiveData");
-        }
-        if (App.appPreferences.isSwipeDeleteON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("SwipeData");
-        }
-        if (App.appPreferences.isManualDeleteON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("ManualData");
-        }
-    }
-
-    private void LiveDataSwipeDeleteClick() {
-        if (App.appPreferences.isLiveDataON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("SwipeData");
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_swipe_data);
             App.appPreferences.setLiveData(false);
             App.appPreferences.setSwipeDelete(true);
             App.appPreferences.setManualDelete(false);
         } else if (App.appPreferences.isSwipeDeleteON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("ManualData");
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_manual_data);
             App.appPreferences.setLiveData(false);
             App.appPreferences.setSwipeDelete(false);
             App.appPreferences.setManualDelete(true);
         } else if (App.appPreferences.isManualDeleteON()) {
-            buttonLiveDataSwipeDeleteManualDelete.setText("LiveData");
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
             App.appPreferences.setLiveData(true);
             App.appPreferences.setSwipeDelete(false);
             App.appPreferences.setManualDelete(false);
         }
+    }
+
+    private void startIntroClick() {
+        App.appPreferences.setNewLaunch();
+        Snackbar.make(fragmentSettings, "При след. запуске откроется Intro", Snackbar.LENGTH_LONG)
+                .setAction("Открыть", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(getContext(), IntroActivity.class));
+                        requireActivity().finish();
+                        return;
+                    }
+                })
+                .show();
     }
 }
