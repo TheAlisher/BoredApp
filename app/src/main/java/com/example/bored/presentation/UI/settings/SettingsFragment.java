@@ -121,7 +121,7 @@ public class SettingsFragment extends Fragment {
                     public void onClick(View view) {
                         startActivity(new Intent(getContext(), IntroActivity.class));
                         requireActivity().finish();
-                        return;
+                        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 })
                 .show();

@@ -22,6 +22,11 @@
         <item name="android:windowExitAnimation">@anim/fragment_fade_exit</item>
     </style>
 
+    SplashScreen
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash_screen</item>
+    </style>
+
     Home Fragment
     <style name="text_category">
         <item name="android:textSize">12sp</item>

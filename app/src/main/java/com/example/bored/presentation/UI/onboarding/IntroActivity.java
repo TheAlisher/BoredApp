@@ -41,7 +41,7 @@ public class IntroActivity extends AppCompatActivity {
 
     public void skipClick(View view) {
         App.appPreferences.setLaunched();
-        startActivity(new Intent(this, MainActivity.class));
+        MainActivity.start(this);
         finish();
     }
 

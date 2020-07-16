@@ -61,7 +61,7 @@
 
     marginBottom
     <dimen name="marginBottom_10dp">10dp</dimen>
-    <dimen name="marginBottom_40dp">40dp</dimen>
+    <dimen name="marginBottom_20dp">20dp</dimen>
     <dimen name="marginBottom_50dp">50dp</dimen>
     <dimen name="marginBottom_60dp">60dp</dimen>
     <dimen name="marginBottom_70dp">70dp</dimen>
