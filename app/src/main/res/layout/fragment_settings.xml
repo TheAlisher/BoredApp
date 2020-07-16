@@ -5,7 +5,7 @@
     android:id="@+id/fragmentSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.UI.settings.SettingsFragment">
+    tools:context=".presentation_UI.settings.SettingsFragment">
 
     <TextView
         android:id="@+id/text_settings_day_night_mode"

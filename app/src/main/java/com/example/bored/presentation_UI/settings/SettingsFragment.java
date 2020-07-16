@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.settings;
+package com.example.bored.presentation_UI.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation.UI.onboarding.IntroActivity;
+import com.example.bored.presentation_UI.onboarding.IntroActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
@@ -44,7 +44,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
-        checkLiveDataSwipeDeleteManualDelete();
+        checkTypeOfDeletion();
         imageDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class SettingsFragment extends Fragment {
         buttonStartIntro = view.findViewById(R.id.button_settings_start_intro);
     }
 
-    private void checkLiveDataSwipeDeleteManualDelete() {
+    private void checkTypeOfDeletion() {
         if (App.appPreferences.isLiveDataON()) {
             buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
         }
@@ -95,7 +95,12 @@ public class SettingsFragment extends Fragment {
     }
 
     private void typeOfDeletionClick() {
-        if (App.appPreferences.isLiveDataON()) {
+        if (App.appPreferences.isManualDeleteON()) {
+            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
+            App.appPreferences.setLiveData(true);
+            App.appPreferences.setSwipeDelete(false);
+            App.appPreferences.setManualDelete(false);
+        } else if (App.appPreferences.isLiveDataON()) {
             buttonTypeOfDeletionChoose.setText(R.string.text_settings_swipe_data);
             App.appPreferences.setLiveData(false);
             App.appPreferences.setSwipeDelete(true);
@@ -105,11 +110,6 @@ public class SettingsFragment extends Fragment {
             App.appPreferences.setLiveData(false);
             App.appPreferences.setSwipeDelete(false);
             App.appPreferences.setManualDelete(true);
-        } else if (App.appPreferences.isManualDeleteON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
-            App.appPreferences.setLiveData(true);
-            App.appPreferences.setSwipeDelete(false);
-            App.appPreferences.setManualDelete(false);
         }
     }
 

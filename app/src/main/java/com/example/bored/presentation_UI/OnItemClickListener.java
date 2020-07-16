@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI;
+package com.example.bored.presentation_UI;
 
 public interface OnItemClickListener {
 

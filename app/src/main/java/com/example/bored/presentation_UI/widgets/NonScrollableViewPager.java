@@ -1,4 +1,4 @@
-package com.example.bored.presentation.widgets;
+package com.example.bored.presentation_UI.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;

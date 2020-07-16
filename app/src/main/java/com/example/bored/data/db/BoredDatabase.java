@@ -3,7 +3,7 @@ package com.example.bored.data.db;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.example.bored.data.localy.BoredDao;
+import com.example.bored.data.local.BoredDao;
 import com.example.bored.model.BoredAction;
 
 @Database(

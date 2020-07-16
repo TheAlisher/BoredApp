@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.main;
+package com.example.bored.presentation_UI.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +15,9 @@ import android.view.MenuItem;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation.UI.favorites.FavoritesFragment;
-import com.example.bored.presentation.UI.settings.SettingsFragment;
-import com.example.bored.presentation.UI.onboarding.IntroActivity;
+import com.example.bored.presentation_UI.favorites.FavoritesFragment;
+import com.example.bored.presentation_UI.settings.SettingsFragment;
+import com.example.bored.presentation_UI.onboarding.IntroActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

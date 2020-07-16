@@ -1,4 +1,4 @@
-package com.example.bored.data.localy;
+package com.example.bored.data.local;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

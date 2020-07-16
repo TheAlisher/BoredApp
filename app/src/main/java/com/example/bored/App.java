@@ -7,7 +7,7 @@ import androidx.room.Room;
 import com.example.bored.data.AppPreferences;
 import com.example.bored.data.remote.BoredAPIClient;
 import com.example.bored.data.db.BoredDatabase;
-import com.example.bored.data.localy.BoredStorage;
+import com.example.bored.data.local.BoredStorage;
 
 public class App extends Application {
 

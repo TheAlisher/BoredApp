@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.favorites;
+package com.example.bored.presentation_UI.favorites;
 
 import android.os.Bundle;
 
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation.UI.OnItemClickListener;
+import com.example.bored.presentation_UI.OnItemClickListener;
 import com.example.bored.model.BoredAction;
 
 import org.jetbrains.annotations.NotNull;

@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.main;
+package com.example.bored.presentation_UI.main;
 
 import android.animation.Animator;
 import android.content.Intent;

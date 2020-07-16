@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.onboarding;
+package com.example.bored.presentation_UI.onboarding;
 
 import android.os.Bundle;
 
@@ -11,7 +11,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.bored.R;

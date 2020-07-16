@@ -1,4 +1,4 @@
-package com.example.bored.presentation.UI.favorites;
+package com.example.bored.presentation_UI.favorites;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bored.R;
-import com.example.bored.presentation.UI.OnItemClickListener;
+import com.example.bored.presentation_UI.OnItemClickListener;
 import com.example.bored.model.BoredAction;
 
 import java.util.ArrayList;
