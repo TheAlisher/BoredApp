@@ -3,7 +3,7 @@
 
     <item
         android:bottom="0dp"
-        android:drawable="@color/ic_launcher_background"
+        android:drawable="@color/background_main"
         android:left="0dp"
         android:right="0dp"
         android:top="0dp" />
