@@ -3,16 +3,16 @@
 
     <item
         android:bottom="0dp"
-        android:drawable="@color/background_main"
+        android:drawable="@color/ic_launcher_background"
         android:left="0dp"
         android:right="0dp"
         android:top="0dp" />
 
     <item
-        android:width="100dp"
-        android:height="100dp"
+        android:width="200dp"
+        android:height="200dp"
         android:gravity="center"
-        android:drawable="@mipmap/ic_launcher" />
+        android:drawable="@mipmap/ic_launcher_foreground" />
 
 
 </layer-list>

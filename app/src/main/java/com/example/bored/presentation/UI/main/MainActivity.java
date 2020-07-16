@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (App.appPreferences.isFirstLaunch()) {
             startActivity(new Intent(this, IntroActivity.class));
+            finish();
+            return;
         }
 
         initializationViews();

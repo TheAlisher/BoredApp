@@ -120,8 +120,9 @@ public class SettingsFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         startActivity(new Intent(getContext(), IntroActivity.class));
-                        requireActivity().finish();
                         requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        requireActivity().finish();
+                        return;
                     }
                 })
                 .show();
