@@ -52,7 +52,7 @@
 ### На русском
     Лицензия MIT
 
-    Copyright (c) <2020> <Alisher>
+    Copyright (c) 2020 Alisher
 
     Данная лицензия разрешает лицам, получившим копию данного программного обеспечения 
     и сопутствующей документации (в дальнейшем именуемыми «Программное обеспечение»), 
@@ -74,7 +74,7 @@
 ### In english
     MIT License
     
-    Copyright (c) <2020> <Alisher>
+    Copyright (c) 2020 Alisher
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
