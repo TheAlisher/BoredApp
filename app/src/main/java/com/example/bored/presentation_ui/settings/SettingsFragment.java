@@ -1,4 +1,4 @@
-package com.example.bored.presentation_UI.settings;
+package com.example.bored.presentation_ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation_UI.onboarding.IntroActivity;
+import com.example.bored.presentation_ui.onboard.IntroActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {

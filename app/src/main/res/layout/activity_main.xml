@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    tools:context=".presentation_UI.main.MainActivity">
+    tools:context=".presentation_ui.main.MainActivity">
 
-    <com.example.bored.presentation_UI.widgets.NonScrollableViewPager
+    <com.example.bored.presentation_ui.widgets.NonScrollableViewPager
         android:id="@+id/viewPager_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"

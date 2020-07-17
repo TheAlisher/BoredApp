@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class AppPreferences {
 
-    // ON BOARDING
+    // ON BOARD
     private static final String PREF_IS_FIRST_LAUNCH = "is_first_launch";
     // LIGHT / DARK | MODE
     private static final String PREF_LIGHT_DARK_MODE = "light_dark_mode";
@@ -22,7 +22,7 @@ public class AppPreferences {
                 Context.MODE_PRIVATE);
     }
 
-    // ON BOARDING
+    // ON BOARD
     public void setLaunched() {
         preferences.edit().putBoolean(PREF_IS_FIRST_LAUNCH, false).apply();
     }

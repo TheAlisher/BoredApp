@@ -1,4 +1,4 @@
-package com.example.bored.presentation_UI.main;
+package com.example.bored.presentation_ui.main;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -101,13 +101,13 @@ public class MainFragment extends Fragment {
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeLikeClick();
+                mainLikeClick();
             }
         });
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeAPINextClick();
+                mainAPINextClick();
             }
         });
         spinnerGetSelectedValues();
@@ -152,7 +152,7 @@ public class MainFragment extends Fragment {
 
     private boolean isLiked = true;
 
-    public void homeLikeClick() {
+    public void mainLikeClick() {
         String category = textCategory.getText().toString().trim();
         String price = textFree.getText().toString().trim();
         if (isLiked) {
@@ -183,18 +183,18 @@ public class MainFragment extends Fragment {
     }
 
     private void saveBoredAction() {
-        App.boredStorage.saveBoredAction(boredActions);
+        App.boredRepository.saveBoredAction(boredActions);
         Log.d("anim", "Receive " + boredActions.toString());
-        for (BoredAction action : App.boredStorage.getAllActions()) {
+        for (BoredAction action : App.boredRepository.getAllActions()) {
             Log.d("anim", action.toString());
         }
     }
 
     private void deleteBoredAction() {
-        App.boredStorage.deleteBoredAction(boredActions);
+        App.boredRepository.deleteBoredAction(boredActions);
     }
 
-    public void homeAPINextClick() {
+    public void mainAPINextClick() {
         recoveryLikeIcon();
         setRandomBoredActionType();
         BoredAPIGetAction();
@@ -210,7 +210,7 @@ public class MainFragment extends Fragment {
 
     private void BoredAPIGetAction() {
         invisibleAllAndPlayLoading();
-        App.boredAPIClient.getAction(
+        App.boredRepository.getAction(
                 spinnerSelectedValues,
                 rangeSliderSelectedMinPrice,
                 rangeSliderSelectedMaxPrice,
@@ -236,7 +236,7 @@ public class MainFragment extends Fragment {
 
                         Log.d("anim", boredAction.toString());
 
-                        BoredAction boredKey = App.boredStorage.getBoredAction(key);
+                        BoredAction boredKey = App.boredRepository.getBoredAction(key);
                         if (boredKey != null) {
                             setLikeAnimationAndIcon();
                             Log.d("anim", "Stored " + boredAction);
@@ -489,7 +489,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        BoredAction boredKey = App.boredStorage.getBoredAction(key);
+        BoredAction boredKey = App.boredRepository.getBoredAction(key);
         if (boredKey == null) {
             recoveryLikeIcon();
         }

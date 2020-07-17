@@ -1,4 +1,4 @@
-package com.example.bored.presentation_UI.onboarding;
+package com.example.bored.presentation_ui.onboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation_UI.main.MainActivity;
+import com.example.bored.presentation_ui.main.MainActivity;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {

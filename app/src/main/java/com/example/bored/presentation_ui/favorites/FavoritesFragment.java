@@ -1,4 +1,4 @@
-package com.example.bored.presentation_UI.favorites;
+package com.example.bored.presentation_ui.favorites;
 
 import android.os.Bundle;
 
@@ -14,11 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation_UI.OnItemClickListener;
+import com.example.bored.presentation_ui.OnItemClickListener;
 import com.example.bored.model.BoredAction;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,7 +50,7 @@ public class FavoritesFragment extends Fragment {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
             int position = viewHolder.getAdapterPosition();
-            App.boredStorage.deleteBoredAction(card.get(position));
+            App.boredRepository.deleteBoredAction(card.get(position));
             card.remove(position);
             adapter.notifyDataSetChanged();
         }
@@ -79,12 +84,12 @@ public class FavoritesFragment extends Fragment {
             @Override
             public void OnItemClick(int position) {
                 if (App.appPreferences.isManualDeleteON()) {
-                    App.boredStorage.deleteBoredAction(card.get(position));
+                    App.boredRepository.deleteBoredAction(card.get(position));
                     card.remove(position);
                     adapter.notifyDataSetChanged();
 
                 } else if (App.appPreferences.isLiveDataON()) {
-                    App.boredStorage.deleteBoredAction(card.get(position));
+                    App.boredRepository.deleteBoredAction(card.get(position));
 
                 } else if (App.appPreferences.isSwipeDeleteON()) {
                     Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
@@ -106,21 +111,22 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManagerBored);
         adapter = new BoredAdapter(card);
         recyclerView.setAdapter(adapter);
+
     }
 
     private void loadData() {
         int size = card.size();
-        if (App.boredStorage.getAllActions().isEmpty()) {
+        if (App.boredRepository.getAllActions().isEmpty()) {
             cardViewYouHaveNoSavedYet.setVisibility(View.VISIBLE);
         } else {
             cardViewYouHaveNoSavedYet.setVisibility(View.GONE);
         }
         if (App.appPreferences.isManualDeleteON()) {
             card.clear();
-            card.addAll(App.boredStorage.getAllActions());
+            card.addAll(App.boredRepository.getAllActions());
             adapter.notifyDataSetChanged();
         } else if (App.appPreferences.isLiveDataON()) {
-            App.boredStorage
+            App.boredRepository
                     .getAllActionsLive()
                     .observe(getViewLifecycleOwner(), new Observer<List<BoredAction>>() {
                         @Override
@@ -132,7 +138,7 @@ public class FavoritesFragment extends Fragment {
                     });
         } else if (App.appPreferences.isSwipeDeleteON()) {
             card.clear();
-            card.addAll(App.boredStorage.getAllActions());
+            card.addAll(App.boredRepository.getAllActions());
             adapter.notifyDataSetChanged();
             createItemTouchHelperForRecyclerView();
         }
@@ -150,6 +156,15 @@ public class FavoritesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         loadData();
+        createRecyclerViewAnimation();
+    }
+
+    private void createRecyclerViewAnimation() {
+        LayoutAnimationController layoutAnimationController =
+                AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_fall_down);
+        recyclerView.setLayoutAnimation(layoutAnimationController);
+        adapter.notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.bored.presentation_UI.onboarding;
+package com.example.bored.presentation_ui.onboard;
 
 import android.os.Bundle;
 

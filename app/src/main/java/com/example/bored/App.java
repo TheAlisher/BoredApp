@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.bored.data.AppPreferences;
+import com.example.bored.data.BoredRepository;
 import com.example.bored.data.remote.BoredAPIClient;
 import com.example.bored.data.db.BoredDatabase;
 import com.example.bored.data.local.BoredStorage;
@@ -13,18 +14,17 @@ public class App extends Application {
 
     //AppPreferences
     public static AppPreferences appPreferences;
-    //API
-    public static BoredAPIClient boredAPIClient;
     //Room Database
     private static BoredDatabase boredDatabase;
-    public static BoredStorage boredStorage;
+    //Repository
+    public static BoredRepository boredRepository;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         appPreferences = new AppPreferences(this);
-        boredAPIClient = new BoredAPIClient();
+        BoredAPIClient boredAPIClient = new BoredAPIClient();
         boredDatabase = Room.databaseBuilder(
                 this,
                 BoredDatabase.class,
@@ -32,6 +32,7 @@ public class App extends Application {
         ).fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
-        boredStorage = new BoredStorage(boredDatabase.boredDao());
+        BoredStorage boredStorage = new BoredStorage(boredDatabase.boredDao());
+        boredRepository = new BoredRepository(boredStorage, boredAPIClient);
     }
 }

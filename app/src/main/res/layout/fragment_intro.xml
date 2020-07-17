@@ -5,7 +5,7 @@
     android:id="@+id/fragmentIntro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation_UI.onboarding.IntroFragment">
+    tools:context=".presentation_ui.onboard.IntroFragment">
 
     <TextView
         android:id="@+id/text_intro_title"
