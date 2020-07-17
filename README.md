@@ -6,7 +6,7 @@
 Это учебный проект из курсов **GeekTech**! Благодаря которому я узнал как работать с **Retrofit**, **Room**, освоил анимацию на android и многое многое другое
 
 # Dependencies
----
+
 ### Material Design
 Я думаю любой более или менее крупный проект должен использовать Material Design для придания можно сказать эстетичности для вашего приложения, конечно это громкое заявление но все таки.
 Совет: Если у вас достаточно масштабный проект используйте версии библиотек без окончаний alpha, beta или еще как потому что они думаю более стабильны и без багов например в том же **1.3.0.-alpha01** был замечен баг с **password toggle**, поменялись обозначения если глазик зачеркнут то пароль показывается если не зачеркнут пароль не показывается конечно это можно исправить задав свою иконку но все таки не приятный осадочек остался :)
@@ -15,7 +15,7 @@
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.android.material:material:1.3.0-alpha01'
 ```
----
+
 ### DotsIndicator
 Был использован для OnBoard'а в этом приложении, здесь могу сказать одно 
 > Всё гениальное просто
@@ -23,7 +23,7 @@
 ```java
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 ```
----
+
 ### Retrofit
 Вообще основная тема этого приложение работа с API и взаимодействие с ним и для этого конечно же была использована эта упрощающая работу библиотека
 ###### [github](https://github.com/square/retrofit)
@@ -31,14 +31,14 @@
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 ```
----
+
 ### LottieFiles
 Конечно же была использована для очень ярких анимаций в приложении
 ###### [github](https://github.com/LottieFiles/lottie-android)
 ```java
   implementation "com.airbnb.android:lottie:3.4.1"
 ```
----
+
 ### Room
 Нужно было реализовать сохранение данных в избранное и оно было реализовано через эту Базу Данных
 ```java
@@ -46,8 +46,6 @@
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 ```
-
-***
 
 # License
 
