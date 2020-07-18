@@ -4,38 +4,34 @@
 Это приложение поможет найти занятие когда вам скучно! Есть поля где вы можете выбирать тип деятельности, доступность занятий и другие.
 
 ## Почему был создан этот проект?
-Это учебный проект из курсов **GeekTech**! Благодаря которому я узнал как работать с **Retrofit**, **Room**, освоил анимацию на android и многое многое другое
+Цель этого проекта была узнать как работать с **API** и **Retrofit**. Благодоря проекту узнал как работать как уже и перечислил c **API**, **Retrofit**, повторил работу c **Room**, можно сказать более углубленно был изучен паттерн **Singleton**, научился делать **Light / Dark MODE**, ещё узнал как работать с анимациями самого android.
 
 # Dependencies
 
-### Material Design
+### [Material Design](https://github.com/material-components/material-components-android)
 Я думаю любой более или менее крупный проект должен использовать Material Design для придания можно сказать эстетичности для вашего приложения, конечно это громкое заявление но все таки.
 Совет: Если у вас достаточно масштабный проект используйте версии библиотек без окончаний alpha, beta или еще как потому что они думаю более стабильны и без багов например в том же **1.3.0.-alpha01** был замечен баг с **password toggle**, поменялись обозначения если глазик зачеркнут то пароль показывается если не зачеркнут пароль не показывается конечно это можно исправить задав свою иконку но все таки не приятный осадочек остался :)
-###### [github](https://github.com/material-components/material-components-android)
 ```java
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.android.material:material:1.3.0-alpha01'
 ```
 
-### DotsIndicator
+### [DotsIndicator](https://github.com/tommybuonomo/dotsindicator) 
 Был использован для OnBoard'а в этом приложении, здесь могу сказать одно 
 > Всё гениальное просто
-###### [github](https://github.com/tommybuonomo/dotsindicator) 
 ```java
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 ```
 
-### Retrofit
+### [Retrofit](https://github.com/square/retrofit)
 Вообще основная тема этого приложение работа с API и взаимодействие с ним и для этого конечно же была использована эта упрощающая работу библиотека
-###### [github](https://github.com/square/retrofit)
 ```java
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 ```
 
-### LottieFiles
+### [LottieFiles](https://github.com/LottieFiles/lottie-android)
 Конечно же была использована для очень ярких анимаций в приложении
-###### [github](https://github.com/LottieFiles/lottie-android)
 ```java
   implementation "com.airbnb.android:lottie:3.4.1"
 ```
