@@ -24,7 +24,7 @@
 ```
 
 ### [Retrofit](https://github.com/square/retrofit)
-Вообще основная тема этого приложение работа с **API** и взаимодействие с ним и для этого конечно же была использована эта упрощающая работу библиотека
+Так как основная тема этого приложение работа с **API** и взаимодействие с ним, я использовал библиотеку упрощающая взаимодействие с **API**'шками
 ```java
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
