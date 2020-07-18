@@ -16,9 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.bored.App;
@@ -36,9 +33,7 @@ public class FavoritesFragment extends Fragment {
     private RecyclerView recyclerView;
     private BoredAdapter adapter;
     private ArrayList<BoredAction> card = new ArrayList<>();
-
     private CardView cardViewYouHaveNoSavedYet;
-    LinearLayoutManager linearLayoutManagerBored;
 
     private ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback
             (0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -105,13 +100,12 @@ public class FavoritesFragment extends Fragment {
 
     private void createRecyclerView(View view) {
         recyclerView = view.findViewById(R.id.recyclerView_favorites);
-        linearLayoutManagerBored = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManagerBored = new LinearLayoutManager(getContext());
         linearLayoutManagerBored.setReverseLayout(true);
         linearLayoutManagerBored.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManagerBored);
         adapter = new BoredAdapter(card);
         recyclerView.setAdapter(adapter);
-
     }
 
     private void loadData() {
@@ -142,7 +136,7 @@ public class FavoritesFragment extends Fragment {
             adapter.notifyDataSetChanged();
             createItemTouchHelperForRecyclerView();
         }
-        if (size < card.size()) {
+        if (size != card.size()) {
             recyclerView.scrollToPosition(card.size() - 1);
         }
     }

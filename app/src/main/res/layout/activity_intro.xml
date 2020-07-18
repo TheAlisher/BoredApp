@@ -25,7 +25,7 @@
             android:layout_marginStart="@dimen/marginStart_10dp"
             android:layout_marginEnd="@dimen/marginEnd_10dp"
             android:background="@color/NightBlueShadow"
-            android:onClick="skipClick"
+            android:onClick="introSkipClick"
             android:text="@string/button_intro_skip"
             android:textColor="@color/White"
             android:textSize="@dimen/textSize_20sp" />
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_40dp"
             android:background="@color/NightBlueShadow"
-            android:onClick="nextClick"
+            android:onClick="introNextClick"
             android:text="@string/button_intro_next"
             android:textColor="@color/White"
             android:textSize="@dimen/textSize_20sp"

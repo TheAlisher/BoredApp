@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         if (App.appPreferences.isFirstLaunch()) {
             startActivity(new Intent(this, IntroActivity.class));
             finish();
-            return;
         }
 
         initializationViews();
@@ -56,12 +55,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.viewPager_main);
         mBottomNavigationView = findViewById(R.id.navigationView_main);
     }
-
-    /*private void createNavigationBottom() {
-        BottomNavigationView navView = findViewById(R.id.navigationView_main);
-        NavController navController = Navigation.findNavController(this, R.id.navigation_host_fragment);
-        NavigationUI.setupWithNavController(navView, navController);
-    }*///…
 
     private void createNavigationBottomWithViewPager() {
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));

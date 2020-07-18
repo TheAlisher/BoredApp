@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_card_bored"
+        android:background="@color/background_main"
         android:padding="10dp">
 
         <View

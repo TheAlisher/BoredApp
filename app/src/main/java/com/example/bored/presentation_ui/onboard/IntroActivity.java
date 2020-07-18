@@ -23,12 +23,8 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
         initializationViews();
-
-        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
-        wormDotsIndicatorIntro.setViewPager(viewPager);
-        viewPager.addOnPageChangeListener(viewListener);
+        createViewPagerWithDotsIndicator();
     }
 
     private void initializationViews() {
@@ -38,20 +34,27 @@ public class IntroActivity extends AppCompatActivity {
         buttonNext = findViewById(R.id.button_intro_next);
     }
 
-    public void skipClick(View view) {
+    private void createViewPagerWithDotsIndicator() {
+        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        wormDotsIndicatorIntro.setViewPager(viewPager);
+        viewPager.addOnPageChangeListener(viewListener);
+    }
+
+    public void introSkipClick(View view) {
         App.appPreferences.setLaunched();
         MainActivity.start(this);
         overridePendingTransition(R.anim.static_animation, R.anim.zoom_out);
         finish();
     }
 
-    public void nextClick(View view) {
+    public void introNextClick(View view) {
         if (viewPager.getCurrentItem() < 2) {
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
         }
     }
 
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+    private ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -65,7 +68,7 @@ public class IntroActivity extends AppCompatActivity {
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        nextClick(v);
+                        introNextClick(v);
                     }
                 });
             }
@@ -74,7 +77,7 @@ public class IntroActivity extends AppCompatActivity {
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        nextClick(v);
+                        introNextClick(v);
                     }
                 });
             }
@@ -83,7 +86,7 @@ public class IntroActivity extends AppCompatActivity {
                 buttonNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        skipClick(v);
+                        introSkipClick(v);
                     }
                 });
             }

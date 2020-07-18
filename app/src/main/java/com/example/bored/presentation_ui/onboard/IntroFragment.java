@@ -33,8 +33,8 @@ public class IntroFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        int position = getArguments().getInt(SectionsPagerAdapter.PAGER_POSITION);
         initializationViews(view);
+        int position = getArguments().getInt(SectionsPagerAdapter.PAGER_POSITION);
         switch (position) {
             case 0:
                 fragmentIntro.setBackgroundResource(R.color.Madison);

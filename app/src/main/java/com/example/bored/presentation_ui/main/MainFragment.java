@@ -97,6 +97,10 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         createSpinnerCategory();
+        spinnerGetSelectedValues();
+        //rangeSliderPriceSetLabelFormatter();
+        rangeSliderPriceGetSelectedValues();
+        rangeSliderAccessibilityGetSelectedValues();
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,13 +110,9 @@ public class MainFragment extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainAPINextClick();
+                mainNextClick();
             }
         });
-        spinnerGetSelectedValues();
-        //rangeSliderPriceSetLabelFormatter();
-        rangeSliderPriceGetSelectedValues();
-        rangeSliderAccessibilityGetSelectedValues();
     }
 
     private void initializationViews(View view) {
@@ -141,28 +141,57 @@ public class MainFragment extends Fragment {
         rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_home_accessibility);
     }
 
-    private void setLastAction() {
-        BoredAction boredAction = App.boredRepository.lastAction;
-        if (boredAction != null) {
-            setBoredAction(boredAction);
-        }
-        BoredAction boredKey = App.boredRepository.lastAction;
-        if (boredKey != null) {
-            if (App.boredRepository.getBoredAction(boredKey.getKey()) == null) {
-                recoveryLikeIcon();
-            } else {
-                setLikeIcon();
-                isLiked = false;
-            }
-        }
-    }
-
     private void createSpinnerCategory() {
         String[] dropdownCategory = getResources().getStringArray(R.array.spinner_category);
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(requireContext(), R.layout.custom_spinner_item, dropdownCategory);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
+    }
+
+    private void spinnerGetSelectedValues() {
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                spinnerSelectedValues = adapterView.getItemAtPosition(pos).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void rangeSliderPriceSetLabelFormatter() {
+        rangeSliderPrice.setLabelFormatter(value -> {
+            NumberFormat format = NumberFormat.getCurrencyInstance();
+            format.setMaximumFractionDigits(0);
+            format.setCurrency(Currency.getInstance("USD"));
+            return format.format(value);
+        });
+    }
+
+    private void rangeSliderPriceGetSelectedValues() {
+        rangeSliderPrice.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
+                rangeSliderSelectedPrice = slider.getValues();
+                rangeSliderSelectedMinPrice = rangeSliderSelectedPrice.get(0);
+                rangeSliderSelectedMaxPrice = rangeSliderSelectedPrice.get(1);
+            }
+        });
+    }
+
+    private void rangeSliderAccessibilityGetSelectedValues() {
+        rangeSliderAccessibility.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
+                rangeSliderSelectedAccessibility = slider.getValues();
+                rangeSliderSelectedMinAccessibility = rangeSliderSelectedAccessibility.get(0);
+                rangeSliderSelectedMaxAccessibility = rangeSliderSelectedAccessibility.get(1);
+            }
+        });
     }
 
     private boolean isLiked = true;
@@ -177,11 +206,11 @@ public class MainFragment extends Fragment {
             } else {
                 setLikeAnimation();
                 setLikeIcon();
-                saveBoredAction();
+                saveBoredAction(App.boredRepository.lastAction);
             }
         } else {
             recoveryLikeIcon();
-            deleteBoredAction();
+            deleteBoredAction(App.boredRepository.lastAction);
         }
     }
 
@@ -201,15 +230,15 @@ public class MainFragment extends Fragment {
         isLiked = true;
     }
 
-    private void saveBoredAction() {
-        App.boredRepository.saveBoredAction(App.boredRepository.lastAction);
+    private void saveBoredAction(BoredAction boredAction) {
+        App.boredRepository.saveBoredAction(boredAction);
     }
 
-    private void deleteBoredAction() {
-        App.boredRepository.deleteBoredAction(App.boredRepository.lastAction);
+    private void deleteBoredAction(BoredAction boredAction) {
+        App.boredRepository.deleteBoredAction(boredAction);
     }
 
-    public void mainAPINextClick() {
+    public void mainNextClick() {
         recoveryLikeIcon();
         setRandomBoredActionType();
         BoredAPIGetAction();
@@ -237,27 +266,21 @@ public class MainFragment extends Fragment {
                         try {
                             App.boredRepository.lastAction = boredAction;
                             key = App.boredRepository.lastAction.getKey();
-                            //key = boredAction.getKey();
-                            //boredActions = boredAction;
                             setBoredAction(boredAction);
                         } catch (NullPointerException NPE) {
                             catchNullPointerException();
                         }
                         visibleAllAndPauseAnimation();
-
-                        Log.d("anim", boredAction.toString());
-
-                        BoredAction boredKey = App.boredRepository.getBoredAction(key);
-                        if (boredKey != null) {
+                        if (App.boredRepository.getBoredAction(key) != null) {
                             setLikeIcon();
-                            Log.d("anim", "Stored " + boredAction);
                         }
+                        Log.d("anim", boredAction.toString());
                     }
 
                     @Override
                     public void onFailure(Exception E) {
                         Toast.makeText(getContext(), "Проверьте интернет соединение", Toast.LENGTH_SHORT).show();
-                        lottieAnimationLoading.setAnimation(R.raw.dino);
+                        lottieAnimationLoading.setAnimation(R.raw.lottie_dino);
                         lottieAnimationLoading.playAnimation();
                         Log.d("anim", E.getMessage());
                     }
@@ -285,6 +308,12 @@ public class MainFragment extends Fragment {
         loadingPlay();
     }
 
+    private void loadingPlay() {
+        lottieAnimationLoading.setAnimation(R.raw.lottie_loading);
+        lottieAnimationLoading.setVisibility(View.VISIBLE);
+        lottieAnimationLoading.playAnimation();
+    }
+
     private void visibleAllAndPauseAnimation() {
         animationCircularReveal(viewRectangleCategory);
         viewRectangleCategory.setVisibility(View.VISIBLE);
@@ -306,17 +335,11 @@ public class MainFragment extends Fragment {
         int cx = view.getWidth() / 2;
         int cy = view.getHeight() / 2;
         float finalRadius = (float) Math.hypot(cx, cy);
-        Animator animator = null;
+        Animator animator;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
             animator.start();
         }
-    }
-
-    private void loadingPlay() {
-        lottieAnimationLoading.setAnimation(R.raw.lottie_loading);
-        lottieAnimationLoading.setVisibility(View.VISIBLE);
-        lottieAnimationLoading.playAnimation();
     }
 
     private void loadingPause() {
@@ -332,6 +355,46 @@ public class MainFragment extends Fragment {
         createParticipants(boredAction);
         setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
         createLink(boredAction);
+    }
+
+    private void setRectangleCategoryColor() {
+        String category = textCategory.getText().toString().trim();
+
+        if (category.equals("education")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#F4B300"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("recreational")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#3D1E6D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("social")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#AE113D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("diy")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#E064B7"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("charity")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#4D648D"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("cooking")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#D51400"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("relaxation")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#009688"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("music")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#03396C"), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (category.equals("busywork")) {
+            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#851E3E"), PorterDuff.Mode.SRC_IN);
+        }
     }
 
     private void createParticipants(BoredAction boredAction) {
@@ -413,46 +476,6 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void setRectangleCategoryColor() {
-        String category = textCategory.getText().toString().trim();
-
-        if (category.equals("education")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#F4B300"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("recreational")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#3D1E6D"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("social")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#AE113D"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("diy")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#E064B7"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("charity")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#4D648D"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("cooking")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#D51400"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("relaxation")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#009688"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("music")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#03396C"), PorterDuff.Mode.SRC_IN);
-        }
-
-        if (category.equals("busywork")) {
-            viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#851E3E"), PorterDuff.Mode.SRC_IN);
-        }
-    }
-
     private void catchNullPointerException() {
         viewRectangleCategory.getBackground().setColorFilter(Color.parseColor("#2F80ED"), PorterDuff.Mode.SRC_IN);
         textFree.setText("free");
@@ -462,51 +485,6 @@ public class MainFragment extends Fragment {
         Toast.makeText(getContext(), "Не найдено, измените параметры", Toast.LENGTH_SHORT).show();
     }
 
-    private void spinnerGetSelectedValues() {
-        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                spinnerSelectedValues = adapterView.getItemAtPosition(pos).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    private void rangeSliderPriceSetLabelFormatter() {
-        rangeSliderPrice.setLabelFormatter(value -> {
-            NumberFormat format = NumberFormat.getCurrencyInstance();
-            format.setMaximumFractionDigits(0);
-            format.setCurrency(Currency.getInstance("USD"));
-            return format.format(value);
-        });
-    }
-
-    private void rangeSliderPriceGetSelectedValues() {
-        rangeSliderPrice.addOnChangeListener(new RangeSlider.OnChangeListener() {
-            @Override
-            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
-                rangeSliderSelectedPrice = slider.getValues();
-                rangeSliderSelectedMinPrice = rangeSliderSelectedPrice.get(0);
-                rangeSliderSelectedMaxPrice = rangeSliderSelectedPrice.get(1);
-            }
-        });
-    }
-
-    private void rangeSliderAccessibilityGetSelectedValues() {
-        rangeSliderAccessibility.addOnChangeListener(new RangeSlider.OnChangeListener() {
-            @Override
-            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
-                rangeSliderSelectedAccessibility = slider.getValues();
-                rangeSliderSelectedMinAccessibility = rangeSliderSelectedAccessibility.get(0);
-                rangeSliderSelectedMaxAccessibility = rangeSliderSelectedAccessibility.get(1);
-            }
-        });
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -514,5 +492,19 @@ public class MainFragment extends Fragment {
             recoveryLikeIcon();
         }
         setLastAction();
+    }
+
+    private void setLastAction() {
+        if (App.boredRepository.lastAction != null) {
+            setBoredAction(App.boredRepository.lastAction);
+        }
+        if (App.boredRepository.lastAction != null) {
+            if (App.boredRepository.getBoredAction(App.boredRepository.lastAction.getKey()) == null) {
+                recoveryLikeIcon();
+            } else {
+                setLikeIcon();
+                isLiked = false;
+            }
+        }
     }
 }

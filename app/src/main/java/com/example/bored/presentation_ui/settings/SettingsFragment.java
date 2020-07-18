@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 import com.example.bored.App;
 import com.example.bored.R;
 import com.example.bored.presentation_ui.onboard.IntroActivity;
-import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
 
