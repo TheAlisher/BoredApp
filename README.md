@@ -17,14 +17,14 @@
 ```
 
 ### [DotsIndicator](https://github.com/tommybuonomo/dotsindicator) 
-Был использован для OnBoard'а в этом приложении, здесь могу сказать одно 
+Был использован для **OnBoard**'а в этом приложении, здесь могу сказать одно 
 > Всё гениальное просто
 ```java
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 ```
 
 ### [Retrofit](https://github.com/square/retrofit)
-Вообще основная тема этого приложение работа с API и взаимодействие с ним и для этого конечно же была использована эта упрощающая работу библиотека
+Вообще основная тема этого приложение работа с **API** и взаимодействие с ним и для этого конечно же была использована эта упрощающая работу библиотека
 ```java
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
