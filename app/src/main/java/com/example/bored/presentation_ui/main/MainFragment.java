@@ -77,7 +77,6 @@ public class MainFragment extends Fragment {
     private Float rangeSliderSelectedMinAccessibility;
     private Float rangeSliderSelectedMaxAccessibility;
 
-    private BoredAction boredActions;
     private String key;
 
     public MainFragment() {
@@ -142,6 +141,22 @@ public class MainFragment extends Fragment {
         rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_home_accessibility);
     }
 
+    private void setLastAction() {
+        BoredAction boredAction = App.boredRepository.lastAction;
+        if (boredAction != null) {
+            setBoredAction(boredAction);
+        }
+        BoredAction boredKey = App.boredRepository.lastAction;
+        if (boredKey != null) {
+            if (App.boredRepository.getBoredAction(boredKey.getKey()) == null) {
+                recoveryLikeIcon();
+            } else {
+                setLikeIcon();
+                isLiked = false;
+            }
+        }
+    }
+
     private void createSpinnerCategory() {
         String[] dropdownCategory = getResources().getStringArray(R.array.spinner_category);
         ArrayAdapter<String> adapter = new
@@ -160,7 +175,8 @@ public class MainFragment extends Fragment {
                 Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                setLikeAnimationAndIcon();
+                setLikeAnimation();
+                setLikeIcon();
                 saveBoredAction();
             }
         } else {
@@ -169,9 +185,12 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void setLikeAnimationAndIcon() {
+    private void setLikeAnimation() {
         lottieAnimationLike.setVisibility(View.VISIBLE);
         lottieAnimationLike.playAnimation();
+    }
+
+    private void setLikeIcon() {
         imageFavorite.setImageResource(icon_favorite_selected_red);
         isLiked = !isLiked;
     }
@@ -183,15 +202,11 @@ public class MainFragment extends Fragment {
     }
 
     private void saveBoredAction() {
-        App.boredRepository.saveBoredAction(boredActions);
-        Log.d("anim", "Receive " + boredActions.toString());
-        for (BoredAction action : App.boredRepository.getAllActions()) {
-            Log.d("anim", action.toString());
-        }
+        App.boredRepository.saveBoredAction(App.boredRepository.lastAction);
     }
 
     private void deleteBoredAction() {
-        App.boredRepository.deleteBoredAction(boredActions);
+        App.boredRepository.deleteBoredAction(App.boredRepository.lastAction);
     }
 
     public void mainAPINextClick() {
@@ -220,15 +235,11 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
                         try {
-                            key = boredAction.getKey();
-                            boredActions = boredAction;
-                            textCategory.setText(boredAction.getType());
-                            textExplore.setText(boredAction.getActivity());
-                            textFree.setText(boredAction.getPrice().toString() + '$');
-                            createParticipants(boredAction);
-                            createLink(boredAction);
-                            setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
-                            setRectangleCategoryColor();
+                            App.boredRepository.lastAction = boredAction;
+                            key = App.boredRepository.lastAction.getKey();
+                            //key = boredAction.getKey();
+                            //boredActions = boredAction;
+                            setBoredAction(boredAction);
                         } catch (NullPointerException NPE) {
                             catchNullPointerException();
                         }
@@ -238,7 +249,7 @@ public class MainFragment extends Fragment {
 
                         BoredAction boredKey = App.boredRepository.getBoredAction(key);
                         if (boredKey != null) {
-                            setLikeAnimationAndIcon();
+                            setLikeIcon();
                             Log.d("anim", "Stored " + boredAction);
                         }
                     }
@@ -311,6 +322,16 @@ public class MainFragment extends Fragment {
     private void loadingPause() {
         lottieAnimationLoading.setVisibility(View.INVISIBLE);
         lottieAnimationLoading.pauseAnimation();
+    }
+
+    private void setBoredAction(BoredAction boredAction) {
+        textCategory.setText(boredAction.getType());
+        setRectangleCategoryColor();
+        textExplore.setText(boredAction.getActivity());
+        textFree.setText(boredAction.getPrice().toString() + '$');
+        createParticipants(boredAction);
+        setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
+        createLink(boredAction);
     }
 
     private void createParticipants(BoredAction boredAction) {
@@ -489,9 +510,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        BoredAction boredKey = App.boredRepository.getBoredAction(key);
-        if (boredKey == null) {
+        if (App.boredRepository.getBoredAction(key) == null) {
             recoveryLikeIcon();
         }
+        setLastAction();
     }
 }

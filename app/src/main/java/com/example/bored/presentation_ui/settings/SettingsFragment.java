@@ -22,7 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
 
-    private ConstraintLayout fragmentSettings;
     private ImageView imageDayNightMode;
     private Button buttonTypeOfDeletionChoose;
     private Button buttonStartIntro;
@@ -66,7 +65,6 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initializationViews(View view) {
-        fragmentSettings = view.findViewById(R.id.fragmentSettings);
         imageDayNightMode = view.findViewById(R.id.image_settings_day_night_mode);
         buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion_choose);
         buttonStartIntro = view.findViewById(R.id.button_settings_start_intro);
@@ -115,16 +113,8 @@ public class SettingsFragment extends Fragment {
 
     private void startIntroClick() {
         App.appPreferences.setNewLaunch();
-        Snackbar.make(fragmentSettings, "При след. запуске откроется Intro", Snackbar.LENGTH_LONG)
-                .setAction("Открыть", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getContext(), IntroActivity.class));
-                        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        requireActivity().finish();
-                        return;
-                    }
-                })
-                .show();
+        startActivity(new Intent(getContext(), IntroActivity.class));
+        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        requireActivity().finish();
     }
 }
