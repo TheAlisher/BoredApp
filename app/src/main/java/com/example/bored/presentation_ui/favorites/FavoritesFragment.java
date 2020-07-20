@@ -136,7 +136,7 @@ public class FavoritesFragment extends Fragment {
             adapter.notifyDataSetChanged();
             createItemTouchHelperForRecyclerView();
         }
-        if (size != card.size()) {
+        if (size < App.boredRepository.getAllActions().size()) {
             recyclerView.scrollToPosition(card.size() - 1);
         }
     }
