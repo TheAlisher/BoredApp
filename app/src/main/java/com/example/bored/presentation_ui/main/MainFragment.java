@@ -45,6 +45,7 @@ public class MainFragment extends Fragment {
 
     private View viewRectangleCategory;
     private TextView textCategory;
+    private ImageView imageShare;
     private ImageView imageFavorite;
     private TextView textExplore;
     private TextView textFree;
@@ -101,6 +102,12 @@ public class MainFragment extends Fragment {
         //rangeSliderPriceSetLabelFormatter();
         rangeSliderPriceGetSelectedValues();
         rangeSliderAccessibilityGetSelectedValues();
+        imageShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainShareClick();
+            }
+        });
         imageFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +125,7 @@ public class MainFragment extends Fragment {
     private void initializationViews(View view) {
         viewRectangleCategory = view.findViewById(R.id.view_home_rectangleCategory);
         textCategory = view.findViewById(R.id.text_home_category);
+        imageShare = view.findViewById(R.id.image_main_share);
         imageFavorite = view.findViewById(R.id.image_home_favorite);
         textExplore = view.findViewById(R.id.text_home_explore);
         textFree = view.findViewById(R.id.text_home_free);
@@ -192,6 +200,21 @@ public class MainFragment extends Fragment {
                 rangeSliderSelectedMaxAccessibility = rangeSliderSelectedAccessibility.get(1);
             }
         });
+    }
+
+    private void mainShareClick() {
+        String category = textCategory.getText().toString().trim();
+        String price = textFree.getText().toString().trim();
+        if (category.equals("Category") || price.equals("free")) {
+            Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Привет! Мне скучно Bored App предложила мне "
+                    + textExplore.getText().toString().trim() + " давай вместе");
+            startActivity(intent);
+        }
     }
 
     private boolean isLiked = true;
@@ -290,6 +313,7 @@ public class MainFragment extends Fragment {
     private void invisibleAllAndPlayLoading() {
         viewRectangleCategory.setVisibility(View.INVISIBLE);
         textCategory.setVisibility(View.INVISIBLE);
+        imageShare.setVisibility(View.INVISIBLE);
         imageFavorite.setVisibility(View.INVISIBLE);
         textExplore.setVisibility(View.INVISIBLE);
         textFree.setVisibility(View.INVISIBLE);
@@ -318,6 +342,7 @@ public class MainFragment extends Fragment {
         animationCircularReveal(viewRectangleCategory);
         viewRectangleCategory.setVisibility(View.VISIBLE);
         textCategory.setVisibility(View.VISIBLE);
+        imageShare.setVisibility(View.VISIBLE);
         imageFavorite.setVisibility(View.VISIBLE);
         textExplore.setVisibility(View.VISIBLE);
         textFree.setVisibility(View.VISIBLE);

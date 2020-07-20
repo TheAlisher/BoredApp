@@ -22,8 +22,9 @@
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
 
-    Home Fragment
+    Main Fragment
     <string name="text_main_category">Category</string>
+    <string name="contentDescription_home_imageShare">Иконка поделиться</string>
     <string name="contentDescription_home_imageLike">Иконка лайка</string>
     <string name="contentDescription_home_imageLikeSelected">Иконка лайка выбрання</string>
     <string name="text_main_explore">Explore the nightlife of your city</string>

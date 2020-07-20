@@ -11,8 +11,8 @@
     <item
         android:width="66dp"
         android:height="66dp"
-        android:gravity="center"
-        android:drawable="@drawable/icon_api" />
+        android:drawable="@drawable/icon_api"
+        android:gravity="center" />
 
 
 </layer-list>

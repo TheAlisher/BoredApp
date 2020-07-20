@@ -33,6 +33,7 @@
 
     marginStart
     <dimen name="marginStart_10dp">10dp</dimen>
+    <dimen name="marginStart_12dp">12dp</dimen>
     <dimen name="marginStart_33dp">33dp</dimen>
     <dimen name="marginStart_35dp">35dp</dimen>
     <dimen name="marginStart_105dp">105dp</dimen>
