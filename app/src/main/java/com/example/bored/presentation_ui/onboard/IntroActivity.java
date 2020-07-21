@@ -44,7 +44,7 @@ public class IntroActivity extends AppCompatActivity {
     public void introSkipClick(View view) {
         App.appPreferences.setLaunched();
         MainActivity.start(this);
-        overridePendingTransition(R.anim.static_animation, R.anim.zoom_out);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
 

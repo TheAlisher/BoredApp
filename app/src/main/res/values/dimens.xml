@@ -9,7 +9,6 @@
     <dimen name="width_74dp">74dp</dimen>
     <dimen name="width_78dp">78dp</dimen>
     <dimen name="width_80dp">80dp</dimen>
-    <dimen name="width_100dp">100dp</dimen>
     <dimen name="width_140dp">140dp</dimen>
     <dimen name="width_150dp">150dp</dimen>
     <dimen name="width_190dp">190dp</dimen>
@@ -62,7 +61,6 @@
 
     marginBottom
     <dimen name="marginBottom_10dp">10dp</dimen>
-    <dimen name="marginBottom_20dp">20dp</dimen>
     <dimen name="marginBottom_50dp">50dp</dimen>
     <dimen name="marginBottom_60dp">60dp</dimen>
     <dimen name="marginBottom_70dp">70dp</dimen>
@@ -71,7 +69,6 @@
     <dimen name="marginBottom_100dp">100dp</dimen>
 
     textSize
-    <dimen name="textSize_12sp">12sp</dimen>
     <dimen name="textSize_20sp">20sp</dimen>
     <dimen name="textSize_24sp">24sp</dimen>
     <dimen name="textSize_30sp">30sp</dimen>

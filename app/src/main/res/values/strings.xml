@@ -45,12 +45,11 @@
 
     Settings Fragment
     <string name="text_settings_day_night">Day/Night MODE</string>
-    <string name="contentDescription_settings_imageMode_day_night">Switch Day/Night MODE</string>
+    <string name="contentDescription_settings_imageMode_day_night">Icon switch Day/Night MODE</string>
     <string name="text_settings_type_of_deletion">Type of deletion</string>
     <string name="text_settings_live_data">LiveData</string>
     <string name="text_settings_swipe_data">SwipeData</string>
     <string name="text_settings_manual_data">ManualData</string>
-    <string name="text_settings_start_intro">Start Intro</string>
 
 
 </resources>

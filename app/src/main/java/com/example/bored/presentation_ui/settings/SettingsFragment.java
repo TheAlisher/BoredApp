@@ -1,6 +1,5 @@
 package com.example.bored.presentation_ui.settings;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +15,11 @@ import android.widget.ImageView;
 
 import com.example.bored.App;
 import com.example.bored.R;
-import com.example.bored.presentation_ui.onboard.IntroActivity;
 
 public class SettingsFragment extends Fragment {
 
     private ImageView imageDayNightMode;
     private Button buttonTypeOfDeletionChoose;
-    private Button buttonStartIntro;
 
     public SettingsFragment() {
     }
@@ -54,18 +51,11 @@ public class SettingsFragment extends Fragment {
                 typeOfDeletionClick();
             }
         });
-        buttonStartIntro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startIntroClick();
-            }
-        });
     }
 
     private void initializationViews(View view) {
         imageDayNightMode = view.findViewById(R.id.image_settings_day_night_mode);
         buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion_choose);
-        buttonStartIntro = view.findViewById(R.id.button_settings_start_intro);
     }
 
     private void checkTypeOfDeletion() {
@@ -107,12 +97,5 @@ public class SettingsFragment extends Fragment {
             App.appPreferences.setSwipeDelete(false);
             App.appPreferences.setManualDelete(true);
         }
-    }
-
-    private void startIntroClick() {
-        App.appPreferences.setNewLaunch();
-        startActivity(new Intent(getContext(), IntroActivity.class));
-        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        requireActivity().finish();
     }
 }

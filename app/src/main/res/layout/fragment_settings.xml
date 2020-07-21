@@ -55,17 +55,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_settings_live_swipe_data" />
 
-    <Button
-        android:id="@+id/button_settings_start_intro"
-        android:layout_width="@dimen/width_100dp"
-        android:layout_height="@dimen/height_30dp"
-        android:layout_marginBottom="@dimen/marginBottom_20dp"
-        android:background="@color/NightBlueShadow"
-        android:text="@string/text_settings_start_intro"
-        android:textColor="@color/White"
-        android:textSize="@dimen/textSize_12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
