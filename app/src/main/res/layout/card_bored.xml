@@ -48,7 +48,7 @@
             android:layout_height="@dimen/height_30dp"
             android:layout_marginTop="@dimen/marginTop_14dp"
             android:layout_marginEnd="@dimen/marginEnd_12dp"
-            android:contentDescription="@string/contentDescription_home_imageLikeSelected"
+            android:contentDescription="@string/contentDescription_main_image_like_selected"
             android:src="@drawable/icon_favorite_selected_red"
             app:layout_constraintRight_toRightOf="@+id/view_card_rectangleMain"
             app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />

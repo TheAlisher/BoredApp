@@ -22,11 +22,11 @@
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
 
-    Main Fragment
+    Main Fragment / CardBored ListItem
     <string name="text_main_category">Category</string>
-    <string name="contentDescription_home_imageShare">Иконка поделиться</string>
-    <string name="contentDescription_home_imageLike">Иконка лайка</string>
-    <string name="contentDescription_home_imageLikeSelected">Иконка лайка выбрання</string>
+    <string name="contentDescription_main_image_share">Иконка поделиться</string>
+    <string name="contentDescription_main_image_like">Иконка лайка</string>
+    <string name="contentDescription_main_image_like_selected">Иконка лайка выбрання</string>
     <string name="text_main_explore">Explore the nightlife of your city</string>
     <string name="text_main_free">free</string>
     <string name="text_main_price">Price💰</string>
@@ -44,8 +44,8 @@
     <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>
 
     Settings Fragment
-    <string name="text_settings_day_night">Day/Night MODE</string>
-    <string name="contentDescription_settings_imageMode_day_night">Icon switch Day/Night MODE</string>
+    <string name="text_settings_day_night_mode">Day/Night MODE</string>
+    <string name="contentDescription_settings_imageSwitch_day_night_mode">Icon Switch Day/Night MODE</string>
     <string name="text_settings_type_of_deletion">Type of deletion</string>
     <string name="text_settings_live_data">LiveData</string>
     <string name="text_settings_swipe_data">SwipeData</string>

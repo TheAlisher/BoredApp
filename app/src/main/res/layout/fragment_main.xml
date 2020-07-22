@@ -46,7 +46,7 @@
             android:id="@+id/image_main_share"
             android:layout_width="@dimen/width_30dp"
             android:layout_height="@dimen/height_30dp"
-            android:contentDescription="@string/contentDescription_home_imageShare"
+            android:contentDescription="@string/contentDescription_main_image_share"
             android:layout_marginStart="@dimen/marginStart_12dp"
             android:layout_marginTop="@dimen/marginTop_14dp"
             android:src="@drawable/icon_share"
@@ -59,7 +59,7 @@
             android:layout_height="@dimen/height_30dp"
             android:layout_marginTop="@dimen/marginTop_14dp"
             android:layout_marginEnd="@dimen/marginEnd_12dp"
-            android:contentDescription="@string/contentDescription_home_imageLike"
+            android:contentDescription="@string/contentDescription_main_image_like"
             android:src="@drawable/icon_favorite_blue"
             app:layout_constraintRight_toRightOf="@+id/view_home_rectangleMain"
             app:layout_constraintTop_toTopOf="@+id/view_home_rectangleMain" />

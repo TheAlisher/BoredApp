@@ -33,6 +33,7 @@ import com.example.bored.R;
 import com.example.bored.data.remote.BoredAPIClient;
 import com.example.bored.model.BoredAction;
 import com.google.android.material.slider.RangeSlider;
+import com.google.android.material.slider.Slider;
 
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -98,8 +99,8 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         createSpinnerCategory();
+        rangeSliderPriceSetLabelFormatter();
         spinnerGetSelectedValues();
-        //rangeSliderPriceSetLabelFormatter();
         rangeSliderPriceGetSelectedValues();
         rangeSliderAccessibilityGetSelectedValues();
         imageShare.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +158,19 @@ public class MainFragment extends Fragment {
         spinnerCategory.setAdapter(adapter);
     }
 
+    private void rangeSliderPriceSetLabelFormatter() {
+        rangeSliderPrice.setLabelFormatter(new Slider.LabelFormatter() {
+            @NonNull
+            @Override
+            public String getFormattedValue(float value) {
+                NumberFormat format = NumberFormat.getCurrencyInstance();
+                format.setMaximumFractionDigits(1);
+                format.setCurrency(Currency.getInstance("USD"));
+                return format.format(value);
+            }
+        });
+    }
+
     private void spinnerGetSelectedValues() {
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -168,15 +182,6 @@ public class MainFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
-    }
-
-    private void rangeSliderPriceSetLabelFormatter() {
-        rangeSliderPrice.setLabelFormatter(value -> {
-            NumberFormat format = NumberFormat.getCurrencyInstance();
-            format.setMaximumFractionDigits(0);
-            format.setCurrency(Currency.getInstance("USD"));
-            return format.format(value);
         });
     }
 
@@ -229,11 +234,11 @@ public class MainFragment extends Fragment {
             } else {
                 setLikeAnimation();
                 setLikeIcon();
-                saveBoredAction(App.boredRepository.lastAction);
+                App.boredRepository.saveBoredAction(App.boredRepository.lastAction);
             }
         } else {
             recoveryLikeIcon();
-            deleteBoredAction(App.boredRepository.lastAction);
+            App.boredRepository.deleteBoredAction(App.boredRepository.lastAction);
         }
     }
 
@@ -253,21 +258,13 @@ public class MainFragment extends Fragment {
         isLiked = true;
     }
 
-    private void saveBoredAction(BoredAction boredAction) {
-        App.boredRepository.saveBoredAction(boredAction);
-    }
-
-    private void deleteBoredAction(BoredAction boredAction) {
-        App.boredRepository.deleteBoredAction(boredAction);
-    }
-
     public void mainNextClick() {
         recoveryLikeIcon();
-        setRandomBoredActionType();
+        setRandomBoredAction();
         BoredAPIGetAction();
     }
 
-    private void setRandomBoredActionType() {
+    private void setRandomBoredAction() {
         if (spinnerSelectedValues != null) {
             if (spinnerSelectedValues.equals("RANDOM")) {
                 spinnerSelectedValues = null;

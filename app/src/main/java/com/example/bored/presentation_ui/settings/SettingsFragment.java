@@ -54,8 +54,8 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initializationViews(View view) {
-        imageDayNightMode = view.findViewById(R.id.image_settings_day_night_mode);
-        buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion_choose);
+        imageDayNightMode = view.findViewById(R.id.imageSwitch_settings_day_night_mode);
+        buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion);
     }
 
     private void checkTypeOfDeletion() {

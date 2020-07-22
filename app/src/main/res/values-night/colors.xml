@@ -4,22 +4,24 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FFFFFF</color>
 
-    Light / Dark
-    <color name="textColorDefaultSettings">#FFFFFF</color>
-    <color name="imageColorDayModeSettings">#FFFFFF</color>
-    <color name="buttonColorSettings">#000000</color>
-    <color name="textInButton">#FFFFFF</color>
-    |Main Activity
+    <!--Dark-->
+
+    <!-- | Main Activity-->
     <color name="background_main">@color/VeryDarkMostlyBlackBlue</color>
-    |Home Fragment
+    <!-- | Home Fragment-->
     <color name="home_rectangle_main">#000000</color>
     <color name="home_text_explore">@color/White</color>
     <color name="home_text_free_price_participants">@color/White</color>
     <color name="home_text_accessibility">@color/White</color>
     <color name="home_spinner">#000000</color>
     <color name="home_rangeSlider_trackColorInactive">#000000</color>
+    <!-- | Settings Fragment-->
+    <color name="settings_materialCard">@color/Black</color>
+    <color name="settings_text">@color/White</color>
+    <color name="settings_imageSwitch">@color/White</color>
+    <color name="settings_buttonText">@color/White</color>
 
-    Intro Activity
+    <!--Intro Activity-->
     <color name="MidnightBlue">#191970</color>
     <color name="MediumAquamarine">#66CDAA</color>
 

@@ -1,7 +1,6 @@
 package com.example.bored.presentation_ui.favorites;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -112,7 +111,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textPrice.setText(boredAction.getPrice().toString() + '$');
             createParticipants(boredAction);
             setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
-            createLink(boredAction);
+            textLink.setText(boredAction.getLink());
         }
 
         private void createParticipants(BoredAction boredAction) {
@@ -174,11 +173,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 progressBarAccessibility.setProgress(progress);
             }
-        }
-
-        private void createLink(BoredAction boredAction) {
-            textLink.setText(boredAction.getLink());
-            textLink.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 }

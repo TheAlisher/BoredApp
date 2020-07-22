@@ -78,20 +78,9 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                if (App.appPreferences.isManualDeleteON()) {
-                    App.boredRepository.deleteBoredAction(card.get(position));
-                    card.remove(position);
-                    adapter.notifyDataSetChanged();
-
-                } else if (App.appPreferences.isLiveDataON()) {
-                    App.boredRepository.deleteBoredAction(card.get(position));
-
-                } else if (App.appPreferences.isSwipeDeleteON()) {
-                    Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
-                }
+                imageFavoriteClick(position);
             }
         });
-        loadData();
     }
 
     private void initializationViews(View view) {
@@ -106,6 +95,33 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManagerBored);
         adapter = new BoredAdapter(card);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void imageFavoriteClick(int position) {
+        if (App.appPreferences.isManualDeleteON()) {
+            App.boredRepository.deleteBoredAction(card.get(position));
+            card.remove(position);
+            adapter.notifyDataSetChanged();
+
+        } else if (App.appPreferences.isLiveDataON()) {
+            App.boredRepository.deleteBoredAction(card.get(position));
+
+        } else if (App.appPreferences.isSwipeDeleteON()) {
+            Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+        createRecyclerViewAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        loadData();
     }
 
     private void loadData() {
@@ -146,24 +162,11 @@ public class FavoritesFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData();
-        createRecyclerViewAnimation();
-    }
-
     private void createRecyclerViewAnimation() {
         LayoutAnimationController layoutAnimationController =
                 AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_fall_down);
         recyclerView.setLayoutAnimation(layoutAnimationController);
         adapter.notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        loadData();
     }
 }
