@@ -374,8 +374,8 @@ public class MainFragment extends Fragment {
         setRectangleCategoryColor();
         textExplore.setText(boredAction.getActivity());
         textFree.setText(boredAction.getPrice().toString() + '$');
-        createParticipants(boredAction);
         setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
+        createParticipants(boredAction);
         createLink(boredAction);
     }
 

@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         isDarkModeON();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (App.appPreferences.isFirstLaunch()) {
-            startActivity(new Intent(this, IntroActivity.class));
-            finish();
-        }
+        isFirstLaunch();
 
         initializationViews();
         createNavigationBottomWithViewPager();
@@ -48,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    private void isFirstLaunch() {
+        if (App.appPreferences.isFirstLaunch()) {
+            startActivity(new Intent(this, IntroActivity.class));
+            finish();
         }
     }
 

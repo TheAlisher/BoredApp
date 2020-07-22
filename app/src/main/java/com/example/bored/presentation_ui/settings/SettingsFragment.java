@@ -42,13 +42,13 @@ public class SettingsFragment extends Fragment {
         imageDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageDayNightModeClick();
+                settingsImageDayNightModeClick();
             }
         });
         buttonTypeOfDeletionChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                typeOfDeletionClick();
+                settingsTypeOfDeletionClick();
             }
         });
     }
@@ -70,7 +70,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private void imageDayNightModeClick() {
+    private void settingsImageDayNightModeClick() {
         if (App.appPreferences.isDarkModeON()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             App.appPreferences.setModeDark(false);
@@ -80,7 +80,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private void typeOfDeletionClick() {
+    private void settingsTypeOfDeletionClick() {
         if (App.appPreferences.isManualDeleteON()) {
             buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
             App.appPreferences.setLiveData(true);

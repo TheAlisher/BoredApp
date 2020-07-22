@@ -109,8 +109,8 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textCategory.setText(boredAction.getType());
             textExplore.setText(boredAction.getActivity());
             textPrice.setText(boredAction.getPrice().toString() + '$');
+            progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100));
             createParticipants(boredAction);
-            setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
             textLink.setText(boredAction.getLink());
         }
 
@@ -167,12 +167,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
             imageCardParticipantsIcon4plus.setVisibility(View.VISIBLE);
 
-        }
-
-        private void setProgressBarAccessibility(int progress) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                progressBarAccessibility.setProgress(progress);
-            }
         }
     }
 }
