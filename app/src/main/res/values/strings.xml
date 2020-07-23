@@ -22,6 +22,10 @@
     <string name="text_bottomNavigationMenu_favorite">Favorite</string>
     <string name="text_bottomNavigationMenu_settings">Settings</string>
 
+    PopupMenuItem
+    <string name="text_popupMenu_share">Share</string>
+    <string name="text_popupMenu_copy_link">Copy link</string>
+
     Main Fragment / CardBored ListItem
     <string name="text_main_category">Category</string>
     <string name="contentDescription_main_image_more">Icon more</string>

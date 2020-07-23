@@ -215,17 +215,21 @@ public class MainFragment extends Fragment {
             Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            BottomSheetDialog bottomSheet = new BottomSheetDialog();
-            bottomSheet.show(requireActivity().getSupportFragmentManager(), "bottomSheet");
-            Bundle bundle = new Bundle();
-            bundle.putString(BottomSheetDialog.ARG_EXPLORE, textExplore.getText().toString().trim());
-            if (textLink.getText().toString().trim().isEmpty()) {
-                bundle.putString(BottomSheetDialog.ARG_LINK, null);
-            } else {
-                bundle.putString(BottomSheetDialog.ARG_LINK, textLink.getText().toString().trim());
-            }
-            bottomSheet.setArguments(bundle);
+            openBottomSheet();
         }
+    }
+
+    private void openBottomSheet() {
+        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+        bottomSheet.show(requireActivity().getSupportFragmentManager(), "bottomSheet");
+        Bundle bundle = new Bundle();
+        bundle.putString(BottomSheetDialog.ARG_EXPLORE, textExplore.getText().toString().trim());
+        if (textLink.getText().toString().trim().isEmpty()) {
+            bundle.putString(BottomSheetDialog.ARG_LINK, null);
+        } else {
+            bundle.putString(BottomSheetDialog.ARG_LINK, textLink.getText().toString().trim());
+        }
+        bottomSheet.setArguments(bundle);
     }
 
     private boolean isLiked = true;
@@ -267,7 +271,7 @@ public class MainFragment extends Fragment {
     public void mainNextClick() {
         recoveryLikeIcon();
         setRandomBoredAction();
-        BoredAPIGetAction();
+        boredAPIGetAction();
     }
 
     private void setRandomBoredAction() {
@@ -278,7 +282,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void BoredAPIGetAction() {
+    private void boredAPIGetAction() {
         invisibleAllAndPlayLoading();
         App.boredRepository.getAction(
                 spinnerSelectedValues,
@@ -289,6 +293,7 @@ public class MainFragment extends Fragment {
                 new BoredAPIClient.BoredActionCallback() {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
+                        visibleAllAndPauseAnimation();
                         try {
                             App.boredRepository.lastAction = boredAction;
                             key = App.boredRepository.lastAction.getKey();
@@ -296,7 +301,6 @@ public class MainFragment extends Fragment {
                         } catch (NullPointerException NPE) {
                             catchNullPointerException();
                         }
-                        visibleAllAndPauseAnimation();
                         if (App.boredRepository.getBoredAction(key) != null) {
                             setLikeIcon();
                         }

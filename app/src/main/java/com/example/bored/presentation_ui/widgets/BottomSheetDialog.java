@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
 
     private LinearLayout linearShare;
     private LinearLayout linearLink;
+    private ImageView imageLink;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationView(view);
+        isLink();
         linearShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,23 +54,33 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     private void initializationView(View view) {
         linearShare = view.findViewById(R.id.linear_bottomSheet_share);
         linearLink = view.findViewById(R.id.linear_bottomSheet_link);
+        imageLink = view.findViewById(R.id.image_bottomSheet_link);
+    }
+
+    private void isLink() {
+        String link = getArguments().getString(ARG_LINK);
+        if (link != null) {
+            imageLink.setImageResource(R.drawable.icon_link);
+        } else {
+            imageLink.setImageResource(R.drawable.icon_link_off);
+        }
     }
 
     private void bottomSheetShareClick() {
-        String textExplore = getArguments().getString(ARG_EXPLORE);
+        String explore = getArguments().getString(ARG_EXPLORE);
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, "Привет! Мне скучно Bored App предложила мне "
-                + textExplore + " давай вместе");
+                + explore + " давай вместе");
         startActivity(intent);
 
     }
 
     private void bottomSheetLinkClick() {
-        String textLink = getArguments().getString(ARG_LINK);
-        if (textLink != null) {
+        String link = getArguments().getString(ARG_LINK);
+        if (link != null) {
             ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clipData = ClipData.newPlainText("TextView", textLink);
+            ClipData clipData = ClipData.newPlainText("TextView", link);
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(getContext(), "Ссылка скопировано в буфер обмена", Toast.LENGTH_SHORT).show();
         } else {

@@ -30,6 +30,17 @@
             app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain"
             app:layout_constraintTop_toTopOf="@+id/view_card_rectangleMain" />
 
+        <ImageView
+            android:id="@+id/image_card_more"
+            android:layout_width="@dimen/width_30dp"
+            android:layout_height="@dimen/height_30dp"
+            android:layout_marginStart="@dimen/marginStart_12dp"
+            android:layout_marginTop="@dimen/marginTop_14dp"
+            android:contentDescription="@string/contentDescription_main_image_more"
+            android:src="@drawable/icon_more"
+            app:layout_constraintLeft_toLeftOf="@+id/view_card_rectangleMain"
+            app:layout_constraintTop_toTopOf="@id/view_card_rectangleMain" />
+
         <TextView
             android:id="@+id/text_card_category"
             style="@style/text_category"

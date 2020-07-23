@@ -1,11 +1,17 @@
 package com.example.bored.presentation_ui.favorites;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +58,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
     public class BoredViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textCategory;
+        private ImageView imageMore;
         private ImageView imageFavoriteSelected;
         private TextView textExplore;
         private TextView textPrice;
@@ -66,6 +73,12 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         public BoredViewHolder(@NonNull View itemView) {
             super(itemView);
             initializationViews(itemView);
+            imageMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adapterMoreClick(view);
+                }
+            });
             imageFavoriteSelected.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -82,6 +95,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
 
         private void initializationViews(View itemView) {
             textCategory = itemView.findViewById(R.id.text_card_category);
+            imageMore = itemView.findViewById(R.id.image_card_more);
             imageFavoriteSelected = itemView.findViewById(R.id.image_card_favorite_selected);
             textExplore = itemView.findViewById(R.id.text_card_explore);
             textPrice = itemView.findViewById(R.id.text_card_free);
@@ -92,6 +106,58 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardParticipantsIcon4 = itemView.findViewById(R.id.image_card_participants_icon_4);
             imageCardParticipantsIcon4plus = itemView.findViewById(R.id.image_card_participants_icon_4plus);
             textLink = itemView.findViewById(R.id.text_card_link);
+        }
+
+        private void adapterMoreClick(View view) {
+            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.popup_share:
+                            popupShareClick(view);
+                            return true;
+                        case R.id.popup_copy_link:
+                            popupLinkClick(view);
+
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            });
+            popupMenu.inflate(R.menu.popup_menu);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                popupMenu.setForceShowIcon(true);
+            }
+            MenuItem menuItem = popupMenu.getMenu().findItem(R.id.popup_copy_link);
+            if (textLink.getText().toString().trim().isEmpty()) {
+                menuItem.setIcon(R.drawable.icon_link_off);
+            } else {
+                menuItem.setIcon(R.drawable.icon_link);
+            }
+            popupMenu.show();
+        }
+
+        private void popupShareClick(View view) {
+            String explore = textExplore.getText().toString().trim();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Привет! Мне скучно Bored App предложила мне "
+                    + explore + " давай вместе");
+            view.getContext().startActivity(intent);
+        }
+
+        private void popupLinkClick(View view) {
+            String link = textLink.getText().toString().trim();
+            if (link.isEmpty()) {
+                Toast.makeText(view.getContext(), "Ссылки нет", Toast.LENGTH_SHORT).show();
+            } else {
+                ClipboardManager clipboardManager = (ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("TextView", textLink.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(view.getContext(), "Ссылка скопировано в буфер обмена", Toast.LENGTH_SHORT).show();
+            }
         }
 
         private void adapterLinkClick(View view) {

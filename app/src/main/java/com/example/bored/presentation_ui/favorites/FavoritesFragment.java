@@ -97,7 +97,7 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void imageFavoriteClick(int position) {
+    private void imageFavoriteClick(int position)   {
         if (App.appPreferences.isManualDeleteON()) {
             App.boredRepository.deleteBoredAction(card.get(position));
             card.remove(position);

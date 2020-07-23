@@ -22,9 +22,10 @@
         android:layout_height="@dimen/height_50dp"
         android:background="@color/NightBlueShadow"
         app:itemIconTint="@drawable/bottom_navigation_item_selected"
+        app:itemRippleColor="@color/DarkGray"
         app:itemTextColor="@drawable/bottom_navigation_item_selected"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom_navigation" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
