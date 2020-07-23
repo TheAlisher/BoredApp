@@ -2,19 +2,22 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#000000</color>
 
     <!--Dark-->
 
     <!-- | Main Activity-->
     <color name="background_main">@color/VeryDarkMostlyBlackBlue</color>
-    <!-- | Home Fragment-->
-    <color name="home_rectangle_main">#000000</color>
-    <color name="home_text_explore">@color/White</color>
-    <color name="home_text_free_price_participants">@color/White</color>
-    <color name="home_text_accessibility">@color/White</color>
-    <color name="home_spinner">#000000</color>
-    <color name="home_rangeSlider_trackColorInactive">#000000</color>
+    <!-- | Main Fragment / CardBored ListItem -->
+    <color name="main_rectangleMain">@color/Black</color>
+    <color name="main_text_explore">@color/White</color>
+    <color name="main_text_free_price_participants">@color/White</color>
+    <color name="main_text_accessibility">@color/White</color>
+    <color name="main_spinner">@color/Black</color>
+    <color name="main_rangeSlider_trackColorInactive">@color/Black</color>
+    <!-- | | BottomSheet-->
+    <color name="bottomSheet_background">@color/Black</color>
+    <color name="bottomSheet_text">@color/White</color>
     <!-- | Settings Fragment-->
     <color name="settings_materialCard">@color/Black</color>
     <color name="settings_text">@color/White</color>

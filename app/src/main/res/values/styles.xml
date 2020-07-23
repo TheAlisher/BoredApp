@@ -33,7 +33,7 @@
         <item name="android:windowExitAnimation">@anim/fragment_fade_exit</item>
     </style>
 
-    <!--Home Fragment-->
+    <!--Main Fragment / CardBored ListItem-->
     <style name="text_category">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/White</item>
@@ -41,27 +41,27 @@
 
     <style name="text_explore">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/home_text_explore</item>
+        <item name="android:textColor">@color/main_text_explore</item>
     </style>
 
     <style name="text_free">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/home_text_free_price_participants</item>
+        <item name="android:textColor">@color/main_text_free_price_participants</item>
     </style>
 
     <style name="text_price">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/home_text_free_price_participants</item>
+        <item name="android:textColor">@color/main_text_free_price_participants</item>
     </style>
 
     <style name="text_accessibility">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/home_text_accessibility</item>
+        <item name="android:textColor">@color/main_text_accessibility</item>
     </style>
 
     <style name="text_participants">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/home_text_free_price_participants</item>
+        <item name="android:textColor">@color/main_text_free_price_participants</item>
     </style>
 
     <style name="button_open_link">
@@ -98,12 +98,24 @@
         <item name="android:textSize">@dimen/textSize_20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-    
+
     <style name="SettingsButton">
         <item name="android:background">@drawable/background_rounded_gradient</item>
         <item name="android:textColor">@color/settings_buttonText</item>
         <item name="android:textSize">@dimen/textSize_20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- | BottomSheet -->
+    <style name="BottomSheetImage">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="BottomSheetText">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/bottomSheet_text</item>
+        <item name="android:textSize">26sp</item>
     </style>
 
 

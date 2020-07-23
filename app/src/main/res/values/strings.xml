@@ -24,9 +24,9 @@
 
     Main Fragment / CardBored ListItem
     <string name="text_main_category">Category</string>
-    <string name="contentDescription_main_image_share">Иконка поделиться</string>
-    <string name="contentDescription_main_image_like">Иконка лайка</string>
-    <string name="contentDescription_main_image_like_selected">Иконка лайка выбрання</string>
+    <string name="contentDescription_main_image_more">Icon more</string>
+    <string name="contentDescription_main_image_like">Icon like</string>
+    <string name="contentDescription_main_image_like_selected">Icon like selected</string>
     <string name="text_main_explore">Explore the nightlife of your city</string>
     <string name="text_main_free">free</string>
     <string name="text_main_price">Price💰</string>
@@ -39,6 +39,11 @@
     <string name="text_main_participants">Participants</string>
     <string name="button_main_open_link">Open Link:</string>
     <string name="text_main_price_slider">Price</string>
+    |BottomSheet
+    <string name="contentDescription_bottomSheet_icon_share">Icon share</string>
+    <string name="text_bottomSheet_share">Share</string>
+    <string name="contentDescription_bottomSheet_icon_link">Icon link</string>
+    <string name="text_bottomSheet_link">Copy link</string>
 
     Favorites Fragment
     <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>

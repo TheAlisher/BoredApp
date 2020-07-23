@@ -32,6 +32,7 @@ import com.example.bored.App;
 import com.example.bored.R;
 import com.example.bored.data.remote.BoredAPIClient;
 import com.example.bored.model.BoredAction;
+import com.example.bored.presentation_ui.widgets.BottomSheetDialog;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
@@ -39,14 +40,14 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.List;
 
-import static com.example.bored.R.drawable.icon_favorite_blue;
-import static com.example.bored.R.drawable.icon_favorite_selected_red;
+import static com.example.bored.R.drawable.icon_favorite;
+import static com.example.bored.R.drawable.icon_favorite_selected;
 
 public class MainFragment extends Fragment {
 
     private View viewRectangleCategory;
     private TextView textCategory;
-    private ImageView imageShare;
+    private ImageView imageMore;
     private ImageView imageFavorite;
     private TextView textExplore;
     private TextView textFree;
@@ -103,10 +104,10 @@ public class MainFragment extends Fragment {
         spinnerGetSelectedValues();
         rangeSliderPriceGetSelectedValues();
         rangeSliderAccessibilityGetSelectedValues();
-        imageShare.setOnClickListener(new View.OnClickListener() {
+        imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainShareClick();
+                mainMoreClick();
             }
         });
         imageFavorite.setOnClickListener(new View.OnClickListener() {
@@ -124,30 +125,30 @@ public class MainFragment extends Fragment {
     }
 
     private void initializationViews(View view) {
-        viewRectangleCategory = view.findViewById(R.id.view_home_rectangleCategory);
-        textCategory = view.findViewById(R.id.text_home_category);
-        imageShare = view.findViewById(R.id.image_main_share);
-        imageFavorite = view.findViewById(R.id.image_home_favorite);
-        textExplore = view.findViewById(R.id.text_home_explore);
-        textFree = view.findViewById(R.id.text_home_free);
-        textPrice = view.findViewById(R.id.text_home_price);
-        progressBarAccessibility = view.findViewById(R.id.progressBar_home_accessibility);
-        textAccessibility = view.findViewById(R.id.text_home_accessibility);
-        imageParticipantsIcon1 = view.findViewById(R.id.image_home_participants_icon_1);
-        imageParticipantsIcon2 = view.findViewById(R.id.image_home_participants_icon_2);
-        imageParticipantsIcon3 = view.findViewById(R.id.image_home_participants_icon_3);
-        imageParticipantsIcon4 = view.findViewById(R.id.image_home_participants_icon_4);
-        imageParticipantsIcon4plus = view.findViewById(R.id.image_home_participants_icon_4plus);
-        textParticipants = view.findViewById(R.id.text_home_participants);
-        viewRectangleLink = view.findViewById(R.id.view_home_rectangleLink);
-        buttonLink = view.findViewById(R.id.button_home_open_link);
-        textLink = view.findViewById(R.id.text_home_link);
-        lottieAnimationLike = view.findViewById(R.id.lottieAnimation_home_like);
-        lottieAnimationLoading = view.findViewById(R.id.lottieAnimation_home_loading);
-        buttonNext = view.findViewById(R.id.button_home_next);
-        spinnerCategory = view.findViewById(R.id.spinner_home_category);
-        rangeSliderPrice = view.findViewById(R.id.rangeSlider_home_price);
-        rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_home_accessibility);
+        viewRectangleCategory = view.findViewById(R.id.view_main_rectangleCategory);
+        textCategory = view.findViewById(R.id.text_main_category);
+        imageMore = view.findViewById(R.id.image_main_more);
+        imageFavorite = view.findViewById(R.id.image_main_favorite);
+        textExplore = view.findViewById(R.id.text_main_explore);
+        textFree = view.findViewById(R.id.text_main_free);
+        textPrice = view.findViewById(R.id.text_main_price);
+        progressBarAccessibility = view.findViewById(R.id.progressBar_main_accessibility);
+        textAccessibility = view.findViewById(R.id.text_main_accessibility);
+        imageParticipantsIcon1 = view.findViewById(R.id.image_main_participants_icon_1);
+        imageParticipantsIcon2 = view.findViewById(R.id.image_main_participants_icon_2);
+        imageParticipantsIcon3 = view.findViewById(R.id.image_main_participants_icon_3);
+        imageParticipantsIcon4 = view.findViewById(R.id.image_main_participants_icon_4);
+        imageParticipantsIcon4plus = view.findViewById(R.id.image_main_participants_icon_4plus);
+        textParticipants = view.findViewById(R.id.text_main_participants);
+        viewRectangleLink = view.findViewById(R.id.view_main_rectangleLink);
+        buttonLink = view.findViewById(R.id.button_main_open_link);
+        textLink = view.findViewById(R.id.text_main_link);
+        lottieAnimationLike = view.findViewById(R.id.lottieAnimation_main_like);
+        lottieAnimationLoading = view.findViewById(R.id.lottieAnimation_main_loading);
+        buttonNext = view.findViewById(R.id.button_main_next);
+        spinnerCategory = view.findViewById(R.id.spinner_main_category);
+        rangeSliderPrice = view.findViewById(R.id.rangeSlider_main_price);
+        rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_main_accessibility);
     }
 
     private void createSpinnerCategory() {
@@ -207,18 +208,23 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void mainShareClick() {
+    private void mainMoreClick() {
         String category = textCategory.getText().toString().trim();
         String price = textFree.getText().toString().trim();
         if (category.equals("Category") || price.equals("free")) {
             Toast.makeText(getContext(), "Выберите параметры и нажмите NEXT", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "Привет! Мне скучно Bored App предложила мне "
-                    + textExplore.getText().toString().trim() + " давай вместе");
-            startActivity(intent);
+            BottomSheetDialog bottomSheet = new BottomSheetDialog();
+            bottomSheet.show(requireActivity().getSupportFragmentManager(), "bottomSheet");
+            Bundle bundle = new Bundle();
+            bundle.putString(BottomSheetDialog.ARG_EXPLORE, textExplore.getText().toString().trim());
+            if (textLink.getText().toString().trim().isEmpty()) {
+                bundle.putString(BottomSheetDialog.ARG_LINK, null);
+            } else {
+                bundle.putString(BottomSheetDialog.ARG_LINK, textLink.getText().toString().trim());
+            }
+            bottomSheet.setArguments(bundle);
         }
     }
 
@@ -248,13 +254,13 @@ public class MainFragment extends Fragment {
     }
 
     private void setLikeIcon() {
-        imageFavorite.setImageResource(icon_favorite_selected_red);
+        imageFavorite.setImageResource(icon_favorite_selected);
         isLiked = !isLiked;
     }
 
     private void recoveryLikeIcon() {
         lottieAnimationLike.setVisibility(View.INVISIBLE);
-        imageFavorite.setImageResource(icon_favorite_blue);
+        imageFavorite.setImageResource(icon_favorite);
         isLiked = true;
     }
 
@@ -310,7 +316,7 @@ public class MainFragment extends Fragment {
     private void invisibleAllAndPlayLoading() {
         viewRectangleCategory.setVisibility(View.INVISIBLE);
         textCategory.setVisibility(View.INVISIBLE);
-        imageShare.setVisibility(View.INVISIBLE);
+        imageMore.setVisibility(View.INVISIBLE);
         imageFavorite.setVisibility(View.INVISIBLE);
         textExplore.setVisibility(View.INVISIBLE);
         textFree.setVisibility(View.INVISIBLE);
@@ -339,7 +345,7 @@ public class MainFragment extends Fragment {
         animationCircularReveal(viewRectangleCategory);
         viewRectangleCategory.setVisibility(View.VISIBLE);
         textCategory.setVisibility(View.VISIBLE);
-        imageShare.setVisibility(View.VISIBLE);
+        imageMore.setVisibility(View.VISIBLE);
         imageFavorite.setVisibility(View.VISIBLE);
         textExplore.setVisibility(View.VISIBLE);
         textFree.setVisibility(View.VISIBLE);

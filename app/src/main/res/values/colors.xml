@@ -8,13 +8,16 @@
 
     <!-- | Main Activity-->
     <color name="background_main">@color/Midnight</color>
-    <!-- | Home Fragment-->
-    <color name="home_rectangle_main">#FFFFFF</color>
-    <color name="home_text_explore">@color/Midnight</color>
-    <color name="home_text_free_price_participants">@color/VeryDarkDesaturatedBlue</color>
-    <color name="home_text_accessibility">@color/DifferentVeryDarkDesaturatedBlue</color>
-    <color name="home_spinner">#FFFFFF</color>
-    <color name="home_rangeSlider_trackColorInactive">#FFFFFF</color>
+    <!-- | Main Fragment / CardBored ListItem -->
+    <color name="main_rectangleMain">#FFFFFF</color>
+    <color name="main_text_explore">@color/Midnight</color>
+    <color name="main_text_free_price_participants">@color/VeryDarkDesaturatedBlue</color>
+    <color name="main_text_accessibility">@color/DifferentVeryDarkDesaturatedBlue</color>
+    <color name="main_spinner">@color/White</color>
+    <color name="main_rangeSlider_trackColorInactive">@color/White</color>
+    <!-- | | BottomSheet-->
+    <color name="bottomSheet_background">@color/White</color>
+    <color name="bottomSheet_text">@color/Black</color>
     <!-- | Settings Fragment-->
     <color name="settings_materialCard">@color/White</color>
     <color name="settings_text">@color/Black</color>
