@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/marginTop_30dp"
     android:orientation="vertical"
-    app:cardElevation="0dp"
-    app:cardBackgroundColor="@color/background_main">
+    app:cardBackgroundColor="@color/background_main"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -70,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/marginBottom_60dp"
+            android:padding="5dp"
             android:text="@string/text_main_explore"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@id/view_card_rectangleMain"
@@ -170,19 +171,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
             app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
-
-        <ImageView
-            android:id="@+id/image_card_participants_icon_4plus"
-            android:layout_width="@dimen/width_10dp"
-            android:layout_height="@dimen/height_10dp"
-            android:layout_marginTop="@dimen/marginTop_10dp"
-            android:layout_marginEnd="@dimen/marginEnd_5dp"
-            android:background="@drawable/icon_participants_4plus"
-            android:contentDescription="@string/contentDescription_main_participants_icon_4plus"
-            android:src="@drawable/icon_participants_4plus"
-            app:layout_constraintBottom_toBottomOf="@id/image_card_participants_icon_4"
-            app:layout_constraintRight_toRightOf="@id/image_card_participants_icon_4"
-            app:layout_constraintTop_toTopOf="@+id/image_card_participants_icon_4" />
 
         <TextView
             android:id="@+id/text_card_participants"

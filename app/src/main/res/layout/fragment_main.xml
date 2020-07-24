@@ -70,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/marginBottom_60dp"
+            android:padding="5dp"
             android:text="@string/text_main_explore"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@id/view_main_rectangleMain"
@@ -171,19 +172,6 @@
             app:layout_constraintLeft_toLeftOf="@id/view_main_rectangleMain"
             app:layout_constraintRight_toRightOf="@id/view_main_rectangleMain" />
 
-        <ImageView
-            android:id="@+id/image_main_participants_icon_4plus"
-            android:layout_width="@dimen/width_10dp"
-            android:layout_height="@dimen/height_10dp"
-            android:layout_marginTop="@dimen/marginTop_10dp"
-            android:layout_marginEnd="@dimen/marginEnd_5dp"
-            android:background="@drawable/icon_participants_4plus"
-            android:contentDescription="@string/contentDescription_main_participants_icon_4plus"
-            android:src="@drawable/icon_participants_4plus"
-            app:layout_constraintBottom_toBottomOf="@id/image_main_participants_icon_4"
-            app:layout_constraintRight_toRightOf="@id/image_main_participants_icon_4"
-            app:layout_constraintTop_toTopOf="@+id/image_main_participants_icon_4" />
-
         <TextView
             android:id="@+id/text_main_participants"
             style="@style/text_participants"
@@ -281,11 +269,16 @@
             android:id="@+id/rangeSlider_main_price"
             android:layout_width="@dimen/width_190dp"
             android:layout_height="@dimen/height_20dp"
+            android:stepSize="0.10"
             android:valueFrom="0.0"
             android:valueTo="1.0"
+            app:haloColor="@color/ContainsMainlyBlue"
+            app:haloRadius="15dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_main_price_slider"
             app:thumbColor="@color/ContainsMainlyBlue"
+            app:tickColorActive="@color/Blue500"
+            app:tickColorInactive="@color/main_rangeSlider_tickColorInactive"
             app:trackColorActive="@color/Blue500"
             app:trackColorInactive="@color/main_rangeSlider_trackColorInactive"
             app:values="@array/range_slider_values" />
@@ -307,6 +300,8 @@
             android:layout_height="@dimen/height_20dp"
             android:valueFrom="0.0"
             android:valueTo="1.0"
+            app:haloColor="@color/ContainsMainlyBlue"
+            app:haloRadius="15dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_main_accessibility_slider"
             app:thumbColor="@color/ContainsMainlyBlue"

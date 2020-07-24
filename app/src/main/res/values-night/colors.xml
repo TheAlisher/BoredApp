@@ -14,6 +14,7 @@
     <color name="main_text_free_price_participants">@color/White</color>
     <color name="main_text_accessibility">@color/White</color>
     <color name="main_spinner">@color/Black</color>
+    <color name="main_rangeSlider_tickColorInactive">@color/Black</color>
     <color name="main_rangeSlider_trackColorInactive">@color/Black</color>
     <!-- | | BottomSheet-->
     <color name="bottomSheet_background">@color/Black</color>

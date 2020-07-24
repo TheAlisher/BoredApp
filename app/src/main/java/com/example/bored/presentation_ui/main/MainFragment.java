@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,7 +57,6 @@ public class MainFragment extends Fragment {
     private ImageView imageParticipantsIcon2;
     private ImageView imageParticipantsIcon3;
     private ImageView imageParticipantsIcon4;
-    private ImageView imageParticipantsIcon4plus;
     private TextView textParticipants;
     private View viewRectangleLink;
     private Button buttonLink;
@@ -100,10 +98,10 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
         createSpinnerCategory();
-        rangeSliderPriceSetLabelFormatter();
-        spinnerGetSelectedValues();
-        rangeSliderPriceGetSelectedValues();
-        rangeSliderAccessibilityGetSelectedValues();
+        setLabelFormatterRangeSliderPrice();
+        getSelectedValuesSpinnerCategory();
+        getSelectedValuesRangeSliderPrice();
+        getSelectedValuesRangeSliderAccessibility();
         imageMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +136,6 @@ public class MainFragment extends Fragment {
         imageParticipantsIcon2 = view.findViewById(R.id.image_main_participants_icon_2);
         imageParticipantsIcon3 = view.findViewById(R.id.image_main_participants_icon_3);
         imageParticipantsIcon4 = view.findViewById(R.id.image_main_participants_icon_4);
-        imageParticipantsIcon4plus = view.findViewById(R.id.image_main_participants_icon_4plus);
         textParticipants = view.findViewById(R.id.text_main_participants);
         viewRectangleLink = view.findViewById(R.id.view_main_rectangleLink);
         buttonLink = view.findViewById(R.id.button_main_open_link);
@@ -151,6 +148,17 @@ public class MainFragment extends Fragment {
         rangeSliderAccessibility = view.findViewById(R.id.rangeSlider_main_accessibility);
     }
 
+    private void setAnimationCircularReveal(View view) {
+        int cx = view.getWidth() / 2;
+        int cy = view.getHeight() / 2;
+        float finalRadius = (float) Math.hypot(cx, cy);
+        Animator animator;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            animator.start();
+        }
+    }
+
     private void createSpinnerCategory() {
         String[] dropdownCategory = getResources().getStringArray(R.array.spinner_category);
         ArrayAdapter<String> adapter = new
@@ -159,7 +167,7 @@ public class MainFragment extends Fragment {
         spinnerCategory.setAdapter(adapter);
     }
 
-    private void rangeSliderPriceSetLabelFormatter() {
+    private void setLabelFormatterRangeSliderPrice() {
         rangeSliderPrice.setLabelFormatter(new Slider.LabelFormatter() {
             @NonNull
             @Override
@@ -172,7 +180,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void spinnerGetSelectedValues() {
+    private void getSelectedValuesSpinnerCategory() {
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -186,7 +194,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void rangeSliderPriceGetSelectedValues() {
+    private void getSelectedValuesRangeSliderPrice() {
         rangeSliderPrice.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
@@ -197,7 +205,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void rangeSliderAccessibilityGetSelectedValues() {
+    private void getSelectedValuesRangeSliderAccessibility() {
         rangeSliderAccessibility.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
@@ -331,7 +339,6 @@ public class MainFragment extends Fragment {
         imageParticipantsIcon2.setVisibility(View.INVISIBLE);
         imageParticipantsIcon3.setVisibility(View.INVISIBLE);
         imageParticipantsIcon4.setVisibility(View.INVISIBLE);
-        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
         textParticipants.setVisibility(View.INVISIBLE);
         viewRectangleLink.setVisibility(View.INVISIBLE);
         buttonLink.setVisibility(View.INVISIBLE);
@@ -346,7 +353,7 @@ public class MainFragment extends Fragment {
     }
 
     private void visibleAllAndPauseAnimation() {
-        animationCircularReveal(viewRectangleCategory);
+        setAnimationCircularReveal(viewRectangleCategory);
         viewRectangleCategory.setVisibility(View.VISIBLE);
         textCategory.setVisibility(View.VISIBLE);
         imageMore.setVisibility(View.VISIBLE);
@@ -363,17 +370,6 @@ public class MainFragment extends Fragment {
         loadingPause();
     }
 
-    private void animationCircularReveal(View view) {
-        int cx = view.getWidth() / 2;
-        int cy = view.getHeight() / 2;
-        float finalRadius = (float) Math.hypot(cx, cy);
-        Animator animator;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-            animator.start();
-        }
-    }
-
     private void loadingPause() {
         lottieAnimationLoading.setVisibility(View.INVISIBLE);
         lottieAnimationLoading.pauseAnimation();
@@ -385,8 +381,8 @@ public class MainFragment extends Fragment {
         textExplore.setText(boredAction.getActivity());
         textFree.setText(boredAction.getPrice().toString() + '$');
         setProgressBarAccessibility((int) (boredAction.getAccessibility() * 100));
-        createParticipants(boredAction);
-        createLink(boredAction);
+        setParticipants(boredAction);
+        setLink(boredAction);
     }
 
     private void setRectangleCategoryColor() {
@@ -429,7 +425,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void createParticipants(BoredAction boredAction) {
+    private void setParticipants(BoredAction boredAction) {
         switch (boredAction.getParticipants()) {
             case 1:
                 recoveryParticipantsViews();
@@ -455,28 +451,24 @@ public class MainFragment extends Fragment {
         imageParticipantsIcon2.setVisibility(View.VISIBLE);
         imageParticipantsIcon3.setVisibility(View.VISIBLE);
         imageParticipantsIcon4.setVisibility(View.VISIBLE);
-        imageParticipantsIcon4plus.setVisibility(View.VISIBLE);
     }
 
     private void invisibleParticipantsCase1() {
         imageParticipantsIcon2.setVisibility(View.INVISIBLE);
         imageParticipantsIcon3.setVisibility(View.INVISIBLE);
         imageParticipantsIcon4.setVisibility(View.INVISIBLE);
-        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase2() {
         imageParticipantsIcon1.setVisibility(View.INVISIBLE);
         imageParticipantsIcon3.setVisibility(View.INVISIBLE);
         imageParticipantsIcon4.setVisibility(View.INVISIBLE);
-        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase3() {
         imageParticipantsIcon1.setVisibility(View.INVISIBLE);
         imageParticipantsIcon2.setVisibility(View.INVISIBLE);
         imageParticipantsIcon4.setVisibility(View.INVISIBLE);
-        imageParticipantsIcon4plus.setVisibility(View.INVISIBLE);
     }
 
     private void invisibleParticipantsCase4() {
@@ -491,8 +483,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void createLink(BoredAction boredAction) {
-        textLink.setTypeface(Typeface.DEFAULT_BOLD);
+    private void setLink(BoredAction boredAction) {
         textLink.setText(boredAction.getLink());
         textLink.setOnClickListener(new View.OnClickListener() {
             @Override

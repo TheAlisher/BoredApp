@@ -67,7 +67,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         private ImageView imageCardParticipantsIcon2;
         private ImageView imageCardParticipantsIcon3;
         private ImageView imageCardParticipantsIcon4;
-        private ImageView imageCardParticipantsIcon4plus;
         private TextView textLink;
 
         public BoredViewHolder(@NonNull View itemView) {
@@ -104,7 +103,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardParticipantsIcon2 = itemView.findViewById(R.id.image_card_participants_icon_2);
             imageCardParticipantsIcon3 = itemView.findViewById(R.id.image_card_participants_icon_3);
             imageCardParticipantsIcon4 = itemView.findViewById(R.id.image_card_participants_icon_4);
-            imageCardParticipantsIcon4plus = itemView.findViewById(R.id.image_card_participants_icon_4plus);
             textLink = itemView.findViewById(R.id.text_card_link);
         }
 
@@ -175,11 +173,11 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textExplore.setText(boredAction.getActivity());
             textPrice.setText(boredAction.getPrice().toString() + '$');
             progressBarAccessibility.setProgress((int) (boredAction.getAccessibility() * 100));
-            createParticipants(boredAction);
+            setParticipants(boredAction);
             textLink.setText(boredAction.getLink());
         }
 
-        private void createParticipants(BoredAction boredAction) {
+        private void setParticipants(BoredAction boredAction) {
             switch (boredAction.getParticipants()) {
                 case 1:
                     recoveryParticipantsViews();
@@ -205,7 +203,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardParticipantsIcon2.setVisibility(View.VISIBLE);
             imageCardParticipantsIcon3.setVisibility(View.VISIBLE);
             imageCardParticipantsIcon4.setVisibility(View.VISIBLE);
-            imageCardParticipantsIcon4plus.setVisibility(View.INVISIBLE);
         }
 
         private void invisibleParticipantsCase1() {
@@ -230,8 +227,6 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
             imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
             imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon4plus.setVisibility(View.VISIBLE);
-
         }
     }
 }

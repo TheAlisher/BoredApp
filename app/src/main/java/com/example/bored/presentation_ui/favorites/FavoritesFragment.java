@@ -150,16 +150,12 @@ public class FavoritesFragment extends Fragment {
             card.clear();
             card.addAll(App.boredRepository.getAllActions());
             adapter.notifyDataSetChanged();
-            createItemTouchHelperForRecyclerView();
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+            itemTouchHelper.attachToRecyclerView(recyclerView);
         }
         if (size < App.boredRepository.getAllActions().size()) {
             recyclerView.scrollToPosition(card.size() - 1);
         }
-    }
-
-    private void createItemTouchHelperForRecyclerView() {
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void createRecyclerViewAnimation() {
