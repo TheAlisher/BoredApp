@@ -520,8 +520,6 @@ public class MainFragment extends Fragment {
     private void setLastAction() {
         if (App.boredRepository.lastAction != null) {
             setBoredAction(App.boredRepository.lastAction);
-        }
-        if (App.boredRepository.lastAction != null) {
             if (App.boredRepository.getBoredAction(App.boredRepository.lastAction.getKey()) == null) {
                 recoveryLikeIcon();
             } else {

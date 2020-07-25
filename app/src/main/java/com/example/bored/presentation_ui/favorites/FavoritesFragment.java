@@ -47,7 +47,7 @@ public class FavoritesFragment extends Fragment {
             int position = viewHolder.getAdapterPosition();
             App.boredRepository.deleteBoredAction(card.get(position));
             card.remove(position);
-            adapter.notifyDataSetChanged();
+            adapter.notifyItemRemoved(position);
         }
 
         @Override
