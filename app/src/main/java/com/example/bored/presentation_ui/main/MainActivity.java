@@ -114,4 +114,14 @@ public class MainActivity extends AppCompatActivity {
             return 3;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mViewPager.getCurrentItem() == 0) {
+            super.onBackPressed();
+        } else {
+            mViewPager.setCurrentItem(0, false);
+            mBottomNavigationView.setSelectedItemId(R.id.navigation_main);
+        }
+    }
 }
