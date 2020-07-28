@@ -45,8 +45,6 @@
 ```
 
 # License
-
-    Apache License
     
      Copyright 2020 Lamorakal
 
