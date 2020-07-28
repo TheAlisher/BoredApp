@@ -63,10 +63,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         private TextView textExplore;
         private TextView textPrice;
         private ProgressBar progressBarAccessibility;
-        private ImageView imageCardParticipantsIcon1;
-        private ImageView imageCardParticipantsIcon2;
-        private ImageView imageCardParticipantsIcon3;
-        private ImageView imageCardParticipantsIcon4;
+        private ImageView imageCardParticipantsIcon;
         private TextView textLink;
 
         public BoredViewHolder(@NonNull View itemView) {
@@ -99,10 +96,7 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
             textExplore = itemView.findViewById(R.id.text_card_explore);
             textPrice = itemView.findViewById(R.id.text_card_free);
             progressBarAccessibility = itemView.findViewById(R.id.progressBar_card_accessibility);
-            imageCardParticipantsIcon1 = itemView.findViewById(R.id.image_card_participants_icon_1);
-            imageCardParticipantsIcon2 = itemView.findViewById(R.id.image_card_participants_icon_2);
-            imageCardParticipantsIcon3 = itemView.findViewById(R.id.image_card_participants_icon_3);
-            imageCardParticipantsIcon4 = itemView.findViewById(R.id.image_card_participants_icon_4);
+            imageCardParticipantsIcon = itemView.findViewById(R.id.image_card_participants_icon);
             textLink = itemView.findViewById(R.id.text_card_link);
         }
 
@@ -180,53 +174,18 @@ public class BoredAdapter extends RecyclerView.Adapter<BoredAdapter.BoredViewHol
         private void setParticipants(BoredAction boredAction) {
             switch (boredAction.getParticipants()) {
                 case 1:
-                    recoveryParticipantsViews();
-                    invisibleParticipantsCase1();
+                   imageCardParticipantsIcon.setImageResource(R.drawable.icon_participants_1);
                     break;
                 case 2:
-                    recoveryParticipantsViews();
-                    invisibleParticipantsCase2();
+                    imageCardParticipantsIcon.setImageResource(R.drawable.icon_participants_2);
                     break;
                 case 3:
-                    recoveryParticipantsViews();
-                    invisibleParticipantsCase3();
+                    imageCardParticipantsIcon.setImageResource(R.drawable.icon_participants_3);
                     break;
                 case 4:
-                    recoveryParticipantsViews();
-                    invisibleParticipantsCase4();
+                    imageCardParticipantsIcon.setImageResource(R.drawable.icon_participants_4);
                     break;
             }
-        }
-
-        private void recoveryParticipantsViews() {
-            imageCardParticipantsIcon1.setVisibility(View.VISIBLE);
-            imageCardParticipantsIcon2.setVisibility(View.VISIBLE);
-            imageCardParticipantsIcon3.setVisibility(View.VISIBLE);
-            imageCardParticipantsIcon4.setVisibility(View.VISIBLE);
-        }
-
-        private void invisibleParticipantsCase1() {
-            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
-        }
-
-        private void invisibleParticipantsCase2() {
-            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
-        }
-
-        private void invisibleParticipantsCase3() {
-            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon4.setVisibility(View.INVISIBLE);
-        }
-
-        private void invisibleParticipantsCase4() {
-            imageCardParticipantsIcon1.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon2.setVisibility(View.INVISIBLE);
-            imageCardParticipantsIcon3.setVisibility(View.INVISIBLE);
         }
     }
 }

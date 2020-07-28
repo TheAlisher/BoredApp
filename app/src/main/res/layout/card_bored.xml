@@ -125,52 +125,14 @@
             app:layout_constraintTop_toBottomOf="@id/progressBar_card_accessibility" />
 
         <ImageView
-            android:id="@+id/image_card_participants_icon_1"
+            android:id="@+id/image_card_participants_icon"
             android:layout_width="@dimen/width_30dp"
             android:layout_height="@dimen/height_30dp"
-            android:layout_marginEnd="@dimen/marginEnd_105dp"
             android:layout_marginBottom="@dimen/marginBottom_70dp"
             android:contentDescription="@string/contentDescription_main_participants_icon_1"
-            android:src="@drawable/icon_participants_1"
             app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
             app:layout_constraintLeft_toRightOf="@id/view_card_rectangleMain"
-            app:layout_constraintRight_toLeftOf="@id/view_card_rectangleMain" />
-
-        <ImageView
-            android:id="@+id/image_card_participants_icon_2"
-            android:layout_width="@dimen/width_30dp"
-            android:layout_height="@dimen/height_30dp"
-            android:layout_marginEnd="@dimen/marginEnd_35dp"
-            android:layout_marginBottom="@dimen/marginBottom_70dp"
-            android:contentDescription="@string/contentDescription_main_participants_icon_2"
-            android:src="@drawable/icon_participants_2"
-            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
-            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
-            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
-
-        <ImageView
-            android:id="@+id/image_card_participants_icon_3"
-            android:layout_width="@dimen/width_30dp"
-            android:layout_height="@dimen/height_30dp"
-            android:layout_marginStart="@dimen/marginStart_35dp"
-            android:layout_marginBottom="@dimen/marginBottom_70dp"
-            android:contentDescription="@string/contentDescription_main_participants_icon_3"
-            android:src="@drawable/icon_participants_3"
-            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
-            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
-            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
-
-        <ImageView
-            android:id="@+id/image_card_participants_icon_4"
-            android:layout_width="@dimen/width_30dp"
-            android:layout_height="@dimen/height_30dp"
-            android:layout_marginStart="@dimen/marginStart_105dp"
-            android:layout_marginBottom="@dimen/marginBottom_70dp"
-            android:contentDescription="@string/contentDescription_main_participants_icon_4"
-            android:src="@drawable/icon_participants_4"
-            app:layout_constraintBottom_toBottomOf="@+id/view_card_rectangleMain"
-            app:layout_constraintLeft_toLeftOf="@id/view_card_rectangleMain"
-            app:layout_constraintRight_toRightOf="@id/view_card_rectangleMain" />
+            app:layout_constraintRight_toLeftOf="@id/view_card_rectangleMain"/>
 
         <TextView
             android:id="@+id/text_card_participants"
