@@ -312,7 +312,7 @@ public class MainFragment extends Fragment {
                         if (App.boredRepository.getBoredAction(key) != null) {
                             setLikeIcon();
                         }
-                        Log.d("anim", boredAction.toString());
+                        Log.d("anime", boredAction.toString());
                     }
 
                     @Override
@@ -320,7 +320,7 @@ public class MainFragment extends Fragment {
                         Toast.makeText(getContext(), "Проверьте интернет соединение", Toast.LENGTH_SHORT).show();
                         lottieAnimationLoading.setAnimation(R.raw.lottie_dino);
                         lottieAnimationLoading.playAnimation();
-                        Log.d("anim", E.getMessage());
+                        Log.e("anime", E.getMessage());
                     }
                 });
     }

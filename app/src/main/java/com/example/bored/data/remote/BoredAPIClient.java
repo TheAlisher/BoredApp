@@ -36,7 +36,7 @@ public class BoredAPIClient {
                 maxAccessibility
         );
 
-        Log.d("anim", call.request().url().toString());
+        Log.d("anime", call.request().url().toString());
 
         call.enqueue(new CoreCallback<BoredAction>() {
             @Override
