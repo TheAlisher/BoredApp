@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bored API</string>
 
-    Intro Activity
+    <!--IntroActivity-->
     <string name="button_intro_next">Next</string>
     <string name="button_intro_skip">Skip</string>
     <string name="button_intro_start">Start</string>
@@ -17,16 +17,7 @@
         <a href="https://www.boredapi.com/documentation">documentation</a>
     </string>
 
-    BottomNavigationItem
-    <string name="text_bottomNavigationMenu_home">Main</string>
-    <string name="text_bottomNavigationMenu_favorite">Favorite</string>
-    <string name="text_bottomNavigationMenu_settings">Settings</string>
-
-    PopupMenuItem
-    <string name="text_popupMenu_share">Share</string>
-    <string name="text_popupMenu_copy_link">Copy link</string>
-
-    Main Fragment / CardBored ListItem
+    <!--Main Fragment / CardBored ListItem-->
     <string name="text_main_category">Category</string>
     <string name="contentDescription_main_image_more">Icon more</string>
     <string name="contentDescription_main_image_like">Icon like</string>
@@ -43,22 +34,34 @@
     <string name="text_main_participants">Participants</string>
     <string name="button_main_open_link">Open Link:</string>
     <string name="text_main_price_slider">Price</string>
-    |BottomSheet
+
+    <!--Favorites Fragment-->
+    <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>
+
+    <!--Settings Fragment-->
+    <string name="text_settings_day_night_mode">Day/Night MODE</string>
+    <string name="contentDescription_settings_imageSwitch_day_night_mode">Icon Switch Day/Night MODE</string>
+    <string name="text_settings_type_of_deletion">Type of deletion</string>
+    <string name="text_settings_type_of_loading">Type of loading</string>
+    <string name="text_settings_manual_data">ManualData</string>
+    <string name="text_settings_live_data">LiveData</string>
+    <string name="text_settings_click_delete">Click</string>
+    <string name="text_settings_swipe_delete">Swipe</string>
+
+    <!--BottomNavigationMenu-->
+    <string name="text_bottomNavigationMenu_home">Main</string>
+    <string name="text_bottomNavigationMenu_favorite">Favorite</string>
+    <string name="text_bottomNavigationMenu_settings">Settings</string>
+
+    <!--BottomSheet-->
     <string name="contentDescription_bottomSheet_icon_share">Icon share</string>
     <string name="text_bottomSheet_share">Share</string>
     <string name="contentDescription_bottomSheet_icon_link">Icon link</string>
     <string name="text_bottomSheet_link">Copy link</string>
 
-    Favorites Fragment
-    <string name="text_favorites_youHaveNoSavedYet">У вас пока нет сохраненных</string>
-
-    Settings Fragment
-    <string name="text_settings_day_night_mode">Day/Night MODE</string>
-    <string name="contentDescription_settings_imageSwitch_day_night_mode">Icon Switch Day/Night MODE</string>
-    <string name="text_settings_type_of_deletion">Type of deletion</string>
-    <string name="text_settings_live_data">LiveData</string>
-    <string name="text_settings_swipe_data">SwipeData</string>
-    <string name="text_settings_manual_data">ManualData</string>
+    <!--PopupMenu-->
+    <string name="text_popupMenu_share">Share</string>
+    <string name="text_popupMenu_copy_link">Copy link</string>
 
 
 </resources>

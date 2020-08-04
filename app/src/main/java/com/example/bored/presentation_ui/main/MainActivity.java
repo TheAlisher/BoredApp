@@ -35,9 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         isFirstLaunch();
-
         initializationViews();
-        createNavigationBottomWithViewPager();
+        createBottomNavigationWithViewPager();
     }
 
     private void isDarkModeON() {
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mBottomNavigationView = findViewById(R.id.navigationView_main);
     }
 
-    private void createNavigationBottomWithViewPager() {
+    private void createBottomNavigationWithViewPager() {
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(2);
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

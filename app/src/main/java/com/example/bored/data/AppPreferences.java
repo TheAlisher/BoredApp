@@ -5,14 +5,16 @@ import android.content.SharedPreferences;
 
 public class AppPreferences {
 
-    // ON BOARD
+    // ONBOARD
     private static final String PREF_IS_FIRST_LAUNCH = "is_first_launch";
     // LIGHT / DARK | MODE
     private static final String PREF_LIGHT_DARK_MODE = "light_dark_mode";
-    // LIVEDATA / SWIPEDATA / MANUALDATA | MODE
-    public static final String PREF_LIVE_DATA = "live_data";
-    public static final String PREF_SWIPE_DATA = "swipe_data";
+    // MANUALDATA / LIVEDATA | LOAD MODE
     public static final String PREF_MANUAL_DATA = "manual_data";
+    public static final String PREF_LIVE_DATA = "live_data";
+    // CLICK / SWIPE | DELETE MODE
+    public static final String PREF_CLICK_DELETE = "click_delete";
+    public static final String PREF_SWIPE_DELETE = "swipe_delete";
 
     private SharedPreferences preferences;
 
@@ -40,28 +42,37 @@ public class AppPreferences {
         preferences.edit().putBoolean(PREF_LIGHT_DARK_MODE, flag).apply();
     }
 
-    // LiveData / SwipeDelete / ManualDeleteInCode | MODE
-    public boolean isLiveDataON() {
-        return preferences.getBoolean(PREF_LIVE_DATA, true);
+    // MANUALDATA / LIVEDATA | LOAD MODE
+    public boolean isManualData() {
+        return preferences.getBoolean(PREF_MANUAL_DATA, true);
+    }
+
+    public void setManualData(boolean flag) {
+        preferences.edit().putBoolean(PREF_MANUAL_DATA, flag).apply();
+    }
+
+    public boolean isLiveData() {
+        return preferences.getBoolean(PREF_LIVE_DATA, false);
     }
 
     public void setLiveData(boolean flag) {
         preferences.edit().putBoolean(PREF_LIVE_DATA, flag).apply();
     }
 
-    public boolean isSwipeDeleteON() {
-        return preferences.getBoolean(PREF_SWIPE_DATA, true);
+    // CLICK / SWIPE | DELETE MODE
+    public boolean isClickDelete() {
+        return preferences.getBoolean(PREF_CLICK_DELETE, true);
+    }
+
+    public void setClickDelete(boolean flag) {
+        preferences.edit().putBoolean(PREF_CLICK_DELETE, flag).apply();
+    }
+
+    public boolean isSwipeDelete() {
+        return preferences.getBoolean(PREF_SWIPE_DELETE, false);
     }
 
     public void setSwipeDelete(boolean flag) {
-        preferences.edit().putBoolean(PREF_SWIPE_DATA, flag).apply();
-    }
-
-    public boolean isManualDeleteON() {
-        return preferences.getBoolean(PREF_MANUAL_DATA, true);
-    }
-
-    public void setManualDelete(boolean flag) {
-        preferences.edit().putBoolean(PREF_MANUAL_DATA, flag).apply();
+        preferences.edit().putBoolean(PREF_SWIPE_DELETE, flag).apply();
     }
 }

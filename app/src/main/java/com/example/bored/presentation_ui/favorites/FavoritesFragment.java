@@ -52,7 +52,7 @@ public class FavoritesFragment extends Fragment {
 
         @Override
         public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-            if (!App.appPreferences.isSwipeDeleteON()) return 0;
+            if (!App.appPreferences.isSwipeDelete()) return 0;
             return super.getSwipeDirs(recyclerView, viewHolder);
         }
     };
@@ -78,7 +78,7 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                imageFavoriteClick(position);
+                favoritesImageFavoriteClick(position);
             }
         });
     }
@@ -97,16 +97,16 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void imageFavoriteClick(int position)   {
-        if (App.appPreferences.isManualDeleteON()) {
-            App.boredRepository.deleteBoredAction(card.get(position));
-            card.remove(position);
-            adapter.notifyDataSetChanged();
-
-        } else if (App.appPreferences.isLiveDataON()) {
-            App.boredRepository.deleteBoredAction(card.get(position));
-
-        } else if (App.appPreferences.isSwipeDeleteON()) {
+    private void favoritesImageFavoriteClick(int position) {
+        if (App.appPreferences.isClickDelete()) {
+            if (App.appPreferences.isManualData()) {
+                App.boredRepository.deleteBoredAction(card.get(position));
+                card.remove(position);
+                adapter.notifyDataSetChanged();
+            } else if (App.appPreferences.isLiveData()) {
+                App.boredRepository.deleteBoredAction(card.get(position));
+            }
+        } else if (App.appPreferences.isSwipeDelete()) {
             Toast.makeText(getContext(), "Для удаления свайпните", Toast.LENGTH_SHORT).show();
         }
     }
@@ -115,6 +115,7 @@ public class FavoritesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         loadData();
+        setItemTouchHelper();
         createRecyclerViewAnimation();
     }
 
@@ -125,17 +126,17 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void loadData() {
-        int size = card.size();
         if (App.boredRepository.getAllActions().isEmpty()) {
             cardViewYouHaveNoSavedYet.setVisibility(View.VISIBLE);
         } else {
             cardViewYouHaveNoSavedYet.setVisibility(View.GONE);
         }
-        if (App.appPreferences.isManualDeleteON()) {
+        int cardSize = card.size();
+        if (App.appPreferences.isManualData()) {
             card.clear();
             card.addAll(App.boredRepository.getAllActions());
             adapter.notifyDataSetChanged();
-        } else if (App.appPreferences.isLiveDataON()) {
+        } else if (App.appPreferences.isLiveData()) {
             App.boredRepository
                     .getAllActionsLive()
                     .observe(getViewLifecycleOwner(), new Observer<List<BoredAction>>() {
@@ -146,15 +147,16 @@ public class FavoritesFragment extends Fragment {
                             adapter.notifyDataSetChanged();
                         }
                     });
-        } else if (App.appPreferences.isSwipeDeleteON()) {
-            card.clear();
-            card.addAll(App.boredRepository.getAllActions());
-            adapter.notifyDataSetChanged();
+        }
+        if (cardSize < App.boredRepository.getAllActions().size()) {
+            recyclerView.scrollToPosition(card.size() - 1);
+        }
+    }
+
+    private void setItemTouchHelper() {
+        if (App.appPreferences.isSwipeDelete()) {
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
             itemTouchHelper.attachToRecyclerView(recyclerView);
-        }
-        if (size < App.boredRepository.getAllActions().size()) {
-            recyclerView.scrollToPosition(card.size() - 1);
         }
     }
 

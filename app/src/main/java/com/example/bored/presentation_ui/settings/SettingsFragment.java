@@ -19,7 +19,8 @@ import com.example.bored.R;
 public class SettingsFragment extends Fragment {
 
     private ImageView imageDayNightMode;
-    private Button buttonTypeOfDeletionChoose;
+    private Button buttonTypeOfLoading;
+    private Button buttonTypeOfDeletion;
 
     public SettingsFragment() {
     }
@@ -38,14 +39,20 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializationViews(view);
-        checkTypeOfDeletion();
+        checkTypeOfLoadingAndDeletion();
         imageDayNightMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settingsImageDayNightModeClick();
+                settingsDayNightModeClick();
             }
         });
-        buttonTypeOfDeletionChoose.setOnClickListener(new View.OnClickListener() {
+        buttonTypeOfLoading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settingsTypeOfLoadingClick();
+            }
+        });
+        buttonTypeOfDeletion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 settingsTypeOfDeletionClick();
@@ -55,22 +62,26 @@ public class SettingsFragment extends Fragment {
 
     private void initializationViews(View view) {
         imageDayNightMode = view.findViewById(R.id.imageSwitch_settings_day_night_mode);
-        buttonTypeOfDeletionChoose = view.findViewById(R.id.button_settings_type_of_deletion);
+        buttonTypeOfLoading = view.findViewById(R.id.button_settings_type_of_loading);
+        buttonTypeOfDeletion = view.findViewById(R.id.button_settings_type_of_deletion);
     }
 
-    private void checkTypeOfDeletion() {
-        if (App.appPreferences.isLiveDataON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
+    private void checkTypeOfLoadingAndDeletion() {
+        if (App.appPreferences.isManualData()) {
+            buttonTypeOfLoading.setText(R.string.text_settings_manual_data);
         }
-        if (App.appPreferences.isSwipeDeleteON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_swipe_data);
+        if (App.appPreferences.isLiveData()) {
+            buttonTypeOfLoading.setText(R.string.text_settings_live_data);
         }
-        if (App.appPreferences.isManualDeleteON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_manual_data);
+        if (App.appPreferences.isClickDelete()) {
+            buttonTypeOfDeletion.setText(R.string.text_settings_click_delete);
+        }
+        if (App.appPreferences.isSwipeDelete()) {
+            buttonTypeOfDeletion.setText(R.string.text_settings_swipe_delete);
         }
     }
 
-    private void settingsImageDayNightModeClick() {
+    private void settingsDayNightModeClick() {
         if (App.appPreferences.isDarkModeON()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             App.appPreferences.setModeDark(false);
@@ -80,22 +91,27 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private void settingsTypeOfDeletionClick() {
-        if (App.appPreferences.isManualDeleteON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_live_data);
+    private void settingsTypeOfLoadingClick() {
+        if (App.appPreferences.isManualData()) {
+            buttonTypeOfLoading.setText(R.string.text_settings_live_data);
+            App.appPreferences.setManualData(false);
             App.appPreferences.setLiveData(true);
-            App.appPreferences.setSwipeDelete(false);
-            App.appPreferences.setManualDelete(false);
-        } else if (App.appPreferences.isLiveDataON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_swipe_data);
+        } else if (App.appPreferences.isLiveData()) {
+            buttonTypeOfLoading.setText(R.string.text_settings_manual_data);
+            App.appPreferences.setManualData(true);
             App.appPreferences.setLiveData(false);
+        }
+    }
+
+    private void settingsTypeOfDeletionClick() {
+        if (App.appPreferences.isClickDelete()) {
+            buttonTypeOfDeletion.setText(R.string.text_settings_swipe_delete);
+            App.appPreferences.setClickDelete(false);
             App.appPreferences.setSwipeDelete(true);
-            App.appPreferences.setManualDelete(false);
-        } else if (App.appPreferences.isSwipeDeleteON()) {
-            buttonTypeOfDeletionChoose.setText(R.string.text_settings_manual_data);
-            App.appPreferences.setLiveData(false);
+        } else if (App.appPreferences.isSwipeDelete()) {
+            buttonTypeOfDeletion.setText(R.string.text_settings_click_delete);
+            App.appPreferences.setClickDelete(true);
             App.appPreferences.setSwipeDelete(false);
-            App.appPreferences.setManualDelete(true);
         }
     }
 }
