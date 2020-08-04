@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bored API</string>
+    <string name="app_name">Bored App</string>
 
     <!--IntroActivity-->
     <string name="button_intro_next">Next</string>
