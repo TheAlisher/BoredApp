@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.bored.App;
@@ -32,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         isDarkModeON();
+        isFirstLaunch();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        isFirstLaunch();
         initializationViews();
         createBottomNavigationWithViewPager();
     }

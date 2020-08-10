@@ -9,9 +9,9 @@
         android:top="0dp" />
 
     <item
-        android:width="66dp"
-        android:height="66dp"
-        android:drawable="@drawable/icon_api"
+        android:width="151dp"
+        android:height="151dp"
+        android:drawable="@mipmap/ic_launcher_foreground"
         android:gravity="center" />
 
 
