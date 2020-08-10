@@ -10,11 +10,11 @@ public class AppPreferences {
     // LIGHT / DARK | MODE
     private static final String PREF_LIGHT_DARK_MODE = "light_dark_mode";
     // MANUALDATA / LIVEDATA | LOAD MODE
-    public static final String PREF_MANUAL_DATA = "manual_data";
-    public static final String PREF_LIVE_DATA = "live_data";
+    private static final String PREF_MANUAL_DATA = "manual_data";
+    private static final String PREF_LIVE_DATA = "live_data";
     // CLICK / SWIPE | DELETE MODE
-    public static final String PREF_CLICK_DELETE = "click_delete";
-    public static final String PREF_SWIPE_DELETE = "swipe_delete";
+    private static final String PREF_CLICK_DELETE = "click_delete";
+    private static final String PREF_SWIPE_DELETE = "swipe_delete";
 
     private SharedPreferences preferences;
 
